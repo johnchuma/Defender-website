@@ -2,16 +2,35 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const Girloy = localFont({
+  src: [
+    {
+      path: './fonts/Girloy-Bold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Girloy-Heavy.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Girloy-Light.ttf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Girloy-Medium.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Girloy-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${Girloy.className} antialiased bg-slate-100`}
       >
         {children}
       </body>
