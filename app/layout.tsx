@@ -2,30 +2,30 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const Girloy = localFont({
+const Gilroy = localFont({
   src: [
     {
-      path: './fonts/Girloy-Bold.ttf',
+      path: './fonts/Gilroy-Bold.ttf',
       weight: '600',
       style: 'normal',
     },
     {
-      path: './fonts/Girloy-Heavy.ttf',
+      path: './fonts/Gilroy-Heavy.ttf',
       weight: '700',
       style: 'normal',
     },
     {
-      path: './fonts/Girloy-Light.ttf',
+      path: './fonts/Gilroy-Light.ttf',
       weight: '200',
       style: 'normal',
     },
     {
-      path: './fonts/Girloy-Medium.ttf',
+      path: './fonts/Gilroy-Medium.ttf',
       weight: '300',
       style: 'normal',
     },
     {
-      path: './fonts/Girloy-Regular.ttf',
+      path: './fonts/Gilroy-Regular.ttf',
       weight: '400',
       style: 'normal',
     },
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Girloy.className} antialiased bg-slate-100`}
+        className={`${Gilroy.className} antialiased bg-slate-100`}
       >
         {children}
       </body>
