@@ -2,41 +2,35 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-const gilroyBold = localFont({
-  src: "./fonts/Gilroy-Bold.ttf",
-  variable: "--font-Gilroy-Bold",
-  weight: "100 900",
-});
-const gilroyHeavy = localFont({
-  src: "./fonts/Gilroy-Heavy.ttf",
-  variable: "--font-Gilroy-Heavy",
-  weight: "100 900",
-});
-const gilroyLight = localFont({
-  src: "./fonts/Gilroy-Light.ttf",
-  variable: "--font-Gilroy-Light",
-  weight: "100 900",
-});
-const gilroyMedium = localFont({
-  src: "./fonts/Gilroy-Medium.ttf",
-  variable: "--font-Gilroy-Medium",
-  weight: "100 900",
-});
-const gilroyRegular = localFont({
-  src: "./fonts/Gilroy-Regular.ttf",
-  variable: "--font-Gilroy-Regular",
-  weight: "100 900",
-});
+const Gilroy = localFont({
+  src: [
+    {
+      path: './fonts/Gilroy-Bold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Gilroy-Heavy.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Gilroy-Light.ttf',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Gilroy-Medium.ttf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: './fonts/Gilroy-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -51,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${gilroyBold.variable} ${gilroyHeavy.variable} ${gilroyLight.variable} ${gilroyMedium.variable} ${gilroyRegular.variable} antialiased bg-slate-100`}
+        className={`${Gilroy.className} antialiased bg-slate-100`}
       >
         {children}
       </body>
