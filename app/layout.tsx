@@ -45,8 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${Gilroy.className} antialiased bg-slate-100`}
-      >
+        className={Gilroy.className}
         {children}
       </body>
     </html>
