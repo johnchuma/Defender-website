@@ -46,7 +46,6 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={Gilroy.className}
-      >
         {children}
       </body>
     </html>

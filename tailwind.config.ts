@@ -10,6 +10,9 @@ const config: Config = {
     extend: {
       colors:{
         primaryColor: "#F50000",
+        primaryCrimsonColor: "#CC0000",
+        primaryScarletColor: "#BA110B",
+        blushPinkColor: "#FFF0F0",
         secondaryColor: "#292929",
         backgroundColor: "#F2F2F2",
         textColor: "#000000",
