@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import TailwindHighlights from "tailwindcss-highlights";
 
 const config: Config = {
   content: [
@@ -8,8 +9,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
+      colors:{
         primaryColor: "#F50000",
+        primaryCrimsonColor: "#CC0000",
+        primaryScarletColor: "#BA110B",
+        blushPinkColor: "#FFF0F0",
         secondaryColor: "#292929",
         backgroundColor: "#F2F2F2",
         textColor: "#000000",
@@ -17,6 +21,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    TailwindHighlights
+  ],
 };
 export default config;
