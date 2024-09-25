@@ -21,9 +21,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    TailwindHighlights
-  ],
+  plugins: [ require("@tailwindcss/forms"),
+    TailwindHighlights,
+    ],
 };
 export default config;
