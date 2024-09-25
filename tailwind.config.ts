@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import TailwindHighlights from "tailwindcss-highlights";
 
 const config: Config = {
   content: [
@@ -20,6 +21,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [TailwindHighlights],
 };
 export default config;
