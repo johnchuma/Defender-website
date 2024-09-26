@@ -34,7 +34,7 @@ import AlarmIcon from "@/public/images/icons/alarm.png";
 
 export default function Home() {
   return (
-    <main className="-mt-32">
+    <main className="-mt-24">
       {/* ======================== HERO SECTION ======================== */}
       <section className="bg-blushPinkColor">
         <div className="container mx-auto flex min-h-[100dvh] flex-col items-center justify-center gap-y-6 text-center">

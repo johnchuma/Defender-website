@@ -54,7 +54,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${Gilroy.className} bg-slate-100 antialiased`}>
         <FloatingNav navItems={siteConfig.navItems} className="" />
-        <div className="pt-28">{children}</div>
+        <div className="pt-24">{children}</div>
         <Footer />
       </body>
     </html>
