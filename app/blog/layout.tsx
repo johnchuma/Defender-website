@@ -1,0 +1,21 @@
+import { Metadata } from "next";
+import { siteConfig } from "@/app/config/site";
+import HeaderTabs from "./_components/header-tabs";
+
+export const metadata: Metadata = {
+  title: `${siteConfig.name}: Blog`,
+  description: siteConfig.description,
+};
+
+export default function BlogLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="min-h-screen bg-white">
+      <HeaderTabs />
+      {children}
+    </div>
+  );
+}
