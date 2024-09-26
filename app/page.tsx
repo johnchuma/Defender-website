@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 
 // component
@@ -31,12 +32,19 @@ import GpsIcon from "@/public/images/icons/gps-icon.png";
 import SecurityIcon from "@/public/images/icons/shield-security.png";
 import CallIcon from "@/public/images/icons/call-calling.png";
 import AlarmIcon from "@/public/images/icons/alarm.png";
+import CustomButton from "./(components)/customButton";
+import Carousel from "./_components/carousel";
 
 export default function Home() {
+  const images = [
+    "/images/watch.png",
+    "/images/watch.png",
+    "/images/watch.png",
+  ];
   return (
-    <main className="-mt-24">
+    <main className="-mt-32">
       {/* ======================== HERO SECTION ======================== */}
-      <section className="bg-blushPinkColor">
+      <section className="bg-blushPinkColor pb-10 pt-28 2xl:pb-0 2xl:pt-0">
         <div className="container mx-auto flex min-h-[100dvh] flex-col items-center justify-center gap-y-6 text-center">
           {/* Background Images */}
           <Image
@@ -65,8 +73,15 @@ export default function Home() {
               smartwatches today <br />
               and experience peace of mind like never before.
             </div>
-            <div className="w-max self-center rounded-md bg-primaryCrimsonColor px-12 py-4 text-base font-medium text-white hover:scale-105">
-              Explore Now!
+
+            <CustomButton
+              btntext="Explore Now!"
+              onClick={() => console.log("Learn more clicked!")}
+              className="text-base font-medium"
+            />
+
+            <div className="mt-6 flex items-center justify-center 2xl:mt-8">
+              <Carousel images={images} />
             </div>
           </div>
         </div>
@@ -164,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* ======================== VIDEO SECTION ======================== */}
-      <section className="min-h-[100dvh] bg-white pt-20">
+      <section className="min-h-fit bg-white pb-10 pt-20">
         <div className="container mx-auto flex flex-col items-center justify-center bg-white md:flex-row md:gap-x-20">
           <div className="text-3xl font-semibold">
             The future of your kid lies
@@ -186,7 +201,7 @@ export default function Home() {
       </section>
 
       {/* ======================== WHY SECTION ======================== */}
-      <section className="bg-white pb-10">
+      <section className="bg-white pb-10 pt-20">
         <div className="container mx-auto grid grid-cols-1 items-center justify-center gap-x-16 md:grid-cols-2">
           <div className="">
             <Image src={ChildrenPlaying} alt="Children Playing Image" />
