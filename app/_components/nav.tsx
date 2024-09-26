@@ -28,12 +28,13 @@ export const FloatingNav = ({
   const [visible, setVisible] = useState(true);
   const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
 
+  // Wishlist count state
+  const [wishlistCount, setWishlistCount] = useState(1); // Set initial wishlist count
+
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
     if (typeof current === "number") {
       const direction = current! - scrollYProgress.getPrevious()!;
-
-      console.log(direction, scrollYProgress);
 
       if (current < 0.05) {
         setAtTop(true); // We are at the top
@@ -89,19 +90,48 @@ export const FloatingNav = ({
               href={navItem.link}
               className={cn(
                 "relative text-neutral-600 hover:text-primaryColor",
-                pathname === navItem.link
+                navItem.link === "/" && pathname === "/"
                   ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
-                  : "text-neutral-600 hover:text-primaryColor",
+                  : navItem.link !== "/" && pathname.includes(navItem.link)
+                    ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
+                    : "text-neutral-600 hover:text-primaryColor",
               )}
             >
               <span className="block sm:hidden">{navItem.icon}</span>
               <span className="hidden text-base sm:block">{navItem.name}</span>
               {/* Underline below the pathname equals navItem.link */}
-              {pathname === navItem.link && (
+              {navItem.link === "/" && pathname === "/" && (
+                <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+              )}
+              {navItem.link !== "/" && pathname.includes(navItem.link) && (
                 <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
               )}
             </Link>
           ))}
+
+          {/* Wishlist with Badge */}
+          <div
+            className={cn(
+              "relative flex w-fit items-center justify-center",
+              pathname.includes("/wishlist")
+                ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
+                : "text-neutral-600 hover:text-primaryColor",
+            )}
+          >
+            <Link href="/wishlist">
+              <span className="relative">
+                Wishlist
+                {pathname.includes("/wishlist") && (
+                  <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+                )}
+              </span>
+            </Link>
+            {wishlistCount > 0 && (
+              <div className="absolute -right-6 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primaryColor text-xs text-white">
+                {wishlistCount}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Hamburger menu */}
@@ -123,10 +153,6 @@ export const FloatingNav = ({
             </svg>
           </div>
         </div>
-        {/* <button className="relative rounded-full border border-neutral-200 px-4 py-2 text-sm font-medium text-black dark:border-white/[0.2] dark:text-white">
-          <span>Login</span>
-          <span className="absolute inset-x-0 -bottom-px mx-auto h-px w-1/2 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-        </button> */}
       </motion.div>
     </AnimatePresence>
   );
