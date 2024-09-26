@@ -26,6 +26,7 @@ export const FloatingNav = ({
   const pathname = usePathname();
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
+  const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -33,6 +34,12 @@ export const FloatingNav = ({
       const direction = current! - scrollYProgress.getPrevious()!;
 
       console.log(direction, scrollYProgress);
+
+      if (current < 0.05) {
+        setAtTop(true); // We are at the top
+      } else {
+        setAtTop(false); // We are not at the top
+      }
 
       if (direction < 0) {
         setVisible(true);
@@ -57,17 +64,22 @@ export const FloatingNav = ({
           duration: 0.2,
         }}
         className={cn(
-          "max-w-screen container fixed inset-x-0 top-4 z-[5000] mx-auto grid grid-cols-3 items-center justify-center rounded-2xl border border-transparent bg-white px-3 py-3 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:border-white/[0.2] dark:bg-black",
+          "max-w-screen container fixed inset-x-0 top-4 z-[5000] mx-auto grid grid-cols-3 items-center justify-center rounded-2xl bg-white px-10 py-3",
+          atTop
+            ? ""
+            : "border border-transparent shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]",
           className,
         )}
       >
         {/* Logo */}
-        <Image
-          src={siteConfig.logo.url}
-          alt={siteConfig.logo.alt}
-          width={180}
-          height={180}
-        />
+        <Link href="/">
+          <Image
+            src={siteConfig.logo.url}
+            alt={siteConfig.logo.alt}
+            width={180}
+            height={180}
+          />
+        </Link>
 
         {/* Nav items */}
         <div className="inline-flex w-full items-center justify-center gap-x-12">
@@ -76,10 +88,10 @@ export const FloatingNav = ({
               key={`link=${idx}`}
               href={navItem.link}
               className={cn(
-                "relative text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300",
+                "relative text-neutral-600 hover:text-primaryColor",
                 pathname === navItem.link
-                  ? "font-medium uppercase text-primaryColor hover:text-primaryCrimsonColor"
-                  : "text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300",
+                  ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
+                  : "text-neutral-600 hover:text-primaryColor",
               )}
             >
               <span className="block sm:hidden">{navItem.icon}</span>
