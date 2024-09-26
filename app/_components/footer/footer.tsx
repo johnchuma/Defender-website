@@ -125,9 +125,6 @@ function Footer() {
                   onClick={() => console.log("Footer sign up form submitted")}
                   className="w-fit px-4 py-2 text-base font-medium capitalize"
                 />
-                {/* <div className="flex items-center justify-center rounded-lg bg-primaryColor px-4 py-2 text-center hover:bg-primaryCrimsonColor">
-                  Sign up
-                </div> */}
               </div>
             </div>
 
