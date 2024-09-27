@@ -13,7 +13,7 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="-mt-2 mb-20 min-h-screen space-y-4 bg-white">
       <HeaderTabs />
       {children}
     </div>

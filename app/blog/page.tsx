@@ -5,7 +5,7 @@ import BlogPostCard from "./_components/blog-post-card";
 
 const Blog = () => {
   return (
-    <main className="flex flex-col bg-white">
+    <main className="flex flex-col space-y-8 bg-white">
       <div className="container mx-auto">
         <Title className="text-start">Featured news</Title>
         <section className="grid grid-cols-3 items-center justify-center gap-x-6 pt-6">
@@ -38,7 +38,7 @@ const Blog = () => {
       </div>
       <section className="container mx-auto flex flex-col gap-y-6">
         <Title className="text-start">Latest news</Title>
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 gap-8 2xl:grid-cols-4">
           <BlogPostCard
             imageUrl="/images/children-walking.png"
             date="August 12, 2024"
