@@ -1,20 +1,27 @@
 "use client";
 import React from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   safetyFeatures,
   technicalSpecifications,
   moreSpecification,
-} from "../utils/constants";
-import CustomButton from "../(components)/customButton";
-import VideoPlayer from "../(components)/videoPlayer";
-import SimpleCarousel from "../(components)/carousel";
+} from "../../utils/constants";
+import CustomButton from "../../(components)/customButton";
+import VideoPlayer from "../../(components)/videoPlayer";
+import SimpleCarousel from "../../(components)/carousel";
 
 export default function ProductPage() {
+  const router = useRouter();
+  const handleBuyNow = () => {
+    const productType = "android"; 
+    router.push(`/ecommerce?type=${productType}`);
+  };
+  
   return (
     <div className="w-9/12 mx-auto space-y-20 py-20">
       <div className="flex flex-col items-center">
-        <SimpleCarousel />
+        <SimpleCarousel type={"android"}/>
         <h4 className="mt-4 font-semibold text-black text-lg">
           Android Elite Version
         </h4>
@@ -22,7 +29,7 @@ export default function ProductPage() {
         <CustomButton
           btntext="Buy Now"
           paddingX="px-12"
-          onClick={() => console.log("Android version clicked!")}
+          onClick={handleBuyNow}
         />
       </div>
       <div className="space-y-5">
@@ -102,13 +109,13 @@ export default function ProductPage() {
           <div className="col-span-6 space-y-5 flex flex-col items-center">
             {" "}
             <Image
-              src={"/watch.png"}
-              height={300}
-              width={300}
-              className="rounded-lg object-cover bg-transparent"
+              src={"/blackwatch.svg"}
+              height={2000}
+              width={2000}
+              className="rounded-lg w-full h-60 object-contain bg-transparent"
               alt="Watch"
             />
-            <CustomButton btntext={"Buy Now"} />
+            <CustomButton btntext={"Buy Now"} onClick={handleBuyNow}/>
           </div>
         </div>
       </div>

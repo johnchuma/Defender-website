@@ -4,10 +4,11 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import CustomButton from "./customButton";
-import { products } from "../utils/constants";
+import { android , rto } from "../utils/constants";
 
-const ProductCarousel = () => {
+const SimpleCarousel = ({ type }: { type: string }) => {
+  const products = type == "android" ? android : rto;
+
   const settings = {
     dots: true,
     infinite: true,
@@ -43,17 +44,17 @@ const ProductCarousel = () => {
   return (
     <div className="carousel-container max-w-5xl mx-auto px-4 py-10 relative">
       <Slider {...settings}>
-        {products.map((product) => (
+        {products.map((product:any) => (
           <div
             key={product.id}
             className="p-4 flex flex-col justify-between items-center"
           >
             <Image
-              src={product.imgSrc}
-              height={224}
-              width={424}
+              src={product.image}
+              height={2000}
+              width={2000}
               className="w-full h-60 rounded-lg object-contain bg-[#F2F2F2]"
-              alt={product.title}
+              alt={product.name}
             />
           </div>
         ))}
@@ -86,4 +87,4 @@ const PrevArrow = (props: any) => {
   );
 };
 
-export default ProductCarousel;
+export default SimpleCarousel;

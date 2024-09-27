@@ -58,47 +58,49 @@ export const moreSpecification = [
   { text: "Location via GPS, WiFi and LBS " },
 ];
 
-export const products = [
+export const rto = [
   {
     id: 1,
-    title: "RTO`s Modern Version",
+    name: "RTO`s Modern Version",
     price: "Tsh 99,000",
-    imgSrc: "/watch.png",
+    image: "/v2blackwatch.png",
+    color: "black",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
     id: 2,
-    title: "RTO`s Classic Version",
+    name: "RTO`s Modern Version",
     price: "Tsh 89,000",
-    imgSrc: "/watch.png",
+    image: "/pinkwatch.png",
+    color: "pink",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
     id: 3,
-    title: "RTO`s Classic Version",
+    name: "RTO`s Modern Version",
     price: "Tsh 89,000",
-    imgSrc: "/watch.png",
+    image: "/bluewatch.png",
+    color: "blue",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
+];
+
+
+export const android = [
   {
-    id: 4,
-    title: "RTO`s Modern Version",
-    price: "Tsh 99,000",
-    imgSrc: "/watch.png",
-  },
-  {
-    id: 5,
-    title: "Android Elite Version",
+    id: 1,
+    name: "Android Elite Watch",
     price: "Tsh 135,000",
-    imgSrc: "/DefenderLogo.svg",
+    image: "/blackwatch.svg",
+    color: "black",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
-    id: 6,
-    title: "RTO`s Classic Version",
-    price: "Tsh 89,000",
-    imgSrc: "/watch.png",
-  },
-  {
-    id: 7,
-    title: "RTO`s Modern Version",
-    price: "Tsh 99,000",
-    imgSrc: "/watch.png",
+    id: 2,
+    name: "Android Elite Watch",
+    price: "Tsh 135,000",
+    image: "/greywatch.png",
+    color: "grey",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
 ];
