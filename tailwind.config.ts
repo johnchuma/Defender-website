@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import TailwindHighlights from "tailwindcss-highlights";
+import TailwindHighlights from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -21,7 +21,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [ require("@tailwindcss/forms"),
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  plugins: [require("@tailwindcss/forms"),
     TailwindHighlights,
     ],
 };

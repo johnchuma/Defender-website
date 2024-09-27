@@ -16,7 +16,6 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 
 export default function Ecommerce() {
   const [selectedProduct, setSelectedProduct] = useState(productVariations[0]);
-  const [selectedWatch, setSelectedWatch] = useState(0);
   const [productCount, setProductCount] = useState(1);
   const featuresRef = useRef(null);
   const faqsRef = useRef(null);
@@ -157,7 +156,7 @@ export default function Ecommerce() {
             </div>
             <div className="col-span-6">
               <Image
-                src="/watch1.svg"
+                src="/watch5.svg"
                 height={2000}
                 width={2000}
                 className="rounded-lg bg-transparent w-full h-60 object-contain"
@@ -168,7 +167,7 @@ export default function Ecommerce() {
           <div className="grid grid-cols-12 items-center gap-10">
             <div className="col-span-6">
               <Image
-                src="/watch1.svg"
+                src="/watch5.svg"
                 height={2000}
                 width={2000}
                 className="rounded-lg bg-transparent w-full h-60 object-contain"
@@ -182,7 +181,7 @@ export default function Ecommerce() {
                 </h4>
                 <p className="text-mutedText">
                   Our devices come equipped with advanced GPS technology that
-                  allows parents to monitor their child's location in real-time.
+                  allows parents to monitor their child`s location in real-time.
                   This feature provides peace of mind, enabling parents to track
                   their children`s movements and ensure their safety, whether
                   they`re at school, playing outside, or on an adventure
@@ -207,7 +206,7 @@ export default function Ecommerce() {
             </div>
             <div className="col-span-6">
               <Image
-                src="/watch1.svg"
+                src="/watch5.svg"
                 height={2000}
                 width={2000}
                 className="rounded-lg bg-transparent w-full h-60 object-contain"
@@ -218,7 +217,7 @@ export default function Ecommerce() {
           <div className="grid grid-cols-12 items-center gap-10">
             <div className="col-span-6">
               <Image
-                src="/watch1.svg"
+                src="/watch5.svg"
                 height={2000}
                 width={2000}
                 className="rounded-lg bg-transparent w-full h-60 object-contain"

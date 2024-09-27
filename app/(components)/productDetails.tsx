@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { ReactNode } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
 interface productDetailsItems {
   title: string;
-  description: string;
+  description: ReactNode;
   icon: JSX.Element;
 }
 
