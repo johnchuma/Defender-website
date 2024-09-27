@@ -88,12 +88,18 @@ export default function Home() {
       </section>
 
       {/* ======================== CLIENT SECTION ======================== */}
-      <section className="container mx-auto flex items-center justify-between py-6 bg-slate-100">
-        <Image src={FlutterwaveLogo} alt="Flutterwave Image" className="w-32" />
-        <Image src={SelcomLogo} alt="Selcom Image" className="w-16" />
-        <Image src={VodacomLogo} alt="Vodacom Image" className="w-24" />
-        <Image src={ShuleYetuLogo} alt="Shule Yetu Image" className="w-24" />
-      </section>
+      <div className="bg-slate-100 py-6">
+        <section className="container mx-auto flex items-center justify-between">
+          <Image
+            src={FlutterwaveLogo}
+            alt="Flutterwave Image"
+            className="w-32"
+          />
+          <Image src={SelcomLogo} alt="Selcom Image" className="w-16" />
+          <Image src={VodacomLogo} alt="Vodacom Image" className="w-24" />
+          <Image src={ShuleYetuLogo} alt="Shule Yetu Image" className="w-24" />
+        </section>
+      </div>
 
       {/* ======================== POPULAR PRODUCTS SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">

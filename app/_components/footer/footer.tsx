@@ -95,7 +95,7 @@ function Footer() {
 
               {/* Input and button */}
               <div className="inline-flex gap-x-4 text-sm">
-                <div className="inline-flex w-3/4 items-center gap-x-3 rounded-lg bg-white px-4 py-2 shadow-md">
+                <div className="inline-flex w-3/4 items-center gap-x-3 rounded-lg bg-white px-4 shadow-md">
                   {/* Search icon */}
                   <svg
                     width="18"
@@ -116,7 +116,7 @@ function Footer() {
                     id="email"
                     type="email"
                     placeholder="ahmadhamis45@gmail.com"
-                    className="w-full border-none text-gray-500 focus:outline-none"
+                    className="w-full border-none text-gray-500 focus:border-none focus:outline-none focus:ring-0"
                   />
                 </div>
                 {/* Submit button */}
