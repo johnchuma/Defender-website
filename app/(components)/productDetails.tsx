@@ -1,17 +1,19 @@
 import { useState } from "react";
+import { ReactNode } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 
-interface FaqItem {
+interface productDetailsItems {
   title: string;
-  description: string;
+  description: ReactNode;
+  icon: JSX.Element;
 }
 
-interface FaqsProps {
-  item: FaqItem;
+interface ProductDetailsProps {
+  item: productDetailsItems;
 }
 
-export default function Faqs({ item }: FaqsProps) {
+export default function ProductDetails({ item }: ProductDetailsProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleParagraph = () => {
@@ -24,17 +26,15 @@ export default function Faqs({ item }: FaqsProps) {
         className="flex items-center justify-between rounded-lg cursor-pointer space-x-12"
         onClick={toggleParagraph}
       >
-        <span className="text-black text-lg font-semibold">
-          {item.title}
-        </span>
+        <div className="flex space-x-5 items-center">
+          <span>{item.icon}</span>
+          <span className="text-black text-lg font-medium">{item.title}</span>
+        </div>
+
         {isOpen ? (
-          <div className="inline-flex items-center justify-center p-2 border-2 border-[#E0E0E0] rounded-full">
-            <IoIosArrowUp className="text-black" />
-          </div>
+          <FaMinus className="text-black" />
         ) : (
-          <div className="inline-flex items-center justify-center p-2 border-2 border-[#E0E0E0] rounded-full">
-            <IoIosArrowDown className="text-black" />
-          </div>
+          <FaPlus className="text-black" />
         )}
       </div>
       <AnimatePresence>

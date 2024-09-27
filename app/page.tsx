@@ -60,7 +60,7 @@ export default function Home() {
 
           {/* Hero Content */}
           <div className="z-20 flex flex-col gap-y-6">
-            <div className="text-6xl font-bold leading-tight text-[#292929]">
+            <div className="text-6xl font-semibold leading-tight text-[#292929]">
               Trusted Smartwatches for <br />
               Your{" "}
               <span className="highlight highlight-blue-300 highlight-variant-4">
@@ -88,7 +88,7 @@ export default function Home() {
       </section>
 
       {/* ======================== CLIENT SECTION ======================== */}
-      <section className="container mx-auto flex items-center justify-between py-6">
+      <section className="container mx-auto flex items-center justify-between py-6 bg-slate-100">
         <Image src={FlutterwaveLogo} alt="Flutterwave Image" className="w-32" />
         <Image src={SelcomLogo} alt="Selcom Image" className="w-16" />
         <Image src={VodacomLogo} alt="Vodacom Image" className="w-24" />
