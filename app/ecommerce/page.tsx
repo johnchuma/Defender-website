@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   productDetails,
@@ -14,14 +15,113 @@ import Category from "../(components)/midNavBar";
 import CustomOutlineButton from "../(components)/customOutlineButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
+interface CartItem {
+  id: number;
+  name: string;
+  color: string;
+  count: number;
+  price: number;
+  image: string;
+  description: string;
+}
+
 export default function Ecommerce() {
-  const [selectedProduct, setSelectedProduct] = useState(productVariations[0]);
-  const [productCount, setProductCount] = useState(1);
+  const router = useRouter();
+  const [selectedProduct, setSelectedProduct] = useState<CartItem>({
+    ...productVariations[0],
+    count: 1,
+  });
+  const [productCount, setProductCount] = useState<number>(1);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const featuresRef = useRef(null);
   const faqsRef = useRef(null);
+  const [isModified, setIsModified] = useState<boolean>(false);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const calculateTotalPrice = (cartItems: CartItem[]): number => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.count, 0);
+  };
+
+  const handleProductSelection = (product: (typeof productVariations)[0]) => {
+    setSelectedProduct({ ...product, count: 1 });
+  };
+
+  const handleCountChange = (productId: string, increment: boolean) => {
+    const numericProductId = Number(productId);
+
+    setCart((prevCart) =>
+      prevCart.map((product) =>
+        product.id === numericProductId
+          ? {
+              ...product,
+              count: increment
+                ? product.count + 1
+                : Math.max(product.count - 1, 1),
+            }
+          : product,
+      ),
+    );
+  };
+
+  useEffect(() => {
+    setTotalPrice(calculateTotalPrice(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(
+      localStorage.getItem("cart") || "[]",
+    ) as CartItem[];
+    setCart(savedCart);
+    setTotalPrice(calculateTotalPrice(savedCart));
+  }, []);
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
+    const existingProduct = cart.find((p) => p.id === selectedProduct.id);
+
+    if (existingProduct) {
+      const isChanged =
+        existingProduct.count !== selectedProduct.count ||
+        existingProduct.color !== selectedProduct.color;
+      setIsModified(isChanged);
+    }
+  }, [selectedProduct]);
+
+  useEffect(() => {
+    const savedCart = JSON.parse(
+      localStorage.getItem("cart") || "[]",
+    ) as CartItem[];
+    setCart(savedCart);
+  }, []);
+
+  const handleAddToCart = (product: CartItem) => {
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
+    const productIndex = cart.findIndex((p) => p.id === product.id);
+
+    if (productIndex !== -1) {
+      cart[productIndex] = product;
+    } else {
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    setCart(cart);
+  };
+
+  const handleBuyNow = () => {
+    const productToAdd = { ...selectedProduct, count: productCount };
+    handleAddToCart(productToAdd);
+    router.push("/payment");
+  };
+
+  const handleAddToWishlist = () => {
+    const productToAdd = { ...selectedProduct, count: productCount };
+    handleAddToCart(productToAdd);
+    router.push("/wishlist");
+  };
 
   return (
-    <div className="w-9/12 mx-auto space-y-20 my-20">
+    <div className="mx-auto my-20 w-9/12 space-y-20">
       <div>
         <div className="grid grid-cols-12 items-start gap-20 pr-5">
           <div className="col-span-6 space-y-5">
@@ -30,7 +130,7 @@ export default function Ecommerce() {
                 src={selectedProduct.image}
                 height={2000}
                 width={2000}
-                className="rounded-lg bg-backgroundColor w-full h-96 object-contain py-10"
+                className="h-96 w-full rounded-lg bg-backgroundColor object-contain py-10"
                 alt="Watch"
               />
             </div>
@@ -39,14 +139,13 @@ export default function Ecommerce() {
                 <div
                   className="col-span-3"
                   key={index}
-                  onClick={() => setSelectedProduct(product)}
+                  onClick={() => setSelectedProduct({ ...product, count: 1 })}
                 >
-                  {" "}
                   <Image
                     src={product.image}
                     height={2000}
                     width={2000}
-                    className={`rounded-lg bg-backgroundColor w-full h-28 object-contain py-5 ${
+                    className={`h-28 w-full rounded-lg bg-backgroundColor object-contain py-5 ${
                       selectedProduct.id === product.id
                         ? "border-2 border-primaryColor"
                         : "border-none"
@@ -59,13 +158,13 @@ export default function Ecommerce() {
           </div>
           <div className="col-span-6 space-y-5">
             <div>
-              <h4 className="mt-4 font-semibold text-black text-lg">
+              <h4 className="mt-4 text-lg font-semibold text-black">
                 {selectedProduct.name}
               </h4>
               <p className="text-mutedText">{selectedProduct.description}</p>
             </div>
 
-            <p className="mt-2 text-black text-xl font-bold">
+            <p className="mt-2 text-xl font-semibold text-black">
               Tzs {selectedProduct.price}
             </p>
             <div className="w-3/4">
@@ -84,8 +183,10 @@ export default function Ecommerce() {
                       }}
                     >
                       <div
-                        className={`p-3 rounded-full cursor-pointer`}
-                        onClick={() => setSelectedProduct(product)}
+                        className={`cursor-pointer rounded-full p-3`}
+                        onClick={() =>
+                          setSelectedProduct({ ...product, count: 1 })
+                        }
                         style={{ backgroundColor: product.color }}
                       />
                     </div>
@@ -93,7 +194,7 @@ export default function Ecommerce() {
                 </div>
                 <div className="flex items-center space-x-5">
                   <div
-                    className={`inline-flex items-center justify-center p-2 border-2 border-[#E0E0E0] rounded-lg ${
+                    className={`inline-flex items-center justify-center rounded-lg border-2 border-[#E0E0E0] p-2 ${
                       productCount === 1
                         ? "cursor-not-allowed opacity-50"
                         : "cursor-pointer"
@@ -108,7 +209,7 @@ export default function Ecommerce() {
                   </div>
                   <p className="mt-2 text-black">{productCount}</p>
                   <div
-                    className="inline-flex items-center justify-center p-2 bg-[#E0E0E0] rounded-lg cursor-pointer"
+                    className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-[#E0E0E0] p-2"
                     onClick={() => setProductCount(productCount + 1)}
                   >
                     <FaPlus />
@@ -116,10 +217,15 @@ export default function Ecommerce() {
                 </div>
               </div>
               <div className="flex justify-between">
-                <CustomButton btntext="Buy Now" paddingX="px-14" />
+                <CustomButton
+                  btntext="Buy Now"
+                  paddingX="px-14"
+                  onClick={handleBuyNow}
+                />
                 <CustomOutlineButton
                   btntext="Add to Wishlist"
                   paddingX="px-10"
+                  onClick={handleAddToWishlist}
                 />
               </div>
             </div>
@@ -140,8 +246,8 @@ export default function Ecommerce() {
         <div ref={featuresRef} className="space-y-16">
           <div className="grid grid-cols-12 items-center gap-10">
             <div className="col-span-6">
-              <div className="text-start space-y-3">
-                <h4 className="font-semibold text-black text-xl">
+              <div className="space-y-3 text-start">
+                <h4 className="text-xl font-semibold text-black">
                   Two-Way Communication
                 </h4>
                 <p className="text-mutedText">
@@ -159,7 +265,7 @@ export default function Ecommerce() {
                 src="/watch5.svg"
                 height={2000}
                 width={2000}
-                className="rounded-lg bg-transparent w-full h-60 object-contain"
+                className="h-60 w-full rounded-lg bg-transparent object-contain"
                 alt="Watch"
               />
             </div>
@@ -170,13 +276,13 @@ export default function Ecommerce() {
                 src="/watch5.svg"
                 height={2000}
                 width={2000}
-                className="rounded-lg bg-transparent w-full h-60 object-contain"
+                className="h-60 w-full rounded-lg bg-transparent object-contain"
                 alt="Watch"
               />
             </div>
             <div className="col-span-6">
-              <div className="text-start space-y-3">
-                <h4 className="font-semibold text-black text-xl">
+              <div className="space-y-3 text-start">
+                <h4 className="text-xl font-semibold text-black">
                   Real-Time GPS Tracking
                 </h4>
                 <p className="text-mutedText">
@@ -191,8 +297,8 @@ export default function Ecommerce() {
           </div>
           <div className="grid grid-cols-12 items-center gap-10">
             <div className="col-span-6">
-              <div className="text-start space-y-3">
-                <h4 className="font-semibold text-black text-xl">
+              <div className="space-y-3 text-start">
+                <h4 className="text-xl font-semibold text-black">
                   Emergency SOS Alerts
                 </h4>
                 <p className="text-mutedText">
@@ -209,7 +315,7 @@ export default function Ecommerce() {
                 src="/watch5.svg"
                 height={2000}
                 width={2000}
-                className="rounded-lg bg-transparent w-full h-60 object-contain"
+                className="h-60 w-full rounded-lg bg-transparent object-contain"
                 alt="Watch"
               />{" "}
             </div>
@@ -220,13 +326,13 @@ export default function Ecommerce() {
                 src="/watch5.svg"
                 height={2000}
                 width={2000}
-                className="rounded-lg bg-transparent w-full h-60 object-contain"
+                className="h-60 w-full rounded-lg bg-transparent object-contain"
                 alt="Watch"
               />
             </div>
             <div className="col-span-6">
-              <div className="text-start space-y-3">
-                <h4 className="font-semibold text-black text-xl">
+              <div className="space-y-3 text-start">
+                <h4 className="text-xl font-semibold text-black">
                   Geofencing Alerts
                 </h4>
                 <p className="text-mutedText">
@@ -243,8 +349,8 @@ export default function Ecommerce() {
       </div>
       <div ref={faqsRef} className="space-y-8">
         {" "}
-        <div className="text-center space-y-3">
-          <h4 className="font-bold text-black text-xl">
+        <div className="space-y-3 text-center">
+          <h4 className="text-xl font-semibold text-black">
             Frequently Asked Questions
           </h4>
           <p className="text-black">

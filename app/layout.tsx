@@ -54,7 +54,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={Gilroy.className}>
         <FloatingNav navItems={siteConfig.navItems} />
-        {children}
+        <div className="pt-20"> {children}</div>
         <Footer />
       </body>
     </html>

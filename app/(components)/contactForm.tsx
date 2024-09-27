@@ -7,13 +7,15 @@ export default function ContactUs() {
   const validationSchema = Yup.object({
     name: Yup.string().required().max(50),
     email: Yup.string().email().required("put valid email"),
+    subject: Yup.string().required("empty subject"),
     message: Yup.string().required("empty message"),
   });
+
   return (
     <Formik
       validationSchema={validationSchema}
       onSubmit={(values) => {}}
-      initialValues={{ name: "", email: "", message: "" }}
+      initialValues={{ name: "", email: "", subject: "", message: "" }}
     >
       {({ handleSubmit, handleChange, values, errors, touched }) => (
         <div className="flex justify-start">
@@ -49,6 +51,19 @@ export default function ContactUs() {
                   <p className="text-red-600 text-xs">{errors.email}</p>
                 )}
               </div>
+              <div className="flex flex-col space-y-2 my-3">
+                <label>Subject</label>
+                <input
+                  className="form-inputstyle"
+                  name="subject"
+                  value={values.email}
+                  onChange={handleChange}
+                  placeholder="How do I get your product?"
+                />
+                {errors.subject && touched.subject && (
+                  <p className="text-red-600 text-xs">{errors.subject}</p>
+                )}
+              </div>
               <div className="flex flex-col space-y-3 my-3">
                 <label>Your message</label>
                 <textarea
@@ -63,8 +78,9 @@ export default function ContactUs() {
                 )}
               </div>
               <CustomButton
-                btntext="Send Message"
+                btntext={"Send Message"}
                 paddingX="px-12"
+                type="submit"
                 onClick={() => console.log("Android version clicked!")}
               />
             </form>

@@ -6,30 +6,60 @@ export const productDetails = [
   {
     title: "Tech Specifications",
     icon: <TbScissors />,
-    description: <div className="w-3/4">
-      <p>Screen 1.4 inch IPS screen</p>
-      <p>4G Network LTE</p>
-      <p>Remote monitoring Mobile App control</p>
-      <p>Waterproof level</p>
-      <p>Built-in game 7 quizzes & games</p>
-      <p>Lithium battery 750mAH</p>
-    </div>
+    description: (
+      <div className="w-3/4 space-y-2">
+        <p>Screen 1.4 inch IPS screen</p>
+        <p>4G Network LTE</p>
+        <p>Remote monitoring Mobile App control</p>
+        <p>Waterproof level</p>
+        <p>Built-in game 7 quizzes & games</p>
+        <p>Lithium battery 750mAH</p>
+      </div>
+    ),
   },
   {
     title: "Logistic Policy",
     icon: <CiDeliveryTruck />,
-    description: <div className="">
-      <p>We process all orders within 1-2 business days. Shipping times may vary depending on your location and selected shipping method, with delivery estimates provided at checkout.<br/> 
-      Once shipped, you`ll receive a tracking number to monitor your package. We currently ship to [regions/countries]. Any delays due to unforeseen circumstances will be promptly communicated. For a detailed review of our shipping, delivery, and return processes, please download the attached document.<br/>For further inquiries, feel free to contact us at<br/><span className="text-black">+255677869628.</span></p>
-    </div>
+    description: (
+      <div className="space-y-2">
+        <p>
+          We process all orders within 1-2 business days. Shipping times may
+          vary depending on your location and selected shipping method, with
+          delivery estimates provided at checkout.
+        </p>
+        <p>
+          Once shipped, you`ll receive a tracking number to monitor your
+          package. We currently ship to [regions/countries]. Any delays due to
+          unforeseen circumstances will be promptly communicated. For a detailed
+          review of our shipping, delivery, and return processes, please
+          download the attached document.
+        </p>
+        <p>For further inquiries, feel free to contact us at</p>
+        <p className="text-black">+255677869628.</p>
+      </div>
+    ),
   },
   {
     title: "Warranty Policy",
     icon: <LuBadgeCheck />,
-    description: <div className="">
-      <p>All our products come with a [duration] warranty, covering manufacturing defects and issues under normal use. If you encounter any issues within the warranty period, please contact our customer support for assistance with repairs or replacements.<br/>
-      The warranty does not cover damages caused by misuse or unauthorized modifications. For a complete and detailed review of our warranty terms, including claim procedures and exclusions, please download the attached document.<br/>For any questions or warranty claims, reach out to us at<br/><span className="text-black">+255677869628.</span> </p>
-    </div>
+    description: (
+      <div className="space-y-2">
+        <p>
+          All our products come with a [duration] warranty, covering
+          manufacturing defects and issues under normal use. If you encounter
+          any issues within the warranty period, please contact our customer
+          support for assistance with repairs or replacements.
+        </p>
+        <p>
+          The warranty does not cover damages caused by misuse or unauthorized
+          modifications. For a complete and detailed review of our warranty
+          terms, including claim procedures and exclusions, please download the
+          attached document.
+        </p>
+        <p>For any questions or warranty claims, reach out to us at</p>
+        <p className="text-black font-se">+255677869628.</p>{" "}
+      </div>
+    ),
   },
 ];
 
@@ -37,31 +67,36 @@ export const faqsItems = [
   {
     title:
       "What is the recommended age range for children to use the Defender Watch?",
-    description:"The Defender Watch is designed for children aged 4 to 15 years. This age range ensures that young kids can benefit from safety features like GPS tracking and two-way communication, while older children can enjoy independence and stay connected with parents.",
+    description:
+      "The Defender Watch is designed for children aged 4 to 15 years. This age range ensures that young kids can benefit from safety features like GPS tracking and two-way communication, while older children can enjoy independence and stay connected with parents.",
   },
   {
     title: "Is the Defender Watch waterproof?",
-    description:"Yes, the Defender Watch is designed to be water-resistant, making it suitable for everyday activities, including splashes and light rain. However, it should not be submerged in water.",
+    description:
+      "Yes, the Defender Watch is designed to be water-resistant, making it suitable for everyday activities, including splashes and light rain. However, it should not be submerged in water.",
   },
   {
     title: "What is the battery life of the Defender Watch?",
-    description:"The Defender Watch has a battery life of up to 2 days, depending on usage. Regular charging is recommended to ensure optimal performance.",
+    description:
+      "The Defender Watch has a battery life of up to 2 days, depending on usage. Regular charging is recommended to ensure optimal performance.",
   },
   {
     title: "How do I charge the Defender Watch?",
-    description:"The watch comes with a charging dock and cable. Simply place the watch on the dock and connect it to a power source to begin charging.",
+    description:
+      "The watch comes with a charging dock and cable. Simply place the watch on the dock and connect it to a power source to begin charging.",
   },
   {
     title: "What features make the Defender Watch unique?",
-    description:"The Defender Watch combines real-time GPS tracking, two-way communication, and emergency SOS alerts, all designed specifically for children. Its user-friendly interface and durable design make it an ideal choice for safety and connectivity.",
+    description:
+      "The Defender Watch combines real-time GPS tracking, two-way communication, and emergency SOS alerts, all designed specifically for children. Its user-friendly interface and durable design make it an ideal choice for safety and connectivity.",
   },
 ];
 
 export const productVariations = [
   {
     id: 1,
-    color: "#FF7070",
-    image: "/watch3.svg",
+    color: "#292929",
+    image: "/blackwatch.svg",
     name: "Android Elite Version",
     price: 135000,
     description:
@@ -69,23 +104,15 @@ export const productVariations = [
   },
   {
     id: 2,
-    color: "#EA7B15",
-    image: "/watch2.svg",
-    name: "Android Elite Version",
-    price: 135000,
-    description:
-      "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
-  },
-  {
-    id: 3,
-    color: "#B3EA15",
-    image: "/watch4.svg",
+    color: "#8F8F8F",
+    image: "/greywatch.png",
     name: "Android Elite Version",
     price: 135000,
     description:
       "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
 ];
+
 import { ImCancelCircle } from "react-icons/im";
 import { FaRegCircleCheck } from "react-icons/fa6";
 
