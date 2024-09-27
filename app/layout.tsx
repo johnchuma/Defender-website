@@ -30,7 +30,7 @@ const Gilroy = localFont({
       style: 'normal',
     },
   ],
-})
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -44,8 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={Gilroy.className}
+      <body className={Gilroy.className}>
         {children}
       </body>
     </html>

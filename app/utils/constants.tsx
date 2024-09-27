@@ -94,32 +94,32 @@ export const samsungPoints = [
 export const faqsItems = [
   {
     title:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
+      "What is the recommended age range for children to use the Defender Watch?",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "The Defender Watch is designed for children aged 4 to 15 years. This age range ensures that young kids can benefit from safety features like GPS tracking and two-way communication, while older children can enjoy independence and stay connected with parents.",
   },
   {
     title:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
+      "Is the Defender Watch waterproof?",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "Yes, the Defender Watch is designed to be water-resistant, making it suitable for everyday activities, including splashes and light rain. However, it should not be submerged in water.",
   },
   {
     title:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
+      "What is the battery life of the Defender Watch?",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "The Defender Watch has a battery life of up to 2 days, depending on usage. Regular charging is recommended to ensure optimal performance.",
   },
   {
     title:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
+      "How do I charge the Defender Watch?",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "The watch comes with a charging dock and cable. Simply place the watch on the dock and connect it to a power source to begin charging.",
   },
   {
     title:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
+      "What features make the Defender Watch unique?",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, seddo eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "The Defender Watch combines real-time GPS tracking, two-way communication, and emergency SOS alerts, all designed specifically for children. Its user-friendly interface and durable design make it an ideal choice for safety and connectivity.",
   },
 ];
