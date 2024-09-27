@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import CustomButton from "../(components)/customButton";
 
 interface ProductCardProps {
   image: StaticImageData;
@@ -27,12 +28,14 @@ export default function ProductCard({
           <div>{productName}</div>
           <div className="font-semibold">{price}</div>
         </div>
-        <button
+
+        {/* Learn More Button */}
+        <CustomButton
+          btntext={learnMoreText}
           onClick={onLearnMoreClick}
-          className="rounded-lg bg-primaryColor px-4 py-2 font-medium capitalize text-white hover:bg-[#CB1A14]"
-        >
-          {learnMoreText}
-        </button>
+          className="w-fit px-4 py-2 text-base font-medium capitalize"
+        />
+       
       </div>
     </div>
   );
