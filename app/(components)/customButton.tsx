@@ -2,11 +2,13 @@ import React from "react";
 
 interface BtnItem {
   btntext: string;
-  width?: string;
+  paddingX?: string;
+  type?: string;
+  disabled?: string;
   onClick?: () => void;
 }
 
-export default function CustomButton({ btntext, width, onClick }: BtnItem) {
+export default function CustomButton({ btntext, paddingX, onClick }: BtnItem) {
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -15,10 +17,8 @@ export default function CustomButton({ btntext, width, onClick }: BtnItem) {
   return (
     <div>
       <button
-        className={`mt-4 bg-primaryColor text-white text-xs py-3 px-20 rounded transition-all hover:shadow-primaryColor hover:ease-linear hover:duration-300 hover:shadow-lg hover:outline-primaryColor hover:outline-offset-8 hover:border-white hover:ring-2 hover:ring-primaryColor ${
-          width ? width : "w-auto"
-        }`}
-        onClick={handleClick}
+        className={`mt-4 bg-primaryColor border-2 border-primaryColor text-white text-xs py-3 ${paddingX??"px-20"} rounded transition-all hover:shadow-primaryColor hover:ease-linear hover:duration-300 hover:shadow-lg hover:outline-primaryColor hover:outline-offset-8 hover:ring-2 hover:ring-primaryColor `}
+        onClick={handleClick} type={`button`} disabled={false}
       >
         {btntext}
       </button>

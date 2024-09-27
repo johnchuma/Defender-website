@@ -52,7 +52,7 @@ export default function Home() {
 
           {/* Hero Content */}
           <div className="z-20 flex flex-col gap-y-6">
-            <div className="text-6xl font-bold leading-tight text-[#292929]">
+            <div className="text-6xl font-semibold leading-tight text-[#292929]">
               Trusted Smartwatches for <br />
               Your{" "}
               <span className="highlight highlight-blue-300 highlight-variant-4">

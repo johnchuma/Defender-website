@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.form-inputstyle{
+  @apply w-full rounded placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0] border-[#E0E0E0]
+}

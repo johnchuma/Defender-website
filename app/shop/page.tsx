@@ -14,7 +14,7 @@ export default function Shop() {
   return (
     <div className="w-9/12 mx-auto">
       <div className="text-center mt-4 space-y-2">
-        <h2 className="font-bold text-black text-3xl ">Shop Page</h2>
+        <h2 className="font-semibold text-black text-3xl ">Shop Page</h2>
         <p className="text-black">The safe phone kids wear</p>
       </div>
       <div className="mt-10">
@@ -53,7 +53,7 @@ export default function Shop() {
 
       <div className="w-8/12 mx-auto my-24 space-y-4">
         <div className="text-center">
-          <h2 className="font-bold text-secondaryColor text-2xl">
+          <h2 className="font-semibold text-secondaryColor text-2xl">
             Comparison between our watches & Apple/Samsung
           </h2>
         </div>
@@ -119,7 +119,7 @@ export default function Shop() {
 
       <div className="w-8/12 mx-auto my-24">
         <div className="text-center space-y-3 mb-12">
-          <h4 className="font-bold text-black text-xl">
+          <h4 className="font-semibold text-black text-xl">
             Frequently Asked Questions
           </h4>
           <p className="text-black">Have any question? We are here to help</p>
