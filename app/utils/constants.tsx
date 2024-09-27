@@ -62,7 +62,7 @@ export const rto = [
   {
     id: 1,
     name: "RTO`s Modern Version",
-    price: "Tsh 99,000",
+    price: 99000,
     image: "/v2blackwatch.png",
     color: "black",
     description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
@@ -70,7 +70,7 @@ export const rto = [
   {
     id: 2,
     name: "RTO`s Modern Version",
-    price: "Tsh 89,000",
+    price: 99000,
     image: "/pinkwatch.png",
     color: "pink",
     description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
@@ -78,7 +78,7 @@ export const rto = [
   {
     id: 3,
     name: "RTO`s Modern Version",
-    price: "Tsh 89,000",
+    price: 99000,
     image: "/bluewatch.png",
     color: "blue",
     description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
@@ -90,7 +90,7 @@ export const android = [
   {
     id: 1,
     name: "Android Elite Watch",
-    price: "Tsh 135,000",
+    price: 135000,
     image: "/blackwatch.svg",
     color: "black",
     description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
@@ -98,7 +98,7 @@ export const android = [
   {
     id: 2,
     name: "Android Elite Watch",
-    price: "Tsh 135,000",
+    price: 135000,
     image: "/greywatch.png",
     color: "grey",
     description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
