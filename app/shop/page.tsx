@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import {
   comparisonTitles,
   defenderPoints,
@@ -11,6 +12,12 @@ import Faqs from "../(components)/faqs";
 import CustomButton from "../(components)/customButton";
 
 export default function Shop() {
+  const router = useRouter();
+
+  const handlelearnMore = (watchType:string) => {
+    router.push(`/product/${watchType}`);
+  };
+
   return (
     <div className="w-9/12 mx-auto">
       <div className="text-center mt-4 space-y-2">
@@ -21,33 +28,33 @@ export default function Shop() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div className="flex flex-col items-center p-4 rounded-lg">
             <Image
-              src="/Defenderwatch.jpg"
-              height={584}
-              width={460}
-              className="rounded-lg object-cover bg-[#F2F2F2]"
+              src={"/blackwatch.svg"}
+              height={2000}
+              width={2000}
+              className="rounded-lg w-full object-contain h-80 bg-[#F2F2F2]"
               alt="Watch"
             />
             <h4 className="mt-4 font-semibold text-black text-lg">
               Android Elite Version
             </h4>
             <p className="mt-2 text-black">Tzs 135,000</p>
-            <CustomButton btntext="Learn More" onClick={() => console.log("Android version clicked!")}/>
-          </div>
+            <CustomButton btntext="Learn More" onClick={() => handlelearnMore('android')} />
+            </div>
 
           <div className="flex flex-col items-center p-4 rounded-lg">
             <Image
-              src="/Defenderwatch.jpg"
-              height={584}
-              width={460}
-              className="rounded-lg object-cover bg-[#F2F2F2]"
+              src="/v2blackwatch.png"
+              height={2000}
+              width={2000}
+              className="rounded-lg w-full object-contain h-80 bg-[#F2F2F2]"
               alt="Watch"
             />
             <h4 className="mt-4 font-semibold text-black text-lg">
               RTO`s Modern Version
             </h4>
             <p className="mt-2 text-black">Tzs 99,000</p>
-            <CustomButton btntext="Learn More" onClick={() => console.log("Android version clicked!")}/>
-          </div>
+            <CustomButton btntext="Learn More" onClick={() => handlelearnMore('rto')} />
+            </div>
         </div>
       </div>
 
