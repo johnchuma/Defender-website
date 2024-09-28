@@ -10,7 +10,7 @@ export default function HeaderTabs() {
   // TODO: Make two varieties of nav bar for flat and shadow surfaces
 
   const tabs = [
-    { label: "Home", href: "/blog" },
+    { label: "Blog Home", href: "/blog" },
     { label: "Child Safety", href: "/blog/child-safety" },
     { label: "The Future of Parenting", href: "/blog/parenting" },
     { label: "Product Features", href: "/blog/product-features" },
@@ -25,13 +25,18 @@ export default function HeaderTabs() {
           key={tab.href}
           href={tab.href}
           className={`relative text-gray-600 hover:text-red-500 ${
-            pathname === tab.href ? "font-semibold text-red-500" : ""
+            tab.href === "/blog" && pathname === "/blog" // Check if it's the blog root path
+              ? "font-semibold text-red-500"
+              : tab.href !== "/blog" && pathname.includes(tab.href) // Check if it's a non-root path
+                ? "font-semibold text-red-500"
+                : ""
           }`}
         >
           {tab.label.toUpperCase()}
-          {pathname === tab.href && (
+          {(tab.href === "/blog" && pathname === "/blog") ||
+          (tab.href !== "/blog" && pathname.includes(tab.href)) ? (
             <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
-          )}
+          ) : null}
         </Link>
       ))}
     </div>
