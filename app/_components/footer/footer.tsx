@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,6 +11,7 @@ import SocialLinks from "../social-link";
 // images
 import GoogleBadge from "@/public/images/google-play.png";
 import AppleBadge from "@/public/images/apple-store.png";
+import CustomButton from "@/app/(components)/customButton";
 
 function Footer() {
   const homeLinks = [
@@ -117,9 +120,11 @@ function Footer() {
                   />
                 </div>
                 {/* Submit button */}
-                <div className="flex items-center justify-center rounded-lg bg-primaryColor px-4 py-2 text-center hover:bg-primaryCrimsonColor">
-                  Sign up
-                </div>
+                <CustomButton
+                  btntext="Sign Up"
+                  onClick={() => console.log("Footer sign up form submitted")}
+                  className="w-fit px-4 py-2 text-base font-medium capitalize"
+                />
               </div>
             </div>
 
