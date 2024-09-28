@@ -20,12 +20,12 @@ export default function ContactUs() {
       {({ handleSubmit, handleChange, values, errors, touched }) => (
         <div className="flex justify-start">
           <div className="w-full p-3">
-            <h4 className="font-semibold text-black text-xl">
+            <h4 className="text-xl font-semibold text-black">
               Didn`t find your answer?
             </h4>
             <p className="text-black">Don't hestitate to contact us</p>
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col space-y-3 my-3">
+              <div className="my-3 flex flex-col space-y-3">
                 <label>Your name</label>
                 <input
                   className="form-inputstyle"
@@ -35,10 +35,10 @@ export default function ContactUs() {
                   placeholder="firstname"
                 />
                 {errors.name && touched.name && (
-                  <p className="text-red-600 text-xs">{errors.name}</p>
+                  <p className="text-xs text-red-600">{errors.name}</p>
                 )}
               </div>
-              <div className="flex flex-col space-y-2 my-3">
+              <div className="my-3 flex flex-col space-y-2">
                 <label>Your email address</label>
                 <input
                   className="form-inputstyle"
@@ -48,10 +48,10 @@ export default function ContactUs() {
                   placeholder="email"
                 />
                 {errors.email && touched.email && (
-                  <p className="text-red-600 text-xs">{errors.email}</p>
+                  <p className="text-xs text-red-600">{errors.email}</p>
                 )}
               </div>
-              <div className="flex flex-col space-y-2 my-3">
+              <div className="my-3 flex flex-col space-y-2">
                 <label>Subject</label>
                 <input
                   className="form-inputstyle"
@@ -61,10 +61,10 @@ export default function ContactUs() {
                   placeholder="How do I get your product?"
                 />
                 {errors.subject && touched.subject && (
-                  <p className="text-red-600 text-xs">{errors.subject}</p>
+                  <p className="text-xs text-red-600">{errors.subject}</p>
                 )}
               </div>
-              <div className="flex flex-col space-y-3 my-3">
+              <div className="my-3 flex flex-col space-y-3">
                 <label>Your message</label>
                 <textarea
                   className="form-inputstyle h-40"
@@ -74,7 +74,7 @@ export default function ContactUs() {
                   placeholder="message"
                 />
                 {errors.message && touched.message && (
-                  <p className="text-red-600 text-xs">{errors.message}</p>
+                  <p className="text-xs text-red-600">{errors.message}</p>
                 )}
               </div>
               <CustomButton

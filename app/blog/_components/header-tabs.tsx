@@ -5,10 +5,6 @@ import { usePathname } from "next/navigation";
 export default function HeaderTabs() {
   const pathname = usePathname();
 
-  // TODO: Create layout that will carry both the nav and the tab nav for the blog section.
-  // TODO: Add the wishlist icon to the navbar and the number at the top
-  // TODO: Make two varieties of nav bar for flat and shadow surfaces
-
   const tabs = [
     { label: "Blog Home", href: "/blog" },
     { label: "Child Safety", href: "/blog/child-safety" },
@@ -19,26 +15,28 @@ export default function HeaderTabs() {
   ];
 
   return (
-    <div className="flex justify-center space-x-8 bg-white py-2 text-sm">
-      {tabs.map((tab) => (
-        <Link
-          key={tab.href}
-          href={tab.href}
-          className={`relative text-gray-600 hover:text-red-500 ${
-            tab.href === "/blog" && pathname === "/blog" // Check if it's the blog root path
-              ? "font-semibold text-red-500"
-              : tab.href !== "/blog" && pathname.includes(tab.href) // Check if it's a non-root path
+    <div className="container relative mx-auto">
+      <div className="scrollbar-hide flex space-x-8 overflow-x-auto bg-white py-2 text-sm xl:justify-center">
+        {tabs.map((tab) => (
+          <Link
+            key={tab.href}
+            href={tab.href}
+            className={`relative mx-2 whitespace-nowrap text-gray-600 hover:text-red-500 ${
+              tab.href === "/blog" && pathname === "/blog"
                 ? "font-semibold text-red-500"
-                : ""
-          }`}
-        >
-          {tab.label.toUpperCase()}
-          {(tab.href === "/blog" && pathname === "/blog") ||
-          (tab.href !== "/blog" && pathname.includes(tab.href)) ? (
-            <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
-          ) : null}
-        </Link>
-      ))}
+                : tab.href !== "/blog" && pathname.includes(tab.href)
+                  ? "font-semibold text-red-500"
+                  : ""
+            }`}
+          >
+            {tab.label.toUpperCase()}
+            {(tab.href === "/blog" && pathname === "/blog") ||
+            (tab.href !== "/blog" && pathname.includes(tab.href)) ? (
+              <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+            ) : null}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

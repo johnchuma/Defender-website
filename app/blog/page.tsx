@@ -2,13 +2,40 @@ import React from "react";
 import BlogCard from "./_components/blog-card";
 import Title from "../_components/title";
 import BlogPostCard from "./_components/blog-post-card";
+import ScrollCarousel from "../_components/scroll-carousel";
 
 const Blog = () => {
   return (
     <main className="flex flex-col space-y-8 bg-white">
-      <div className="container mx-auto">
+      <div className="container mx-auto space-y-6">
         <Title className="text-start">Featured news</Title>
-        <section className="grid grid-cols-3 items-center justify-center gap-x-6 pt-6">
+        {/* sm to md: Featured news */}
+        <section className="md:hidden">
+          <ScrollCarousel
+            items={[
+              <BlogCard
+                key="1"
+                title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
+                description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
+                link="/blog"
+                backgroundImage="/images/children-walking.png"
+                truncateTitleLength={7}
+                truncateDescriptionLength={5}
+              />,
+              <BlogCard
+                key="2"
+                title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
+                description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
+                link="/blog"
+                backgroundImage="/images/children-walking.png"
+                truncateTitleLength={7}
+                truncateDescriptionLength={5}
+              />,
+            ]}
+          />
+        </section>
+        {/* md and up: Featured news */}
+        <section className="hidden grid-cols-3 items-center justify-center gap-x-6 md:grid">
           <BlogCard
             title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
             description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
@@ -38,7 +65,7 @@ const Blog = () => {
       </div>
       <section className="container mx-auto flex flex-col gap-y-6">
         <Title className="text-start">Latest news</Title>
-        <div className="grid grid-cols-3 gap-8 2xl:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-3 2xl:grid-cols-4">
           <BlogPostCard
             imageUrl="/images/children-walking.png"
             date="August 12, 2024"

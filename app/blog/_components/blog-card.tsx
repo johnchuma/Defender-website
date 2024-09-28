@@ -37,11 +37,11 @@ const BlogCard: React.FC<BlogCardProps> = ({
     >
       <div className="absolute inset-0 text-white">
         <div
-          className={`flex h-full flex-col items-end justify-end gap-y-2 ${large ? "px-10 pb-16" : "px-5 pb-8"}`}
+          className={`flex h-full flex-col items-start justify-end gap-y-1 md:gap-y-2 ${large ? "px-10 pb-16" : "px-5 pb-8"}`}
         >
           <Link
             href={link}
-            className="cursor-pointer self-start text-xl font-semibold underline-offset-4 group-hover:underline"
+            className="cursor-pointer self-start text-lg font-semibold underline-offset-4 group-hover:underline md:text-xl"
           >
             {truncatedTitle}
           </Link>
