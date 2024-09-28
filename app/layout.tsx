@@ -11,14 +11,8 @@ const Gilroy = localFont({
       path: "./fonts/Gilroy-Bold.ttf",
       weight: "600",
       style: "normal",
-      path: "./fonts/Gilroy-Bold.ttf",
-      weight: "600",
-      style: "normal",
     },
     {
-      path: "./fonts/Gilroy-Heavy.ttf",
-      weight: "700",
-      style: "normal",
       path: "./fonts/Gilroy-Heavy.ttf",
       weight: "700",
       style: "normal",
@@ -27,22 +21,13 @@ const Gilroy = localFont({
       path: "./fonts/Gilroy-Light.ttf",
       weight: "200",
       style: "normal",
-      path: "./fonts/Gilroy-Light.ttf",
-      weight: "200",
-      style: "normal",
     },
     {
       path: "./fonts/Gilroy-Medium.ttf",
       weight: "300",
       style: "normal",
-      path: "./fonts/Gilroy-Medium.ttf",
-      weight: "300",
-      style: "normal",
     },
     {
-      path: "./fonts/Gilroy-Regular.ttf",
-      weight: "400",
-      style: "normal",
       path: "./fonts/Gilroy-Regular.ttf",
       weight: "400",
       style: "normal",
@@ -68,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${Gilroy.className}`}>
-        <FloatingNav navItems={siteConfig.navItems}/>
+        <FloatingNav navItems={siteConfig.navItems} />
         <div className="pt-24">{children}</div>
         <Footer />
       </body>
