@@ -34,10 +34,10 @@ export const siteConfig = {
     alt: "Defender Red Logo",
   },
   communication: {
-    address: "Makumbusho, Dar es Salaam, Tanzania",
-    email: "info@defendertechltd.co.tz",
-    phone: "+255 759 053 444 | +255 752 434 444",
+    address: "Bagamoyo road, COSTECH Building, 3rd floor- Kijitonyama-Dar es salaam",
+    email: "defendertechnologiestz@gmail.com",
+    phone: "(255) 677 869628",
     pobox: "P.O.Box 222, Dar Es Salaam",
-    website: "defendertechltd.co.tz",
+    website: "https://www.defendertz.com",
   },
 };
