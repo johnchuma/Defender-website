@@ -4,12 +4,12 @@ import { siteConfig } from "../config/site";
 
 const SocialLinks = () => {
   return (
-    <div className="group grid grid-flow-col gap-x-4 group-hover:scale-105">
+    <div className="group grid grid-flow-col gap-x-4 group-hover:cursor-pointer">
       {/* facebook */}
       <Link
         href={siteConfig.links.facebook}
         target="_blank"
-        className="w-fit rounded-lg bg-[#F2F2F2] p-3"
+        className="w-fit rounded-lg bg-[#F2F2F2] p-3 hover:scale-105 focus:scale-95"
       >
         <svg
           width="24"
@@ -29,7 +29,7 @@ const SocialLinks = () => {
       <Link
         href={siteConfig.links.twitter}
         target="_blank"
-        className="w-fit rounded-lg bg-[#F2F2F2] p-3"
+        className="w-fit rounded-lg bg-[#F2F2F2] p-3 hover:scale-105 focus:scale-95"
       >
         <svg
           width="24"
@@ -49,7 +49,7 @@ const SocialLinks = () => {
       <Link
         href={siteConfig.links.instagram}
         target="_blank"
-        className="w-fit rounded-lg bg-[#F2F2F2] p-3"
+        className="w-fit rounded-lg bg-[#F2F2F2] p-3 hover:scale-105 focus:scale-95"
       >
         <svg
           width="24"
@@ -89,7 +89,7 @@ const SocialLinks = () => {
       <Link
         href={siteConfig.links.linkedin}
         target="_blank"
-        className="w-fit rounded-lg bg-[#F2F2F2] p-3"
+        className="w-fit rounded-lg bg-[#F2F2F2] p-3 hover:scale-105 focus:scale-95"
       >
         <svg
           width="24"
@@ -109,7 +109,7 @@ const SocialLinks = () => {
       <Link
         href={siteConfig.links.youtube}
         target="_blank"
-        className="w-fit rounded-lg bg-[#F2F2F2] p-3"
+        className="w-fit rounded-lg bg-[#F2F2F2] p-3 hover:scale-105 focus:scale-95"
       >
         <svg
           width="24"
