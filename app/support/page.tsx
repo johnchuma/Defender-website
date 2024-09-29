@@ -1,28 +1,26 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import Title from "../_components/title";
 import SupportCard from "./_components/support-card";
 import Faqs from "../(components)/faqs";
 import { faqsItems } from "../utils/constants";
 import ContactInfo from "../_components/contact-info";
+import BackgroundBanner from "../_components/background-banner";
 
 function SupportPage() {
   return (
-    <div className="space-y-6">
+    <main className="space-y-6">
       {/* <Title>Support Page</Title> */}
       <div className="container mx-auto px-4 md:px-0">
         {/* ======================== image hero SECTION ======================== */}
-        <section
-          className="relative mb-20 min-h-[80dvh] rounded-lg bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url("/images/care.jpg")` }}
-        >
-          <div className="absolute inset-0 place-items-center place-self-center text-white">
+        <BackgroundBanner
+          backgroundImage="/images/care.jpg"
+          title={
             <Title className="capitalize">
               Customer care, Anytime, Anywhere
             </Title>
-          </div>
-        </section>
+          }
+        />
 
         {/* ======================== Customer Service SECTION ======================== */}
         <section className="mb-20 space-y-6">
@@ -90,7 +88,7 @@ function SupportPage() {
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 }
 

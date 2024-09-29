@@ -57,7 +57,7 @@ export const productDetails = [
           attached document.
         </p>
         <p>For any questions or warranty claims, reach out to us at</p>
-        <p className="text-black font-se">+255677869628.</p>{" "}
+        <p className="font-se text-black">+255677869628.</p>{" "}
       </div>
     ),
   },
@@ -192,7 +192,8 @@ export const rto = [
     price: 99000,
     image: "/v2blackwatch.png",
     color: "black",
-    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+    description:
+      "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
     id: 2,
@@ -200,7 +201,8 @@ export const rto = [
     price: 99000,
     image: "/pinkwatch.png",
     color: "pink",
-    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+    description:
+      "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
     id: 3,
@@ -208,10 +210,10 @@ export const rto = [
     price: 99000,
     image: "/bluewatch.png",
     color: "blue",
-    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+    description:
+      "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
 ];
-
 
 export const android = [
   {
@@ -220,7 +222,8 @@ export const android = [
     price: 135000,
     image: "/blackwatch.svg",
     color: "black",
-    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+    description:
+      "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
     id: 2,
@@ -228,6 +231,20 @@ export const android = [
     price: 135000,
     image: "/greywatch.png",
     color: "grey",
-    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+    description:
+      "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
+];
+
+export const historyContent = [
+  "Defender Technologies was born out of necessity in 2024, following the growing concerns we witnessed while operating our ShuleYetu.com platform. As we worked closely with schools and parents, we were confronted with alarming reports of child kidnappings, cases of child sodomy, and a rising number of missing children across Tanzania. These heartbreaking incidents highlighted an urgent need for a solution that would empower parents to better protect their children.",
+  "Driven by this feedback, we set out to create a tool that would simplify the way parents monitor and stay connected to their kids. As the first teachers and guardians of their children, parents needed a way to ensure their safety, even from a distance. Thus, Defender Technologies was founded with a mission to provide an innovative and reliable solution for child safety. Our kids' smartwatch was designed with this purpose in mind—to offer real-time tracking, communication, and emergency alerts that give parents peace of mind and control, no matter where their child is. Our journey started with the goal of making every child safer and ensuring that parents can always be there when their child needs them most.",
+];
+
+export const missionContent = [
+  "Our mission is simple: Empower parents with innovative technology that keeps their kids safe while fostering their independence. We believe that children should explore the world confidently, and parents should feel secure knowing they can stay connected to their children anytime, anywhere.",
+];
+
+export const visionContent = [
+  "Our vision is to empower families by developing innovative solutions that enhance child safety and independence. We aspire to bridge the gap between security and freedom, enabling parents to confidently connect with their children while fostering an environment where kids can explore and grow. By continuously advancing our technology and prioritizing user feedback, we aim to lead the industry in child safety solutions, ensuring that every family has the tools they need to protect and support their children in a rapidly changing world.",
 ];
