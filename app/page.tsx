@@ -323,9 +323,6 @@ export default function Home() {
             explore freely while providing parents with peace of mind.
           </div>
 
-          {/* Social Icons */}
-          <SocialLinks />
-
           {/* Overlay decor */}
           <div className="absolute inset-0">
             {/* quote */}
@@ -495,6 +492,11 @@ export default function Home() {
                 </defs>
               </svg>
             </div>
+          </div>
+
+          {/* Social Icons */}
+          <div className="z-40">
+            <SocialLinks />
           </div>
         </div>
       </section>
