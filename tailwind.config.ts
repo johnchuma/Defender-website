@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import TailwindHighlights from "tailwindcss";
+import TailwindHighlights from "tailwindcss-highlights";
 
 const config: Config = {
   content: [
@@ -9,7 +9,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors:{
+      colors: {
         primaryColor: "#F50000",
         primaryCrimsonColor: "#CC0000",
         primaryScarletColor: "#BA110B",
@@ -22,8 +22,6 @@ const config: Config = {
     },
   },
   // eslint-disable-next-line @typescript-eslint/no-require-imports
-  plugins: [require("@tailwindcss/forms"),
-    TailwindHighlights,
-    ],
+  plugins: [require("@tailwindcss/forms"), TailwindHighlights],
 };
 export default config;

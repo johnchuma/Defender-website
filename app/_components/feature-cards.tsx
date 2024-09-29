@@ -31,7 +31,7 @@ export default function FeatureCard({
 }: FeatureCardProps) {
   if (type === "type1") {
     return (
-      <div className="grid grid-cols-2 gap-x-8">
+      <div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
         {/* Title and Icon Section */}
         <div className={`relative rounded-lg ${bgColor} text-white`}>
           {/* Background Ornament */}
@@ -48,7 +48,7 @@ export default function FeatureCard({
                 className={`${iconClassName} ${iconInverted ? "invert" : ""}`}
               />
             </div>
-            <div className="font-white text-xl font-semibold capitalize">
+            <div className="font-white text-wrap text-lg font-semibold capitalize md:text-xl">
               {title}
             </div>
             <div className="inline-flex h-16 justify-between">
@@ -66,7 +66,7 @@ export default function FeatureCard({
 
         {/* Description Section */}
         <div className="relative flex flex-col items-center justify-center gap-y-4 rounded-lg p-8 font-medium text-[#525252] shadow-lg">
-          <div>{description}</div>
+          <div className="text-sm md:text-base">{description}</div>
           {secondaryOrnament && (
             <div className="flex w-full justify-end">
               <Image src={secondaryOrnament} alt="Secondary Ornament" />
@@ -77,10 +77,10 @@ export default function FeatureCard({
     );
   } else if (type === "type2") {
     return (
-      <div className="grid grid-cols-2 gap-x-8">
+      <div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
         {/* Description Section */}
         <div className="relative flex flex-col items-center justify-center gap-y-4 rounded-lg p-8 font-medium text-[#525252] shadow-lg">
-          <div>{description}</div>
+          <div className="text-sm md:text-base">{description}</div>
           {secondaryOrnament && (
             <div className="flex w-full justify-end">
               <Image src={secondaryOrnament} alt="Secondary Ornament" />
@@ -104,7 +104,7 @@ export default function FeatureCard({
                 className={iconClassName}
               />
             </div>
-            <div className="font-white text-xl font-semibold capitalize">
+            <div className="font-white text-lg font-semibold capitalize md:text-xl">
               {title}
             </div>
             <div className="flex h-16 flex-col items-center justify-center gap-y-4">

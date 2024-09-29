@@ -45,22 +45,22 @@ export default function Home() {
     <main className="-mt-32">
       {/* ======================== HERO SECTION ======================== */}
       <section className="bg-blushPinkColor pb-10 pt-28 2xl:pb-0 2xl:pt-0">
-        <div className="container mx-auto flex min-h-[100dvh] flex-col items-center justify-center gap-y-6 text-center">
+        <div className="container mx-auto flex min-h-[100dvh] flex-col items-center justify-center gap-y-6 px-4 text-center md:px-0">
           {/* Background Images */}
           <Image
             src={CompassImage}
-            className="absolute right-32 top-1/2 w-20 translate-x-1/4"
+            className="absolute right-8 top-[20%] w-12 translate-x-1/4 md:bottom-3/4 md:right-32 md:w-20 xl:top-1/2"
             alt="Compass Image"
           />
           <Image
             src={RocketImage}
-            className="absolute left-32 top-3/4 w-24 translate-x-1/4"
+            className="absolute left-0 top-1/2 w-16 translate-x-1/4 md:left-16 md:w-24 xl:left-32 xl:top-3/4"
             alt="Rocket Image"
           />
 
           {/* Hero Content */}
           <div className="z-20 flex flex-col gap-y-6">
-            <div className="text-6xl font-semibold leading-tight text-[#292929]">
+            <div className="text-2xl font-semibold leading-tight text-[#292929] sm:text-3xl md:text-6xl">
               Trusted Smartwatches for <br />
               Your{" "}
               <span className="highlight highlight-blue-300 highlight-variant-4">
@@ -77,7 +77,7 @@ export default function Home() {
             <CustomButton
               btntext="Explore Now!"
               onClick={() => console.log("Learn more clicked!")}
-              className="text-base font-medium"
+              className="px-12 text-base font-medium md:px-20"
             />
 
             <div className="mt-6 flex items-center justify-center 2xl:mt-8">
@@ -88,18 +88,24 @@ export default function Home() {
       </section>
 
       {/* ======================== CLIENT SECTION ======================== */}
-      <section className="container mx-auto flex items-center justify-between py-6 bg-slate-100">
-        <Image src={FlutterwaveLogo} alt="Flutterwave Image" className="w-32" />
-        <Image src={SelcomLogo} alt="Selcom Image" className="w-16" />
-        <Image src={VodacomLogo} alt="Vodacom Image" className="w-24" />
-        <Image src={ShuleYetuLogo} alt="Shule Yetu Image" className="w-24" />
-      </section>
+      <div className="bg-slate-100 py-6">
+        <section className="container mx-auto grid grid-cols-2 place-content-center place-items-center gap-8 md:grid-cols-4">
+          <Image
+            src={FlutterwaveLogo}
+            alt="Flutterwave Image"
+            className="w-32"
+          />
+          <Image src={SelcomLogo} alt="Selcom Image" className="w-16" />
+          <Image src={VodacomLogo} alt="Vodacom Image" className="w-24" />
+          <Image src={ShuleYetuLogo} alt="Shule Yetu Image" className="w-24" />
+        </section>
+      </div>
 
       {/* ======================== POPULAR PRODUCTS SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col gap-y-12">
+        <div className="container mx-auto flex flex-col gap-y-12 px-12 md:px-0">
           <Title>Our Popular Products</Title>
-          <div className="flex items-center justify-center gap-16">
+          <div className="flex flex-col items-center justify-center gap-16 md:flex-row">
             <ProductCard
               image={SmartWatch}
               altText="Smart Watch"
@@ -118,9 +124,67 @@ export default function Home() {
 
       {/* ======================== TOP VALUES FOR YOU SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 px-4 md:px-0">
           <Title>Top values for you</Title>
-          <div className="grid grid-cols-1 justify-around gap-x-8 gap-y-10 xl:grid-cols-2">
+          {/* xs to md: Top values for you */}
+          <div className="grid justify-around gap-x-8 gap-y-10 lg:hidden">
+            {/* Item one */}
+            <FeatureCard
+              type="type1"
+              bgColor="bg-[#31DBAE]"
+              icon={GpsIcon}
+              title="Real-Time GPS Tracking"
+              description="Instantly know your child's location with accurate GPS tracking, ensuring their safety at all times."
+              bgOrnament={DotOrnament}
+              primaryOrnament={CircleOrnament}
+              secondaryOrnament={CircleOrnamentGreen}
+              iconInverted // Invert the icon color
+              arrowIcon={ArrowRight}
+            />
+
+            {/* Item two */}
+            <FeatureCard
+              type="type2"
+              bgColor="bg-[#004CF5]"
+              icon={SecurityIcon}
+              title="Security zone"
+              description="Parents can set safe areas for their children and receive instant alerts if they exit these designated boundaries for enhanced security."
+              bgOrnament={DotOrnament}
+              primaryOrnament={StarOrnament}
+              secondaryOrnament={StarOrnamentBlue}
+              primaryOrnamentPaddingLeft="pl-12" // Custom padding-left for this card
+              arrowIcon={ArrowRight}
+            />
+
+            {/* Item three */}
+            <FeatureCard
+              type="type1"
+              bgColor="bg-[#E620BA]"
+              icon={CallIcon}
+              title="Two-way communication"
+              description="Stay connected with your child through secure two-way voice communication."
+              bgOrnament={DotOrnament}
+              primaryOrnament={WaveOrnament}
+              secondaryOrnament={WaveOrnamentRed}
+              arrowIcon={ArrowRight}
+            />
+
+            {/* Item four */}
+            <FeatureCard
+              type="type2"
+              bgColor="bg-primaryColor"
+              icon={AlarmIcon}
+              title="SOS Emergency Button"
+              description="In case of an emergency, your child can press the SOS button to alert you instantly, sending their location and calling for help."
+              bgOrnament={DotOrnament}
+              primaryOrnament={TriangleOrnament}
+              secondaryOrnament={TriangleOrnamentRed}
+              arrowIcon={ArrowRight}
+            />
+          </div>
+
+          {/* lg and up: Top values for you */}
+          <div className="hidden justify-around gap-x-8 gap-y-10 lg:grid lg:grid-cols-2">
             {/* Item one */}
             <FeatureCard
               type="type1"
@@ -180,8 +244,8 @@ export default function Home() {
 
       {/* ======================== VIDEO SECTION ======================== */}
       <section className="min-h-fit bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col items-center justify-center bg-white md:flex-row md:gap-x-20">
-          <div className="text-3xl font-semibold">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-0 lg:flex-row lg:gap-x-20 lg:gap-y-0">
+          <div className="text-center text-3xl font-semibold md:text-start">
             The future of your kid lies
             <br /> within{" "}
             <span className="highlight highlight-rose-400 highlight-variant-5">
@@ -191,7 +255,7 @@ export default function Home() {
           </div>
           <div className="">
             <iframe
-              className="aspect-video min-h-[60vh] w-full rounded-2xl"
+              className="aspect-video min-h-[35dvh] w-full rounded-2xl lg:min-h-[60dvh]"
               src="https://www.youtube.com/embed/cNS-mJcR6yc?si=0lCTDSm3xjqEP3LZ&controls=0&modestbranding=1&rel=0&showinfo=0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -202,11 +266,11 @@ export default function Home() {
 
       {/* ======================== WHY SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto grid grid-cols-1 items-center justify-center gap-x-16 md:grid-cols-2">
-          <div className="">
+        <div className="container mx-auto grid grid-cols-1 items-center justify-center gap-x-16 gap-y-12 px-4 md:grid-cols-2 md:px-0">
+          <div className="order-last md:order-first">
             <Image src={ChildrenPlaying} alt="Children Playing Image" />
           </div>
-          <div className="flex flex-col gap-y-2">
+          <div className="flex flex-col gap-y-2 md:col-span-1">
             <Title className="text-start">Why we do, what we do</Title>
             <div>
               We are building for the people who knew missing family would be
@@ -248,24 +312,21 @@ export default function Home() {
       </section>
 
       {/* ======================== CONTACT US SECTION ======================== */}
-      <section className="bg-white pb-20 pt-10">
-        <div className="container relative mx-auto flex flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-12 py-20 text-white">
+      <section className="bg-white px-4 pb-20 pt-10 md:px-0">
+        <div className="container relative mx-auto flex flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:px-12">
           <Title>Looking forward</Title>
 
           {/* Description */}
-          <div className="w-1/2 text-center">
+          <div className="w-3/4 text-center md:w-1/2">
             We are committed to innovating and enhancing our products, focusing
             on safety and connectivity. Our goal is to empower children to
             explore freely while providing parents with peace of mind.
           </div>
 
-          {/* Social Icons */}
-          <SocialLinks />
-
           {/* Overlay decor */}
           <div className="absolute inset-0">
             {/* quote */}
-            <div className="absolute left-12 top-12">
+            <div className="absolute left-6 top-6 opacity-50 md:left-12 md:top-12 md:opacity-100">
               <svg
                 width="70"
                 height="70"
@@ -310,7 +371,7 @@ export default function Home() {
             </div>
 
             {/* phone */}
-            <div className="absolute bottom-12 right-12">
+            <div className="absolute bottom-6 right-6 opacity-50 md:bottom-12 md:right-12 md:opacity-100">
               <svg
                 width="90"
                 height="90"
@@ -431,6 +492,11 @@ export default function Home() {
                 </defs>
               </svg>
             </div>
+          </div>
+
+          {/* Social Icons */}
+          <div className="z-40">
+            <SocialLinks />
           </div>
         </div>
       </section>

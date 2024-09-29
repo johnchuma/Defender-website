@@ -185,3 +185,49 @@ export const samsungPoints = [
   { icon: <FaRegCircleCheck className="text-green-600" /> },
 ];
 
+export const rto = [
+  {
+    id: 1,
+    name: "RTO`s Modern Version",
+    price: 99000,
+    image: "/v2blackwatch.png",
+    color: "black",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+  },
+  {
+    id: 2,
+    name: "RTO`s Modern Version",
+    price: 99000,
+    image: "/pinkwatch.png",
+    color: "pink",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+  },
+  {
+    id: 3,
+    name: "RTO`s Modern Version",
+    price: 99000,
+    image: "/bluewatch.png",
+    color: "blue",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+  },
+];
+
+
+export const android = [
+  {
+    id: 1,
+    name: "Android Elite Watch",
+    price: 135000,
+    image: "/blackwatch.svg",
+    color: "black",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+  },
+  {
+    id: 2,
+    name: "Android Elite Watch",
+    price: 135000,
+    image: "/greywatch.png",
+    color: "grey",
+    description:"This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
+  },
+];
