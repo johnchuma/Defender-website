@@ -13,7 +13,7 @@ export default function Contact() {
             Contact Us
           </h4>
             </div>
-            <div className="flex items-center space-x-10">
+            <div className="flex items-center space-x-10 pb-20">
               <div className="w-6/12">
                 <ContactUs />
               </div>

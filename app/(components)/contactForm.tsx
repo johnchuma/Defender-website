@@ -3,9 +3,11 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import CustomButton from "./customButton";
+import { CONTACT_API } from "../(api)/contact";
 
 export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formSent, setFormSent] = useState(false);
 
   const validationSchema = Yup.object({
     name: Yup.string().required().max(50),
@@ -16,45 +18,41 @@ export default function ContactUs() {
 
   return (
     <Formik
-      validationSchema={validationSchema}
-      onSubmit={async(values, {resetForm}) => {
-        console.log("🚀 ~ ContactUs ~ values:", values);
-        setIsSubmitting(true);
-
-        try {
-          const response = await fetch("https://app.swaggerhub.com/apis/JOHNVCHUMA/Defender/1.0.0/inquiries", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: values.name,
-              email: values.email,
-              subject: values.subject,
-              message: values.message,
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to submit form");
-          }
-
-          const data = await response.json();
-          console.log("Form submitted successfully", data);
-
+    validationSchema={validationSchema}
+    onSubmit={async (values, { resetForm }) => {
+      setIsSubmitting(true);
+      setFormSent(false);
+      try {
+        const response = await CONTACT_API({
+          name: values.name,
+          email: values.email,
+          subject: values.subject,
+          message: values.message,
+        });
+        if (response.data.status === true) {
           resetForm();
-        } catch (error) {
-          console.error("Error submitting form:", error);
-        } finally {
-          setIsSubmitting(false);
+          setFormSent(true);
+        } else {
+          throw new Error("Failed to submit form");
         }
         
-      }}
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      } finally {
+        setIsSubmitting(false);
+      }
+    }}
       initialValues={{ name: "", email: "", subject: "", message: "" }}
     >
       {({ handleSubmit, handleChange, values, errors, touched }) => (
         <div className="flex justify-start">
+            
           <div className="w-full p-3">
+          {formSent && (
+              <div className=" bg-green-200 mt-10 border-2 border-green-600 p-3 rounded-lg mb-2">
+                <p className="text-green-600">Form sent successfully!</p>
+              </div>
+               )}
             <h4 className="font-semibold text-black text-xl">
               Didn`t find your answer?
             </h4>
