@@ -39,8 +39,8 @@ export default function Carousel({ images }: CarouselProps) {
             <Image
               src={image}
               alt={`Slide ${index}`}
-              width={300}
-              height={300}
+              width={250}
+              height={250}
               className={`${index === currentIndex ? "opacity-100" : "opacity-0"}`}
               style={{
                 transition: "opacity 1s ease-in-out",
