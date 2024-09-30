@@ -192,7 +192,7 @@ export default function PaymentPage() {
                             paddingX="px-8"
                           />
                         </Link>
-                        <CustomButton btntext="Pay Now" paddingX="px-12" />
+                        <CustomButton btntext="Pay Now" className="px-12" />
                       </div>
                     </form>
                   </div>

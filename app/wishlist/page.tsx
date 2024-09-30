@@ -222,7 +222,7 @@ export default function WishListPage() {
                   </div>
                   <CustomButton
                     btntext="Proceed to Checkout"
-                    paddingX="px-12 w-full"
+                    className="px-12 w-full"
                     onClick={handleBuyNow}
                   />
                 </div>

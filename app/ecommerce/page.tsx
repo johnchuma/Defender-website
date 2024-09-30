@@ -185,7 +185,7 @@ export default function Ecommerce() {
               </div>
             </div>
             <div className="flex justify-between">
-              <CustomButton btntext="Buy Now" paddingX="px-14" onClick={handleBuyNow} />
+              <CustomButton btntext="Buy Now" className="px-14" onClick={handleBuyNow} />
               <CustomOutlineButton btntext="Add to Wishlist" paddingX="px-10" onClick={handleAddToWishlist} />
             </div>
           </div>
