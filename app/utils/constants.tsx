@@ -313,276 +313,168 @@ export const eastAfricanCountries = [
   {
     country: "Tanzania",
     regions: [
-      { name: "Dar es Salaam", districts: ["Ilala", "Kinondoni", "Temeke", "Kigamboni", "Ubungo"] },
-      { name: "Arusha", districts: ["Arusha City", "Meru", "Karatu", "Longido", "Monduli", "Ngorongoro"] },
-      { name: "Dodoma", districts: ["Dodoma City", "Bahi", "Chamwino", "Chemba", "Kondoa", "Mpwapwa"] },
-      { name: "Mwanza", districts: ["Ilemela", "Nyamagana", "Sengerema", "Magu", "Kwimba", "Misungwi", "Ukerewe"] },
-      { name: "Mbeya", districts: ["Mbeya City", "Chunya", "Mbarali", "Rungwe"] },
-    ]
+      {
+        name: "Dar es Salaam",
+        districts: ["Ilala", "Kinondoni", "Temeke", "Kigamboni", "Ubungo"],
+      },
+      {
+        name: "Arusha",
+        districts: [
+          "Arusha City",
+          "Meru",
+          "Karatu",
+          "Longido",
+          "Monduli",
+          "Ngorongoro",
+        ],
+      },
+      {
+        name: "Dodoma",
+        districts: [
+          "Dodoma City",
+          "Bahi",
+          "Chamwino",
+          "Chemba",
+          "Kondoa",
+          "Mpwapwa",
+        ],
+      },
+      {
+        name: "Mwanza",
+        districts: [
+          "Ilemela",
+          "Nyamagana",
+          "Sengerema",
+          "Magu",
+          "Kwimba",
+          "Misungwi",
+          "Ukerewe",
+        ],
+      },
+      {
+        name: "Mbeya",
+        districts: ["Mbeya City", "Chunya", "Mbarali", "Rungwe"],
+      },
+    ],
   },
   {
     country: "Kenya",
     regions: [
-      { name: "Nairobi", districts: ["Westlands", "Langata", "Starehe", "Kibra", "Kamukunji", "Kasarani", "Embakasi"] },
-      { name: "Mombasa", districts: ["Changamwe", "Jomvu", "Kisauni", "Likoni", "Mvita", "Nyali"] },
-      { name: "Kiambu", districts: ["Kiambu Town", "Githunguri", "Ruiru", "Juja", "Gatundu North", "Thika", "Limuru"] },
-      { name: "Nakuru", districts: ["Nakuru Town East", "Nakuru Town West", "Naivasha", "Gilgil", "Subukia"] },
-      { name: "Kisumu", districts: ["Kisumu East", "Kisumu West", "Nyakach", "Muhoroni"] },
-    ]
+      {
+        name: "Nairobi",
+        districts: [
+          "Westlands",
+          "Langata",
+          "Starehe",
+          "Kibra",
+          "Kamukunji",
+          "Kasarani",
+          "Embakasi",
+        ],
+      },
+      {
+        name: "Mombasa",
+        districts: [
+          "Changamwe",
+          "Jomvu",
+          "Kisauni",
+          "Likoni",
+          "Mvita",
+          "Nyali",
+        ],
+      },
+      {
+        name: "Kiambu",
+        districts: [
+          "Kiambu Town",
+          "Githunguri",
+          "Ruiru",
+          "Juja",
+          "Gatundu North",
+          "Thika",
+          "Limuru",
+        ],
+      },
+      {
+        name: "Nakuru",
+        districts: [
+          "Nakuru Town East",
+          "Nakuru Town West",
+          "Naivasha",
+          "Gilgil",
+          "Subukia",
+        ],
+      },
+      {
+        name: "Kisumu",
+        districts: ["Kisumu East", "Kisumu West", "Nyakach", "Muhoroni"],
+      },
+    ],
   },
   {
     country: "Uganda",
     regions: [
-      { name: "Central", districts: ["Kampala", "Wakiso", "Mukono", "Mpigi", "Luwero", "Mityana"] },
-      { name: "Western", districts: ["Mbarara", "Kabale", "Kasese", "Fort Portal", "Bushenyi"] },
-      { name: "Eastern", districts: ["Jinja", "Mbale", "Soroti", "Tororo", "Iganga"] },
-      { name: "Northern", districts: ["Gulu", "Lira", "Kitgum", "Arua", "Pader"] },
-    ]
+      {
+        name: "Central",
+        districts: [
+          "Kampala",
+          "Wakiso",
+          "Mukono",
+          "Mpigi",
+          "Luwero",
+          "Mityana",
+        ],
+      },
+      {
+        name: "Western",
+        districts: ["Mbarara", "Kabale", "Kasese", "Fort Portal", "Bushenyi"],
+      },
+      {
+        name: "Eastern",
+        districts: ["Jinja", "Mbale", "Soroti", "Tororo", "Iganga"],
+      },
+      {
+        name: "Northern",
+        districts: ["Gulu", "Lira", "Kitgum", "Arua", "Pader"],
+      },
+    ],
   },
   {
     country: "Rwanda",
     regions: [
       { name: "Kigali", districts: ["Gasabo", "Kicukiro", "Nyarugenge"] },
-      { name: "Southern", districts: ["Huye", "Nyanza", "Muhanga", "Ruhango", "Gisagara"] },
-      { name: "Western", districts: ["Rubavu", "Rusizi", "Karongi", "Nyamasheke", "Ngororero"] },
-      { name: "Northern", districts: ["Musanze", "Gicumbi", "Rulindo", "Burera", "Gakenke"] },
-      { name: "Eastern", districts: ["Rwamagana", "Nyagatare", "Kayonza", "Kirehe", "Ngoma"] },
-    ]
+      {
+        name: "Southern",
+        districts: ["Huye", "Nyanza", "Muhanga", "Ruhango", "Gisagara"],
+      },
+      {
+        name: "Western",
+        districts: ["Rubavu", "Rusizi", "Karongi", "Nyamasheke", "Ngororero"],
+      },
+      {
+        name: "Northern",
+        districts: ["Musanze", "Gicumbi", "Rulindo", "Burera", "Gakenke"],
+      },
+      {
+        name: "Eastern",
+        districts: ["Rwamagana", "Nyagatare", "Kayonza", "Kirehe", "Ngoma"],
+      },
+    ],
   },
   {
     country: "Burundi",
     regions: [
       { name: "Bujumbura", districts: ["Mukaza", "Muha", "Ntahangwa"] },
-      { name: "Ngozi", districts: ["Ngozi", "Mwumba", "Busiga", "Kiremba", "Tangara"] },
+      {
+        name: "Ngozi",
+        districts: ["Ngozi", "Mwumba", "Busiga", "Kiremba", "Tangara"],
+      },
       { name: "Gitega", districts: ["Gitega", "Itaba", "Ryansoro", "Mutaho"] },
-      { name: "Makamba", districts: ["Makamba", "Mabanda", "Vugizo", "Nyanza-Lac"] },
+      {
+        name: "Makamba",
+        districts: ["Makamba", "Mabanda", "Vugizo", "Nyanza-Lac"],
+      },
       { name: "Rumonge", districts: ["Burambi", "Buyengero", "Bugarama"] },
-    ]
-  }
-];
-
-
-import { PiGpsFixLight } from "react-icons/pi";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { FiPhone } from "react-icons/fi";
-import { CiVolumeMute } from "react-icons/ci";
-import { GrUserExpert } from "react-icons/gr";
-import { PiVideoCameraSlashLight } from "react-icons/pi";
-
-export const safetyFeatures = [
-  { icon: <PiGpsFixLight className="text-cyan-600" />, title: "GPS Tracking" },
-  {
-    icon: <HiOutlineLocationMarker className="text-purple-600" />,
-    title: "Customizable Safe Zones",
+    ],
   },
-  {
-    icon: <PiVideoCameraSlashLight className="text-red-600" />,
-    title: "No Unsafe Apps",
-  },
-  {
-    icon: <FiPhone className="text-orange-600" />,
-    title: "SOS/Emergency Contact",
-  },
-  {
-    icon: <GrUserExpert className="text-cyan-600" />,
-    title: "Parent-managed Contacts",
-  },
-  {
-    icon: <CiVolumeMute className="text-blue-600" />,
-    title: "Focus & Silent Mode Scheduling",
-  },
-];
-
-export const technicalSpecifications = [
-  { title: "Screen", decription: "1.4 inch IPS screen, Pixel 240x240" },
-  { title: "Touch panel", decription: "Full lamination, 2.5D" },
-  { title: "Operating system", decription: "RTOS" },
-  {
-    title: "Solution",
-    decription: "ASR3603S, 832MHz, One-core ARM Cortex-R5 processor",
-  },
-  { title: "GPS Accuracy", decription: "5-15m" },
-  { title: "WIFI Accuracy", decription: "30-50m" },
-  { title: "LBS Accuracy", decription: "100m  above" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-];
-
-export const moreSpecification = [
-  { text: "2MP Front Camera for Video Call" },
-  { text: "4GB Internal Storage" },
-  { text: "4G Nano Sim Card Enabled" },
-  { text: "iOS and Android Compatible" },
-  { text: "1.3` Full Touch Round Screen" },
-  { text: "Wi-Fi and Bluetooth Connection" },
-  { text: "IP54 Water and Dust Resistant" },
-  { text: "580 mAh Long Lasting Battery" },
-  { text: "Anti Removal Theft Sensor" },
-  { text: "Location via GPS, WiFi and LBS " },
-];
-
-export const eastAfricanCountries = [
-  {
-    country: "Tanzania",
-    regions: [
-      { name: "Dar es Salaam", districts: ["Ilala", "Kinondoni", "Temeke", "Kigamboni", "Ubungo"] },
-      { name: "Arusha", districts: ["Arusha City", "Meru", "Karatu", "Longido", "Monduli", "Ngorongoro"] },
-      { name: "Dodoma", districts: ["Dodoma City", "Bahi", "Chamwino", "Chemba", "Kondoa", "Mpwapwa"] },
-      { name: "Mwanza", districts: ["Ilemela", "Nyamagana", "Sengerema", "Magu", "Kwimba", "Misungwi", "Ukerewe"] },
-      { name: "Mbeya", districts: ["Mbeya City", "Chunya", "Mbarali", "Rungwe"] },
-    ]
-  },
-  {
-    country: "Kenya",
-    regions: [
-      { name: "Nairobi", districts: ["Westlands", "Langata", "Starehe", "Kibra", "Kamukunji", "Kasarani", "Embakasi"] },
-      { name: "Mombasa", districts: ["Changamwe", "Jomvu", "Kisauni", "Likoni", "Mvita", "Nyali"] },
-      { name: "Kiambu", districts: ["Kiambu Town", "Githunguri", "Ruiru", "Juja", "Gatundu North", "Thika", "Limuru"] },
-      { name: "Nakuru", districts: ["Nakuru Town East", "Nakuru Town West", "Naivasha", "Gilgil", "Subukia"] },
-      { name: "Kisumu", districts: ["Kisumu East", "Kisumu West", "Nyakach", "Muhoroni"] },
-    ]
-  },
-  {
-    country: "Uganda",
-    regions: [
-      { name: "Central", districts: ["Kampala", "Wakiso", "Mukono", "Mpigi", "Luwero", "Mityana"] },
-      { name: "Western", districts: ["Mbarara", "Kabale", "Kasese", "Fort Portal", "Bushenyi"] },
-      { name: "Eastern", districts: ["Jinja", "Mbale", "Soroti", "Tororo", "Iganga"] },
-      { name: "Northern", districts: ["Gulu", "Lira", "Kitgum", "Arua", "Pader"] },
-    ]
-  },
-  {
-    country: "Rwanda",
-    regions: [
-      { name: "Kigali", districts: ["Gasabo", "Kicukiro", "Nyarugenge"] },
-      { name: "Southern", districts: ["Huye", "Nyanza", "Muhanga", "Ruhango", "Gisagara"] },
-      { name: "Western", districts: ["Rubavu", "Rusizi", "Karongi", "Nyamasheke", "Ngororero"] },
-      { name: "Northern", districts: ["Musanze", "Gicumbi", "Rulindo", "Burera", "Gakenke"] },
-      { name: "Eastern", districts: ["Rwamagana", "Nyagatare", "Kayonza", "Kirehe", "Ngoma"] },
-    ]
-  },
-  {
-    country: "Burundi",
-    regions: [
-      { name: "Bujumbura", districts: ["Mukaza", "Muha", "Ntahangwa"] },
-      { name: "Ngozi", districts: ["Ngozi", "Mwumba", "Busiga", "Kiremba", "Tangara"] },
-      { name: "Gitega", districts: ["Gitega", "Itaba", "Ryansoro", "Mutaho"] },
-      { name: "Makamba", districts: ["Makamba", "Mabanda", "Vugizo", "Nyanza-Lac"] },
-      { name: "Rumonge", districts: ["Burambi", "Buyengero", "Bugarama"] },
-    ]
-  }
-];
-
-
-import { PiGpsFixLight } from "react-icons/pi";
-import { HiOutlineLocationMarker } from "react-icons/hi";
-import { FiPhone } from "react-icons/fi";
-import { CiVolumeMute } from "react-icons/ci";
-import { GrUserExpert } from "react-icons/gr";
-import { PiVideoCameraSlashLight } from "react-icons/pi";
-
-export const safetyFeatures = [
-  { icon: <PiGpsFixLight className="text-cyan-600" />, title: "GPS Tracking" },
-  {
-    icon: <HiOutlineLocationMarker className="text-purple-600" />,
-    title: "Customizable Safe Zones",
-  },
-  {
-    icon: <PiVideoCameraSlashLight className="text-red-600" />,
-    title: "No Unsafe Apps",
-  },
-  {
-    icon: <FiPhone className="text-orange-600" />,
-    title: "SOS/Emergency Contact",
-  },
-  {
-    icon: <GrUserExpert className="text-cyan-600" />,
-    title: "Parent-managed Contacts",
-  },
-  {
-    icon: <CiVolumeMute className="text-blue-600" />,
-    title: "Focus & Silent Mode Scheduling",
-  },
-];
-
-export const technicalSpecifications = [
-  { title: "Screen", decription: "1.4 inch IPS screen, Pixel 240x240" },
-  { title: "Touch panel", decription: "Full lamination, 2.5D" },
-  { title: "Operating system", decription: "RTOS" },
-  {
-    title: "Solution",
-    decription: "ASR3603S, 832MHz, One-core ARM Cortex-R5 processor",
-  },
-  { title: "GPS Accuracy", decription: "5-15m" },
-  { title: "WIFI Accuracy", decription: "30-50m" },
-  { title: "LBS Accuracy", decription: "100m  above" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-];
-
-export const moreSpecification = [
-  { text: "2MP Front Camera for Video Call" },
-  { text: "4GB Internal Storage" },
-  { text: "4G Nano Sim Card Enabled" },
-  { text: "iOS and Android Compatible" },
-  { text: "1.3` Full Touch Round Screen" },
-  { text: "Wi-Fi and Bluetooth Connection" },
-  { text: "IP54 Water and Dust Resistant" },
-  { text: "580 mAh Long Lasting Battery" },
-  { text: "Anti Removal Theft Sensor" },
-  { text: "Location via GPS, WiFi and LBS " },
-];
-
-export const eastAfricanCountries = [
-  {
-    country: "Tanzania",
-    regions: [
-      { name: "Dar es Salaam", districts: ["Ilala", "Kinondoni", "Temeke", "Kigamboni", "Ubungo"] },
-      { name: "Arusha", districts: ["Arusha City", "Meru", "Karatu", "Longido", "Monduli", "Ngorongoro"] },
-      { name: "Dodoma", districts: ["Dodoma City", "Bahi", "Chamwino", "Chemba", "Kondoa", "Mpwapwa"] },
-      { name: "Mwanza", districts: ["Ilemela", "Nyamagana", "Sengerema", "Magu", "Kwimba", "Misungwi", "Ukerewe"] },
-      { name: "Mbeya", districts: ["Mbeya City", "Chunya", "Mbarali", "Rungwe"] },
-    ]
-  },
-  {
-    country: "Kenya",
-    regions: [
-      { name: "Nairobi", districts: ["Westlands", "Langata", "Starehe", "Kibra", "Kamukunji", "Kasarani", "Embakasi"] },
-      { name: "Mombasa", districts: ["Changamwe", "Jomvu", "Kisauni", "Likoni", "Mvita", "Nyali"] },
-      { name: "Kiambu", districts: ["Kiambu Town", "Githunguri", "Ruiru", "Juja", "Gatundu North", "Thika", "Limuru"] },
-      { name: "Nakuru", districts: ["Nakuru Town East", "Nakuru Town West", "Naivasha", "Gilgil", "Subukia"] },
-      { name: "Kisumu", districts: ["Kisumu East", "Kisumu West", "Nyakach", "Muhoroni"] },
-    ]
-  },
-  {
-    country: "Uganda",
-    regions: [
-      { name: "Central", districts: ["Kampala", "Wakiso", "Mukono", "Mpigi", "Luwero", "Mityana"] },
-      { name: "Western", districts: ["Mbarara", "Kabale", "Kasese", "Fort Portal", "Bushenyi"] },
-      { name: "Eastern", districts: ["Jinja", "Mbale", "Soroti", "Tororo", "Iganga"] },
-      { name: "Northern", districts: ["Gulu", "Lira", "Kitgum", "Arua", "Pader"] },
-    ]
-  },
-  {
-    country: "Rwanda",
-    regions: [
-      { name: "Kigali", districts: ["Gasabo", "Kicukiro", "Nyarugenge"] },
-      { name: "Southern", districts: ["Huye", "Nyanza", "Muhanga", "Ruhango", "Gisagara"] },
-      { name: "Western", districts: ["Rubavu", "Rusizi", "Karongi", "Nyamasheke", "Ngororero"] },
-      { name: "Northern", districts: ["Musanze", "Gicumbi", "Rulindo", "Burera", "Gakenke"] },
-      { name: "Eastern", districts: ["Rwamagana", "Nyagatare", "Kayonza", "Kirehe", "Ngoma"] },
-    ]
-  },
-  {
-    country: "Burundi",
-    regions: [
-      { name: "Bujumbura", districts: ["Mukaza", "Muha", "Ntahangwa"] },
-      { name: "Ngozi", districts: ["Ngozi", "Mwumba", "Busiga", "Kiremba", "Tangara"] },
-      { name: "Gitega", districts: ["Gitega", "Itaba", "Ryansoro", "Mutaho"] },
-      { name: "Makamba", districts: ["Makamba", "Mabanda", "Vugizo", "Nyanza-Lac"] },
-      { name: "Rumonge", districts: ["Burambi", "Buyengero", "Bugarama"] },
-    ]
-  }
 ];
