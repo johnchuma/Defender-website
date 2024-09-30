@@ -114,7 +114,7 @@ export default function ContactUs() {
               </div>
               <CustomButton
                 btntext={isSubmitting ? "Sending..." : "Send Message"}
-                paddingX="px-12"
+                className="px-12"
                 onClick={() => handleSubmit()}
                 disabled={isSubmitting}
               />
