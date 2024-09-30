@@ -7,7 +7,7 @@ import ContactInfo from "../_components/contact-info";
 
 export default function Contact() {
     return (
-        <div className="w-9/12 mx-auto space-y-20 my-20">
+        <div className="w-9/12 mx-auto space-y-20">
             <div className="">
             <h4 className="text-center font-semibold text-black text-3xl">
             Contact Us

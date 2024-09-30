@@ -132,7 +132,7 @@ export default function Ecommerce() {
   };
 
   return (
-    <div className="mx-auto my-20 w-9/12 space-y-20">
+    <div className="mx-auto w-9/12 space-y-20">
       <div className="grid grid-cols-12 items-start gap-20 pr-5">
         <div className="col-span-6 space-y-5">
           <Image
