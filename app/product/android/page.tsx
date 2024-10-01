@@ -19,7 +19,7 @@ export default function ProductPage() {
   };
   
   return (
-    <div className="w-9/12 mx-auto space-y-20 py-20">
+    <div className="w-9/12 mx-auto space-y-20">
       <div className="flex flex-col items-center">
         <SimpleCarousel type={"android"}/>
         <h4 className="mt-4 font-semibold text-black text-lg">
@@ -28,7 +28,7 @@ export default function ProductPage() {
         <p className="mt-2 text-black">Tzs 135,000</p>
         <CustomButton
           btntext="Buy Now"
-          paddingX="px-12"
+          className="px-12"
           onClick={handleBuyNow}
         />
       </div>
@@ -37,7 +37,7 @@ export default function ProductPage() {
           Safety Features
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-9">
-          {safetyFeatures.map((item, index) => {
+          {safetyFeatures.map((item:any, index:any) => {
             return (
               <div
                 className="flex flex-col items-center p-20 rounded-lg space-y-6 shadow-md"
@@ -74,7 +74,7 @@ export default function ProductPage() {
           Technical Specifications
         </h1>
         <div>
-          {technicalSpecifications.map((item, index) => {
+          {technicalSpecifications.map((item:any, index:any) => {
             return (
               <div className="border-[#E0E0E0] border-b-2 py-4" key={index}>
                 <div className="justify-start grid grid-cols-2 gap-9">
@@ -97,7 +97,7 @@ export default function ProductPage() {
               to know
             </h1>
             <div className="grid grid-cols-2 gap-5">
-              {moreSpecification.map((item, index) => {
+              {moreSpecification.map((item:any, index:any) => {
                 return (
                   <div className="w-2/3" key={index}>
                     <div className="text-textColor"> {item.text}</div>

@@ -7,7 +7,7 @@ import { Formik } from "formik";
 import { IoIosArrowBack } from "react-icons/io";
 import CustomButton from "../(components)/customButton";
 import CustomOutlineButton from "../(components)/customOutlineButton";
-
+import { eastAfricanCountries } from "../utils/constants";
 interface CartItem {
   id: string;
   name: string;
@@ -19,8 +19,15 @@ interface CartItem {
 export default function PaymentPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [delivery, setDelivery] = useState<string>("yes");
+  const [delivery, setDelivery] = useState<string>("no");
   const [isChecked, setIsChecked] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectedRegion, setSelectedRegion] = useState<string>("");
+  const [selectedRegionData, setSelectedRegionData] = useState<{
+    name: string;
+    districts: string[];
+  } | null>(null);
+
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -29,6 +36,10 @@ export default function PaymentPage() {
     phone: Yup.string()
       .required("Phone is required")
       .max(15, "Max 15 characters"),
+    country: Yup.string().required("Country is required"),
+    region: Yup.string().required("Region is required"),
+    district: Yup.string().required("District is required"),
+    street: Yup.string().required("Street address is required"),
   });
 
   const calculateTotalPrice = (cartItems: CartItem[]): number => {
@@ -51,8 +62,29 @@ export default function PaymentPage() {
     setIsChecked((prev) => !prev);
   };
 
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const country = e.target.value;
+    setSelectedCountry(country);
+    const countryData = eastAfricanCountries.find((c) => c.country === country);
+    if (countryData) {
+      setSelectedRegionData(countryData.regions[0]);
+    } else {
+      setSelectedRegionData(null);
+    }
+    setSelectedRegion("");
+  };
+
+  const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const region = e.target.value;
+    setSelectedRegion(region);
+    const regionData = eastAfricanCountries
+      .find((c) => c.country === selectedCountry)
+      ?.regions.find((r) => r.name === region);
+    setSelectedRegionData(regionData || null);
+  };
+
   return (
-    <div className="w-9/12 mx-auto space-y-8 my-20">
+    <div className="w-9/12 mx-auto space-y-8">
       <nav className="flex py-2 rounded-md">
         <Link href={"/wishlist"}>
           <div className="flex items-center">
@@ -80,7 +112,7 @@ export default function PaymentPage() {
                 console.log("Form submitted with values:", values);
                 setSubmitting(false);
               }}
-              initialValues={{ name: "", phone: "" }}
+              initialValues={{ name: "", phone: "", country: "", region: "", district: "", street: "" }}
             >
               {({ handleSubmit, handleChange, values, errors, touched }) => (
                 <div className="shadow-lg shadow-[#E0E0E0] rounded-lg">
@@ -148,7 +180,90 @@ export default function PaymentPage() {
                           </label>
                         </div>
                       </div>
+                        {delivery === "yes" && (
+                          <>
+                           <div className="flex w-full space-x-4">
+                            <div className="flex flex-col w-6/12 space-y-3 my-1">
+                              <label>Country</label>
+                              <select
+                                className="w-full p-3 py-2 rounded-lg border-2"
+                                name="country"
+                                value={selectedCountry}
+                                onChange={handleCountryChange}
+                              >
+                                <option value="">Select Country</option>
+                                {eastAfricanCountries.map((country) => (
+                                  <option key={country.country} value={country.country}>
+                                    {country.country}
+                                  </option>
+                                ))}
+                              </select>
+                              {errors.country && touched.country && (
+                                <p className="text-red-600 text-xs">{errors.country}</p>
+                              )}
+                            </div>
+  
+                              <div className="flex flex-col w-6/12 space-y-3 my-1">
+                                <label>Region</label>
+                                <select
+                                  className="w-full p-3 py-2 rounded-lg border-2"
+                                  name="region"
+                                  value={selectedRegion}
+                                  onChange={handleRegionChange}
+                                >
+                                  <option value="">Select Region</option>
+                                  {eastAfricanCountries
+                                    .find((c) => c.country === selectedCountry)
+                                    ?.regions.map((region) => (
+                                      <option key={region.name} value={region.name}>
+                                        {region.name}
+                                      </option>
+                                    ))}
+                                </select>
+                                {errors.region && touched.region && (
+                                  <p className="text-red-600 text-xs">{errors.region}</p>
+                                )}
+                              </div>
+                            </div>
+                            {selectedRegion && selectedRegionData && (
+                            <div className="flex w-full space-x-4">
+                              <div className="flex flex-col w-6/12 space-y-3 my-1">
+                                <label>District</label>
+                                <select
+                                  className="w-full p-3 py-2 rounded-lg border-2"
+                                  name="district"
+                                  value={values.district}
+                                  onChange={handleChange}
+                                >
+                                  <option value="">Select District</option>
+                                  {selectedRegionData.districts.map((district) => (
+                                    <option key={district} value={district}>
+                                      {district}
+                                    </option>
+                                  ))}
+                                </select>
+                                {errors.district && touched.district && (
+                                  <p className="text-red-600 text-xs">{errors.district}</p>
+                                )}
+                              </div>
 
+                              <div className="flex flex-col w-6/12 space-y-3 my-1">
+                              <label>Street Address</label>
+                              <input
+                                className="w-full p-3 py-2 rounded-lg border-2"
+                                name="street"
+                                value={values.street}
+                                onChange={handleChange}
+                                placeholder="Street Address"
+                              />
+                              {errors.street && touched.street && (
+                                <p className="text-red-600 text-xs">{errors.street}</p>
+                              )}
+                            </div>
+                          </div>
+                            )}
+                        </>
+                        )}
                       <div>
                         <p className="uppercase text-xl py-3">PAYMENT</p>
                         <div className="border-[#E0E0E0] border-2 rounded-lg">
@@ -192,7 +307,7 @@ export default function PaymentPage() {
                             paddingX="px-8"
                           />
                         </Link>
-                        <CustomButton btntext="Pay Now" paddingX="px-12" />
+                        <CustomButton btntext="Pay Now" className="px-12" />
                       </div>
                     </form>
                   </div>
