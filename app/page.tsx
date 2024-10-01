@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // component
 import FeatureCard from "./_components/feature-cards";
@@ -36,6 +37,7 @@ import CustomButton from "./(components)/customButton";
 import Carousel from "./_components/carousel";
 
 export default function Home() {
+  const router = useRouter();
   const images = [
     "/images/watch.png",
     "/images/watch.png",
@@ -76,7 +78,7 @@ export default function Home() {
 
             <CustomButton
               btntext="Explore Now!"
-              onClick={() => console.log("Learn more clicked!")}
+              onClick={() => router.push("/shop")}
               className="px-12 text-base font-medium md:px-20"
             />
 
