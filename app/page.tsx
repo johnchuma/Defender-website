@@ -15,7 +15,8 @@ import SelcomLogo from "@/public/images/clients/selcom.png";
 import VodacomLogo from "@/public/images/clients/vodacom.png";
 import FlutterwaveLogo from "@/public/images/clients/flutterwave.png";
 import ShuleYetuLogo from "@/public/images/clients/shule-yetu.png";
-import SmartWatch from "@/public/images/watch.png";
+import SmartWatch from "@/public/blackwatch.svg";
+import SmartWatch2 from "@/public/v2blackwatch.svg";
 import DotOrnament from "@/public/images/ornaments/dot-ornaments.png";
 import CircleOrnament from "@/public/images/ornaments/circle-ornament.png";
 import CircleOrnamentGreen from "@/public/images/ornaments/circle-ornament-green.png";
@@ -38,11 +39,7 @@ import Carousel from "./_components/carousel";
 
 export default function Home() {
   const router = useRouter();
-  const images = [
-    "/images/watch.png",
-    "/images/watch.png",
-    "/images/watch.png",
-  ];
+  const images = ["/blackwatch.svg", "/v2blackwatch.svg"];
   return (
     <main className="-mt-32">
       {/* ======================== HERO SECTION ======================== */}
@@ -107,7 +104,7 @@ export default function Home() {
       <section className="bg-white pb-10 pt-20">
         <div className="container mx-auto flex flex-col gap-y-12 px-12 md:px-0">
           <Title>Our Popular Products</Title>
-          <div className="flex flex-col items-center justify-center gap-16 md:flex-row">
+          <div className="grid grid-flow-col items-center justify-center gap-16 md:flex-row">
             <ProductCard
               image={SmartWatch}
               altText="Smart Watch"
@@ -115,7 +112,7 @@ export default function Home() {
               price="Tsh 135,000"
             />
             <ProductCard
-              image={SmartWatch}
+              image={SmartWatch2}
               altText="Smart Watch"
               productName="RTO's Modern Version"
               price="Tsh 99,000"
@@ -315,7 +312,7 @@ export default function Home() {
 
       {/* ======================== CONTACT US SECTION ======================== */}
       <section className="bg-white px-4 pb-20 pt-10 md:px-0">
-        <div className="container relative mx-auto flex flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:px-12">
+        <div className="container relative mx-auto hidden flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:flex md:px-12">
           <Title>Looking forward</Title>
 
           {/* Description */}
