@@ -22,6 +22,13 @@ export const siteConfig = {
       link: "/shop",
     },
   ],
+  extraNavItems: [
+    { title: "Home", href: "/" },
+    { title: "About Us", href: "/about" },
+    { title: "Career", href: "/career" },
+    { title: "Blog", href: "/blog" },
+    { title: "Contact", href: "/contact" },
+  ],
   links: {
     facebook: "https://www.facebook.com/",
     instagram: "https://www.instagram.com/",
