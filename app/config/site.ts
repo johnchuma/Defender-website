@@ -11,7 +11,11 @@ export const siteConfig = {
     },
     {
       name: "Products",
-      link: "/products",
+      link: "",
+      dropdown: [
+        { label: "Android SmartWatch", link: "/products/android" },
+        { label: "RTO SmartWatch", link: "/products/rto" },
+      ],
     },
     {
       name: "Support",
@@ -21,6 +25,13 @@ export const siteConfig = {
       name: "Shop",
       link: "/shop",
     },
+  ],
+  extraNavItems: [
+    { title: "Home", href: "/" },
+    { title: "About Us", href: "/about" },
+    { title: "Career", href: "/career" },
+    { title: "Blog", href: "/blog" },
+    { title: "Contact", href: "/contact" },
   ],
   links: {
     facebook: "https://www.facebook.com/",
