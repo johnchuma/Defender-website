@@ -104,7 +104,7 @@ export default function WishListPage() {
   };
 
   return (
-    <div className="md:w-9/12 mx-auto space-y-10">
+    <div className="md:w-9/12 mx-auto space-y-10 pb-20">
       <nav className="flex py-2 px-4 rounded-md">
         <Link href={"/product"}>
           <div className="flex items-center">
