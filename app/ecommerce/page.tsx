@@ -167,7 +167,30 @@ export default function Ecommerce() {
           <p className="text-mutedText">{selectedProduct?.description}</p>
           <p className="text-xl font-semibold text-black">Tzs {selectedProduct?.price}</p>
           <div className="w-3/4 space-y-4">
-            <div className="flex items-center space-x-5">
+              <p className="my-2 text-black">Colors</p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  {productVariations.map((product, index) => (
+                    <div
+                      key={index}
+                      className={"pb-1"}
+                      style={{
+                        borderBottom:
+                          selectedProduct?.id === product.id
+                            ? `2px solid ${selectedProduct?.color}`
+                            : "none",
+                      }}
+                    >
+                      <div
+                        className={`p-3 rounded-full cursor-pointer`}
+                        onClick={() => handleProductSelection(product)}
+                        style={{ backgroundColor: product.color }}
+                      />
+                    </div>
+                  ))}
+                </div>
+  
+                <div className="flex items-center space-x-5">
               <div
                 className={`cursor-pointer rounded-lg border-2 p-2 ${
                   productCount === 1 ? "opacity-50 cursor-not-allowed" : ""
@@ -184,10 +207,13 @@ export default function Ecommerce() {
                 <FaPlus />
               </div>
             </div>
-            <div className="flex justify-between">
+        
+              </div>
+              <div className="flex justify-between">
               <CustomButton btntext="Buy Now" className="px-14" onClick={handleBuyNow} />
-              <CustomOutlineButton btntext="Add to Wishlist" paddingX="px-10" onClick={handleAddToWishlist} />
+              <CustomOutlineButton btntext="Add to Wishlist" className="px-10" onClick={handleAddToWishlist} />
             </div>
+
           </div>
           <div className="mt-4">
             {productDetails.map((item, index) => (
@@ -244,6 +270,7 @@ export default function Ecommerce() {
               Our smartwatches come with customizable geofencing capabilities that allow parents to set safe zones for their children. If a child exits these designated areas, the parent receives instant alerts, helping to keep them safe and secure while encouraging independence.
               </p>
             </div>
+         
           </div>
         </div>
       </div>
