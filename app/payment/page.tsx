@@ -304,7 +304,7 @@ export default function PaymentPage() {
                         <Link href={"/wishlist"}>
                           <CustomOutlineButton
                             btntext="Back to Wishlist"
-                            paddingX="px-8"
+                            className="px-8"
                           />
                         </Link>
                         <CustomButton btntext="Pay Now" className="px-12" />
