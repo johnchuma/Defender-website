@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   motion,
@@ -9,9 +10,9 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { cn } from "@/app/lib/utils";
-import Link from "next/link";
 import { siteConfig } from "../config/site";
 import SocialLinks from "./social-link";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const menuVars = {
   initial: { scaleY: 0 },
@@ -70,6 +71,7 @@ export const FloatingNav = ({
     name: string;
     link: string;
     icon?: JSX.Element;
+    dropdown?: { label: string; link: string }[];
   }[];
   className?: string;
 }) => {
@@ -78,12 +80,10 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
-  const [wishlistCount, setWishlistCount] = useState(1); // Set initial wishlist count
+  const [wishlistCount, setWishlistCount] = useState(1); // Example wishlist count
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null); // Tracks hovered item
 
-  const toggleMenu = () => {
-    setOpen((prevOpen) => !prevOpen);
-    console.log("open", open);
-  };
+  const toggleMenu = () => setOpen((prevOpen) => !prevOpen);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -140,30 +140,87 @@ export const FloatingNav = ({
           {/* Nav items */}
           <div className="hidden w-full items-center justify-center gap-x-12 lg:inline-flex">
             {navItems.map((navItem: any, idx: number) => (
-              <Link
-                key={`link=${idx}`}
-                href={navItem.link}
-                className={cn(
-                  "relative text-neutral-600 hover:text-primaryColor",
-                  navItem.link === "/" && pathname === "/"
-                    ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
-                    : navItem.link !== "/" && pathname.includes(navItem.link)
-                      ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
-                      : "text-neutral-600 hover:text-primaryColor",
-                )}
+              <div
+                key={idx}
+                className="relative"
+                onMouseEnter={() => setHoveredItem(navItem.name)}
+                onMouseLeave={() => setHoveredItem(null)}
               >
-                <span className="block sm:hidden">{navItem.icon}</span>
-                <span className="hidden text-base sm:block">
-                  {navItem.name}
-                </span>
-                {/* Underline below the pathname equals navItem.link */}
-                {navItem.link === "/" && pathname === "/" && (
-                  <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+                {/* If dropdown exists, render without href */}
+                {!navItem.dropdown ? (
+                  <Link
+                    key={`link=${idx}`}
+                    href={navItem.link}
+                    className={cn(
+                      "relative text-neutral-600 hover:text-primaryColor",
+                      navItem.link === "/" && pathname === "/"
+                        ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
+                        : navItem.link !== "/" &&
+                            pathname.includes(navItem.link)
+                          ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
+                          : "text-neutral-600 hover:text-primaryColor",
+                    )}
+                  >
+                    <span className="block sm:hidden">{navItem.icon}</span>
+                    <span className="hidden text-base sm:block">
+                      {navItem.name}
+                    </span>
+                    {/* Underline below the pathname equals navItem.link */}
+                    {navItem.link === "/" && pathname === "/" && (
+                      <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+                    )}
+                    {navItem.link !== "/" &&
+                      pathname.includes(navItem.link) && (
+                        <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+                      )}
+                  </Link>
+                ) : (
+                  // If dropdown exists, no href, just display the name and handle dropdown
+                  <div
+                    className={cn(
+                      "relative flex cursor-pointer items-center justify-center gap-x-2 text-neutral-600 hover:text-primaryColor",
+                      hoveredItem === navItem.name
+                        ? "font-medium text-primaryColor"
+                        : "text-neutral-600",
+                    )}
+                  >
+                    <div>
+                      <span className="block sm:hidden">{navItem.icon}</span>
+                      <span className="hidden text-base sm:block">
+                        {navItem.name}
+                      </span>
+                    </div>
+                    <RiArrowDropDownLine />
+                  </div>
                 )}
-                {navItem.link !== "/" && pathname.includes(navItem.link) && (
-                  <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+
+                {/* Dropdown for items with dropdown content (e.g. Products) */}
+                {navItem.dropdown && (
+                  <AnimatePresence>
+                    {hoveredItem === navItem.name && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute left-0 top-full mt-2 w-48 rounded-lg bg-white shadow-lg"
+                      >
+                        <ul className="space-y-4 p-4">
+                          {navItem.dropdown.map((item: any, i: number) => (
+                            <li key={i}>
+                              <Link
+                                href={item.link}
+                                className="block text-sm text-gray-600 hover:text-primaryColor"
+                              >
+                                {item.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 )}
-              </Link>
+              </div>
             ))}
 
             {/* Wishlist with Badge */}
@@ -194,7 +251,7 @@ export const FloatingNav = ({
           {/* Hamburger menu */}
           <div className="justify-self-end">
             <div
-              className="relative w-fit animate-pulse rounded-full bg-primaryColor p-2 shadow-sm shadow-primaryScarletColor"
+              className="relative w-fit rounded-full bg-primaryColor p-2 shadow-sm shadow-primaryScarletColor"
               onClick={toggleMenu}
             >
               <svg
@@ -235,26 +292,26 @@ export const FloatingNav = ({
                   className="h-full w-full bg-center bg-no-repeat"
                   style={{
                     backgroundImage: `
-            url('/images/icons/flower-tulip.svg'),
-            url('/images/icons/cactus.svg'),
-            url('/images/icons/flower-abstract.svg'),
-            url('/images/icons/crescent-moon.svg'),
-            url('/images/icons/triangle-prism.svg'),
-            url('/images/icons/circle-tube.svg'),
-            url('/images/icons/bubble.svg'),
-            url('/images/icons/bookmark.svg')`,
+                      url('/images/icons/flower-tulip.svg'),
+                      url('/images/icons/cactus.svg'),
+                      url('/images/icons/flower-abstract.svg'),
+                      url('/images/icons/crescent-moon.svg'),
+                      url('/images/icons/triangle-prism.svg'),
+                      url('/images/icons/circle-tube.svg'),
+                      url('/images/icons/bubble.svg'),
+                      url('/images/icons/bookmark.svg')`,
                     backgroundPosition: `
-            87% 80%,
-            90% 25%,
-            65% 50%,
-            5% 90%,
-            10% 54%,
-            34% 30%,
-            50% 10%,
-            45% 98%`,
+                        87% 80%,
+                        90% 25%,
+                        65% 50%,
+                        5% 90%,
+                        10% 54%,
+                        34% 30%,
+                        50% 10%,
+                        45% 98%`,
                     opacity: 0.55,
                   }}
-                ></div>
+                />
               </div>
 
               {/* Nav top */}

@@ -11,7 +11,11 @@ export const siteConfig = {
     },
     {
       name: "Products",
-      link: "/products",
+      link: "",
+      dropdown: [
+        { label: "Android SmartWatch", link: "/products/android" },
+        { label: "RTO SmartWatch", link: "/products/rto" },
+      ],
     },
     {
       name: "Support",
