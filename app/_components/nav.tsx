@@ -74,7 +74,7 @@ export const FloatingNav = ({
   className?: string;
 }) => {
   const pathname = usePathname();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
