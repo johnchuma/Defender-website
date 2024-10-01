@@ -84,7 +84,7 @@ export default function PaymentPage() {
   };
 
   return (
-    <div className="w-9/12 mx-auto space-y-8">
+    <div className="w-9/12 mx-auto space-y-8 pb-20">
       <nav className="flex py-2 rounded-md">
         <Link href={"/wishlist"}>
           <div className="flex items-center">

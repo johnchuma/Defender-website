@@ -132,7 +132,7 @@ export default function Ecommerce() {
   };
 
   return (
-    <div className="mx-auto w-9/12 space-y-20">
+    <div className="mx-auto w-9/12 space-y-20 pb-20">
       <div className="grid grid-cols-12 items-start gap-20 pr-5">
         <div className="col-span-6 space-y-5">
           <Image
@@ -203,14 +203,48 @@ export default function Ecommerce() {
             <div className="col-span-6">
               <h4 className="text-xl font-semibold text-black">Two-Way Communication</h4>
               <p className="text-mutedText">
-                Stay connected with your child through secure two-way voice communication.
+              Stay connected with your child through secure two-way voice communication. Our smartwatches allow parents and kids to easily communicate without the need for a smartphone.
+              With a simple touch, parents can call their children or receive calls, fostering a sense of security and connection throughout the day.
               </p>
             </div>
             <div className="col-span-6">
               <Image src="/watch5.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
             </div>
           </div>
-          {/* Additional Features */}
+          <div className="grid grid-cols-12 gap-10">
+          <div className="col-span-6 items-center">
+              <Image src="/pink-redblur.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+            </div>
+            <div className="col-span-6">
+              <h4 className="text-xl font-semibold text-black">Real-Time GPS Tracking</h4>
+              <p className="text-mutedText">
+              Our devices come equipped with advanced GPS technology that allows parents to monitor their child's location in real-time.
+              This feature provides peace of mind, enabling parents to track their children`s movements and ensure their safety, whether they`re at school, playing outside, or on an adventure
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-10">
+            <div className="col-span-6">
+              <h4 className="text-xl font-semibold text-black">Emergency SOS Alerts</h4>
+              <p className="text-mutedText">
+              Safety is our top priority. Our devices feature an emergency SOS button that children can use to alert their parents in case of an emergency. When activated, the watch sends immediate notifications to designated contacts, ensuring a quick response during critical situations.
+              </p>
+            </div>
+            <div className="col-span-6 items-center">
+              <Image src="/grey-redblur.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-10">
+          <div className="col-span-6 items-center">
+              <Image src="/purple-redblur.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+            </div>
+            <div className="col-span-6">
+              <h4 className="text-xl font-semibold text-black">Geofencing Alerts</h4>
+              <p className="text-mutedText">
+              Our smartwatches come with customizable geofencing capabilities that allow parents to set safe zones for their children. If a child exits these designated areas, the parent receives instant alerts, helping to keep them safe and secure while encouraging independence.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div ref={faqsRef} className="space-y-8">

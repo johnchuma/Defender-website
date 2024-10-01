@@ -19,7 +19,7 @@ export default function ProductPage() {
   };
   
   return (
-    <div className="w-9/12 mx-auto space-y-20">
+    <div className="w-9/12 mx-auto space-y-20 pb-20">
       <div className="flex flex-col items-center">
         <SimpleCarousel type={"android"}/>
         <h4 className="mt-4 font-semibold text-black text-lg">

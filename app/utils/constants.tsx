@@ -57,7 +57,7 @@ export const productDetails = [
           attached document.
         </p>
         <p>For any questions or warranty claims, reach out to us at</p>
-        <p className="font-se text-black">+255677869628.</p>{" "}
+        <p className="text-black">+255677869628.</p>{" "}
       </div>
     ),
   },
@@ -255,6 +255,7 @@ import { FiPhone } from "react-icons/fi";
 import { CiVolumeMute } from "react-icons/ci";
 import { GrUserExpert } from "react-icons/gr";
 import { PiVideoCameraSlashLight } from "react-icons/pi";
+import { title } from "process";
 
 export const safetyFeatures = [
   { icon: <PiGpsFixLight className="text-cyan-600" />, title: "GPS Tracking" },
@@ -306,7 +307,7 @@ export const moreSpecification = [
   { text: "IP54 Water and Dust Resistant" },
   { text: "580 mAh Long Lasting Battery" },
   { text: "Anti Removal Theft Sensor" },
-  { text: "Location via GPS, WiFi and LBS " },
+  { text: "Location via GPS, WiFi and LBS" },
 ];
 
 export const eastAfricanCountries = [
@@ -477,4 +478,47 @@ export const eastAfricanCountries = [
       { name: "Rumonge", districts: ["Burambi", "Buyengero", "Bugarama"] },
     ],
   },
+];
+
+import { HiOutlineComputerDesktop, HiOutlineUsers, HiOutlineUser } from "react-icons/hi2";
+import { PiWindowsLogoLight } from "react-icons/pi";
+import { AiOutlineCoffee } from "react-icons/ai";
+import { LiaHeartbeatSolid } from "react-icons/lia";
+
+export const whyJoinUs = [
+  { icon: <LiaHeartbeatSolid className="text-cyan-600" />, title: "Health insurance", description: "Our comprehensive medical insurance covers a wide variety of needs"},
+  {
+    icon: <HiOutlineComputerDesktop className="text-purple-600" />,
+    title: "New Macbook Pro", description:"All team members receive a brand new MacBook Pro work laptop on their first day",
+  },
+  {
+    icon: <HiOutlineUsers className="text-red-600" />,
+    title: "Smart, kind colleagues", description: "Learn and grow with highly accomplished colleagues who`re invested in your personal and professional development",
+  },
+  {
+    icon: <PiWindowsLogoLight className="text-yellow-600" />,
+    title: "Internet Reimbursement", description: "All team members receive a monthly budget to support their internet expenses",
+  },
+  {
+    icon: <AiOutlineCoffee className="text-cyan-600" />,
+    title: "Remote Work Budget", description: "We offer a one-time budget to assist team members in making their home office as productive as possible",
+  },
+  {
+    icon: <HiOutlineUser className="text-blue-600" />,
+    title: "Professional Development", description: "We invest in our people to ensure they can achieve their short, medium, and long term professional goals",
+  },
+];
+
+
+export const jobOffers = [
+  { title: "Finance and Strategy Specialist", description: "We are looking for a dynamic Finance and Strategy Officer to join our team. The ideal candidate will have a strong background in finance, exceptional analytical skills, and the ability to translate financial data into actionable insights.", prospects:"Growth", duration:"Full-time", location:"Tanzania"},
+  { title: "Logistic and Inventory Officer", description: "We are seeking a skilled Logistics and Inventory Manager to oversee our supply chain operations and ensure efficient inventory management. The ideal candidate will have strong analytical skills, experience in logistics management, and a commitment to enhancing operational efficiency.", prospects:"Business", duration:"Full-time", location:"Tanzania"},
+  { title: "Customer Success Specialist", description: "We are looking for a dedicated Customer Success Specialist Officer to join our team. The ideal candidate will possess excellent communication skills, a passion for customer service, and a proactive approach to problem-solving.", prospects:"Business", duration:"Full-time", location:"Tanzania"},
+
+];
+
+export const Testimonials = [
+  { image: "/testimonial.svg", videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1", name: "Guy Hawkins", position: "Founder"},
+  { image: "/testimonial.svg", videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1", name: "Guy Hawkins", position: "Founder"},
+  { image: "/testimonial.svg", videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1", name: "Guy Hawkins", position: "Founder"},
 ];
