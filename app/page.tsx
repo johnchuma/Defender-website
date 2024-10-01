@@ -7,6 +7,9 @@ import FeatureCard from "./_components/feature-cards";
 import ProductCard from "./_components/product-card";
 import Title from "./_components/title";
 import SocialLinks from "./_components/social-link";
+import CustomButton from "./(components)/customButton";
+import Carousel from "./_components/carousel";
+import VideoThumbnail from "./_components/video-thumbnail";
 
 // images and illustrations
 import CompassImage from "@/public/images/compass.png";
@@ -34,8 +37,6 @@ import GpsIcon from "@/public/images/icons/gps-icon.png";
 import SecurityIcon from "@/public/images/icons/shield-security.png";
 import CallIcon from "@/public/images/icons/call-calling.png";
 import AlarmIcon from "@/public/images/icons/alarm.png";
-import CustomButton from "./(components)/customButton";
-import Carousel from "./_components/carousel";
 
 export default function Home() {
   const router = useRouter();
@@ -102,9 +103,9 @@ export default function Home() {
 
       {/* ======================== POPULAR PRODUCTS SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col gap-y-12 px-12 md:px-0">
+        <div className="container mx-auto flex flex-col gap-y-12">
           <Title>Our Popular Products</Title>
-          <div className="grid grid-flow-col items-center justify-center gap-16 md:flex-row">
+          <div className="grid grid-flow-row items-center justify-center gap-16 px-4 md:grid-flow-col md:px-0">
             <ProductCard
               image={SmartWatch}
               altText="Smart Watch"
@@ -243,8 +244,8 @@ export default function Home() {
 
       {/* ======================== VIDEO SECTION ======================== */}
       <section className="min-h-fit bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-0 lg:flex-row lg:gap-x-20 lg:gap-y-0">
-          <div className="text-center text-3xl font-semibold md:text-start">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-0 lg:grid lg:grid-cols-2 lg:gap-y-0">
+          <div className="text-center text-3xl font-semibold md:text-center lg:col-span-1">
             The future of your kid lies
             <br /> within{" "}
             <span className="highlight highlight-rose-400 highlight-variant-5">
@@ -252,12 +253,11 @@ export default function Home() {
             </span>{" "}
             Watches
           </div>
-          <div className="">
-            <iframe
-              className="aspect-video min-h-[35dvh] w-full rounded-2xl lg:min-h-[60dvh]"
-              src="https://www.youtube.com/embed/cNS-mJcR6yc?si=0lCTDSm3xjqEP3LZ&controls=0&modestbranding=1&rel=0&showinfo=0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+          <div className="lg:col-span-1">
+            <VideoThumbnail
+              thumbnailSrc={ChildrenPlaying} // Replace with your image path
+              altText="Thumbnail of children playing"
+              videoUrl="https://www.youtube.com/embed/cNS-mJcR6yc?si=0lCTDSm3xjqEP3LZ&controls=0&modestbranding=1&rel=0&showinfo=0"
             />
           </div>
         </div>
