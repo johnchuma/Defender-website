@@ -1,14 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import * as Yup from "yup";
-import { Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import CustomButton from "../(components)/customButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
-import { MdOutlineEmail } from "react-icons/md";
 interface CartItem {
   id: number;
   name: string;

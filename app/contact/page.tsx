@@ -1,8 +1,4 @@
 import ContactUs from "../(components)/contactForm";
-import { FaFacebook } from "react-icons/fa";
-import { FaXTwitter, FaInstagram, FaLinkedin, FaTiktok, FaEnvelopeOpenText } from "react-icons/fa6";
-import { IoCallOutline, IoLocationOutline } from "react-icons/io5";
-import { CiGlobe } from "react-icons/ci";
 import ContactInfo from "../_components/contact-info";
 
 export default function Contact() {

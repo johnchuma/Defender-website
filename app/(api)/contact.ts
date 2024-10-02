@@ -10,7 +10,14 @@ const api = axios.create({
     },
   });
 
-export const CONTACT_API = (data:any) => {
+  interface InquiryData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }
+
+export const CONTACT_API = (data:InquiryData) => {
     return api({
         url: `/inquiries`,
         data: data,
