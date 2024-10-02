@@ -331,7 +331,7 @@ export const FloatingNav = ({
               {/* Nav top */}
               <div className="mt-2 flex items-center justify-between px-6 py-3 2xl:mt-4">
                 {/* Logo */}
-                <Link href="/" onClick={toggleMenu}>
+                <Link href="/" onClick={() => setOpen(false)}>
                   <Image
                     src={siteConfig.logo.url}
                     alt={siteConfig.logo.alt}
@@ -372,7 +372,7 @@ export const FloatingNav = ({
                   {siteConfig.extraNavItems.map((link, index) => {
                     return (
                       <MenuNavLink
-                        onClick={toggleMenu}
+                        onClick={() => setOpen(false)}
                         key={index}
                         title={link.title}
                         href={link.href}
