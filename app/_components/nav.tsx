@@ -92,7 +92,7 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
-  const [wishlistCount] = useState(1); // Example wishlist count
+  const [wishlistCount] = useState(0); // Example wishlist count
   const [hoveredItem, setHoveredItem] = useState<string | null>(null); // Tracks hovered item
 
   const toggleMenu = () => setOpen((prevOpen) => !prevOpen);
