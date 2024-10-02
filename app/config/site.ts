@@ -13,8 +13,8 @@ export const siteConfig = {
       name: "Products",
       link: "",
       dropdown: [
-        { label: "Android SmartWatch", link: "/products/android" },
-        { label: "RTO SmartWatch", link: "/products/rto" },
+        { label: "Android SmartWatch", link: "/product/android" },
+        { label: "RTO SmartWatch", link: "/product/rto" },
       ],
     },
     {
@@ -45,7 +45,8 @@ export const siteConfig = {
     alt: "Defender Red Logo",
   },
   communication: {
-    address: "Bagamoyo road, COSTECH Building, 3rd floor- Kijitonyama-Dar es salaam",
+    address:
+      "Bagamoyo road, COSTECH Building, 3rd floor- Kijitonyama-Dar es salaam",
     email: "defendertechnologiestz@gmail.com",
     phone: "(255) 677 869628",
     pobox: "P.O.Box 222, Dar Es Salaam",
