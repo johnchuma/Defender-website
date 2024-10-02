@@ -331,7 +331,7 @@ export const FloatingNav = ({
               {/* Nav top */}
               <div className="mt-2 flex items-center justify-between px-6 py-3 2xl:mt-4">
                 {/* Logo */}
-                <Link href="/">
+                <Link href="/" onClick={toggleMenu}>
                   <Image
                     src={siteConfig.logo.url}
                     alt={siteConfig.logo.alt}
@@ -372,6 +372,7 @@ export const FloatingNav = ({
                   {siteConfig.extraNavItems.map((link, index) => {
                     return (
                       <MenuNavLink
+                        onClick={toggleMenu}
                         key={index}
                         title={link.title}
                         href={link.href}
@@ -399,11 +400,18 @@ export const FloatingNav = ({
   );
 };
 
-const MenuNavLink = ({ title, href }: { title: string; href: string }) => {
+interface MenuNavLinkProps {
+  title: string;
+  href: string;
+  onClick?: () => void; // Optional, in case you don't always want an onClick
+}
+
+const MenuNavLink: React.FC<MenuNavLinkProps> = ({ title, href, onClick }) => {
   return (
     <motion.div variants={menuNavLinkVars} className="">
       <Link
         href={href}
+        onClick={onClick} // This will trigger the menu toggle
         className="text-2xl font-semibold uppercase text-white hover:text-primaryColor"
       >
         {title}
