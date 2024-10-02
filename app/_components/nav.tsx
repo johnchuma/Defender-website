@@ -14,6 +14,18 @@ import { siteConfig } from "../config/site";
 import SocialLinks from "./social-link";
 import { RiArrowDropDownLine } from "react-icons/ri";
 
+interface DropdownItem {
+  label: string;
+  link: string;
+}
+
+interface NavItem {
+  name: string;
+  link: string;
+  icon?: JSX.Element; // Optional icon
+  dropdown?: DropdownItem[]; // Optional dropdown
+}
+
 const menuVars = {
   initial: { scaleY: 0 },
   animate: {
@@ -80,7 +92,7 @@ export const FloatingNav = ({
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
-  const [wishlistCount, setWishlistCount] = useState(1); // Example wishlist count
+  const [wishlistCount] = useState(1); // Example wishlist count
   const [hoveredItem, setHoveredItem] = useState<string | null>(null); // Tracks hovered item
 
   const toggleMenu = () => setOpen((prevOpen) => !prevOpen);
@@ -139,7 +151,7 @@ export const FloatingNav = ({
 
           {/* Nav items */}
           <div className="hidden w-full items-center justify-center gap-x-12 lg:inline-flex">
-            {navItems.map((navItem: any, idx: number) => (
+            {navItems.map((navItem: NavItem, idx: number) => (
               <div
                 key={idx}
                 className="relative"
@@ -205,16 +217,18 @@ export const FloatingNav = ({
                         className="absolute left-0 top-full mt-2 w-48 rounded-lg bg-white shadow-lg"
                       >
                         <ul className="space-y-4 p-4">
-                          {navItem.dropdown.map((item: any, i: number) => (
-                            <li key={i}>
-                              <Link
-                                href={item.link}
-                                className="block text-sm text-gray-600 hover:text-primaryColor"
-                              >
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
+                          {navItem.dropdown.map(
+                            (item: DropdownItem, i: number) => (
+                              <li key={i}>
+                                <Link
+                                  href={item.link}
+                                  className="block text-sm text-gray-600 hover:text-primaryColor"
+                                >
+                                  {item.label}
+                                </Link>
+                              </li>
+                            ),
+                          )}
                         </ul>
                       </motion.div>
                     )}
@@ -317,7 +331,7 @@ export const FloatingNav = ({
               {/* Nav top */}
               <div className="mt-2 flex items-center justify-between px-6 py-3 2xl:mt-4">
                 {/* Logo */}
-                <Link href="/">
+                <Link href="/" onClick={toggleMenu}>
                   <Image
                     src={siteConfig.logo.url}
                     alt={siteConfig.logo.alt}
@@ -358,6 +372,7 @@ export const FloatingNav = ({
                   {siteConfig.extraNavItems.map((link, index) => {
                     return (
                       <MenuNavLink
+                        onClick={toggleMenu}
                         key={index}
                         title={link.title}
                         href={link.href}
@@ -385,11 +400,18 @@ export const FloatingNav = ({
   );
 };
 
-const MenuNavLink = ({ title, href }: { title: string; href: string }) => {
+interface MenuNavLinkProps {
+  title: string;
+  href: string;
+  onClick?: () => void; // Optional, in case you don't always want an onClick
+}
+
+const MenuNavLink: React.FC<MenuNavLinkProps> = ({ title, href, onClick }) => {
   return (
     <motion.div variants={menuNavLinkVars} className="">
       <Link
         href={href}
+        onClick={onClick} // This will trigger the menu toggle
         className="text-2xl font-semibold uppercase text-white hover:text-primaryColor"
       >
         {title}

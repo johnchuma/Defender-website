@@ -19,7 +19,7 @@ const ContactInfo = () => {
       </div>
 
       {/* Title */}
-      <div className="grid grid-cols-1 gap-x-5 gap-y-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-x-12 gap-y-6 md:grid-cols-2">
         <ContactInfoItem
           icon="/images/icons/phone.svg"
           title="Call us"

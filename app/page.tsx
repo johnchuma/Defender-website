@@ -37,6 +37,7 @@ import GpsIcon from "@/public/images/icons/gps-icon.png";
 import SecurityIcon from "@/public/images/icons/shield-security.png";
 import CallIcon from "@/public/images/icons/call-calling.png";
 import AlarmIcon from "@/public/images/icons/alarm.png";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -111,12 +112,14 @@ export default function Home() {
               altText="Smart Watch"
               productName="Android Elite Version"
               price="Tsh 135,000"
+              onLearnMoreClick={() => router.push("/product/android")}
             />
             <ProductCard
               image={SmartWatch2}
               altText="Smart Watch"
               productName="RTO's Modern Version"
               price="Tsh 99,000"
+              onLearnMoreClick={() => router.push("/product/rto")}
             />
           </div>
         </div>
@@ -276,35 +279,40 @@ export default function Home() {
               hard but missing opportunity would be harder. The next one billion
               in Africa deserve a 21st century platform.
             </div>
-            <div className="group inline-flex items-center gap-x-2 pt-6 font-semibold text-primaryCrimsonColor">
-              <div className="group-hover:cursor-pointer group-hover:underline group-hover:underline-offset-8">
-                Read more about our story
-              </div>
-              <svg
-                width="21"
-                height="20"
-                viewBox="0 0 21 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="group-hover:scale-110 group-hover:cursor-pointer"
+            <div className="pt-6 font-semibold text-primaryCrimsonColor">
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-x-2"
               >
-                <path
-                  d="M12.5859 4.94165L17.6443 9.99998L12.5859 15.0583"
-                  stroke="#CC0000"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3.47754 10H17.5025"
-                  stroke="#CC0000"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                <div className="group-hover:cursor-pointer group-hover:underline group-hover:underline-offset-8">
+                  Read more about our story
+                </div>
+                <svg
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="group-hover:scale-110 group-hover:cursor-pointer"
+                >
+                  <path
+                    d="M12.5859 4.94165L17.6443 9.99998L12.5859 15.0583"
+                    stroke="#CC0000"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M3.47754 10H17.5025"
+                    stroke="#CC0000"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
