@@ -62,7 +62,7 @@ export default function ProductPage() {
               Android Elite & RTO version.
             </h2>
           </div>
-          <div className="flex flex-col items-center bg-white rounded-lg">
+          <div className="flex flex-col items-center bg-white rounded-lg  w-full">
             <div className="relative">
               <VideoPlayer />
             </div>
