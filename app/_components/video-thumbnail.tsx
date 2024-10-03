@@ -21,26 +21,22 @@ const VideoThumbnail = ({
       {/* Thumbnail with Play Button */}
       <div
         onClick={handleOpen}
-        className="relative w-full cursor-pointer overflow-hidden rounded-xl"
+        className="group/thumbnail relative w-full cursor-pointer overflow-hidden rounded-xl"
       >
-        <Image src={thumbnailSrc} alt={altText} className="rounded-lg" />
+        <Image
+          src={thumbnailSrc}
+          alt={altText}
+          className="brightness-70 rounded-lg transition duration-500 ease-in-out group-hover/thumbnail:brightness-90"
+        />
         {/* Play Button */}
         <div className="absolute inset-0 flex items-center justify-center">
           <button className="rounded-full bg-red-600 p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="white"
-              className="h-10 w-10"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 3v18l15-9L5 3z"
-              />
-            </svg>
+            <Image
+              src="images/icons/play.svg"
+              alt="Play Icon"
+              width={24}
+              height={24}
+            />
           </button>
         </div>
       </div>
