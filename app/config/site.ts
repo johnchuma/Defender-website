@@ -11,7 +11,11 @@ export const siteConfig = {
     },
     {
       name: "Products",
-      link: "/products",
+      link: "",
+      dropdown: [
+        { label: "Android SmartWatch", link: "/product/android" },
+        { label: "RTO SmartWatch", link: "/product/rto" },
+      ],
     },
     {
       name: "Support",
@@ -21,6 +25,13 @@ export const siteConfig = {
       name: "Shop",
       link: "/shop",
     },
+  ],
+  extraNavItems: [
+    { title: "Home", href: "/" },
+    { title: "About Us", href: "/about" },
+    { title: "Career", href: "/career" },
+    { title: "Blog", href: "/blog" },
+    { title: "Contact", href: "/contact" },
   ],
   links: {
     facebook: "https://www.facebook.com/",
@@ -34,10 +45,11 @@ export const siteConfig = {
     alt: "Defender Red Logo",
   },
   communication: {
-    address: "Makumbusho, Dar es Salaam, Tanzania",
-    email: "info@defendertechltd.co.tz",
-    phone: "+255 759 053 444 | +255 752 434 444",
+    address:
+      "Bagamoyo road, COSTECH Building, 3rd floor- Kijitonyama-Dar es salaam",
+    email: "defendertechnologiestz@gmail.com",
+    phone: "(255) 677 869628",
     pobox: "P.O.Box 222, Dar Es Salaam",
-    website: "defendertechltd.co.tz",
+    website: "https://www.defendertz.com",
   },
 };

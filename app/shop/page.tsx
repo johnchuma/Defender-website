@@ -19,7 +19,7 @@ export default function Shop() {
   };
 
   return (
-    <div className="w-9/12 mx-auto">
+    <div className="w-9/12 mx-auto pb-20">
       <div className="text-center mt-4 space-y-2">
         <h2 className="font-semibold text-black text-3xl ">Shop Page</h2>
         <p className="text-black">The safe phone kids wear</p>

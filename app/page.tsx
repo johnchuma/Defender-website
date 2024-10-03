@@ -1,11 +1,15 @@
 "use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // component
 import FeatureCard from "./_components/feature-cards";
 import ProductCard from "./_components/product-card";
 import Title from "./_components/title";
 import SocialLinks from "./_components/social-link";
+import CustomButton from "./(components)/customButton";
+import Carousel from "./_components/carousel";
+import VideoThumbnail from "./_components/video-thumbnail";
 
 // images and illustrations
 import CompassImage from "@/public/images/compass.png";
@@ -14,7 +18,8 @@ import SelcomLogo from "@/public/images/clients/selcom.png";
 import VodacomLogo from "@/public/images/clients/vodacom.png";
 import FlutterwaveLogo from "@/public/images/clients/flutterwave.png";
 import ShuleYetuLogo from "@/public/images/clients/shule-yetu.png";
-import SmartWatch from "@/public/images/watch.png";
+import SmartWatch from "@/public/blackwatch.svg";
+import SmartWatch2 from "@/public/v2blackwatch.svg";
 import DotOrnament from "@/public/images/ornaments/dot-ornaments.png";
 import CircleOrnament from "@/public/images/ornaments/circle-ornament.png";
 import CircleOrnamentGreen from "@/public/images/ornaments/circle-ornament-green.png";
@@ -32,15 +37,11 @@ import GpsIcon from "@/public/images/icons/gps-icon.png";
 import SecurityIcon from "@/public/images/icons/shield-security.png";
 import CallIcon from "@/public/images/icons/call-calling.png";
 import AlarmIcon from "@/public/images/icons/alarm.png";
-import CustomButton from "./(components)/customButton";
-import Carousel from "./_components/carousel";
+import Link from "next/link";
 
 export default function Home() {
-  const images = [
-    "/images/watch.png",
-    "/images/watch.png",
-    "/images/watch.png",
-  ];
+  const router = useRouter();
+  const images = ["/blackwatch.svg", "/v2blackwatch.svg"];
   return (
     <main className="-mt-32">
       {/* ======================== HERO SECTION ======================== */}
@@ -76,7 +77,7 @@ export default function Home() {
 
             <CustomButton
               btntext="Explore Now!"
-              onClick={() => console.log("Learn more clicked!")}
+              onClick={() => router.push("/shop")}
               className="px-12 text-base font-medium md:px-20"
             />
 
@@ -103,20 +104,22 @@ export default function Home() {
 
       {/* ======================== POPULAR PRODUCTS SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col gap-y-12 px-12 md:px-0">
+        <div className="container mx-auto flex flex-col gap-y-12">
           <Title>Our Popular Products</Title>
-          <div className="flex flex-col items-center justify-center gap-16 md:flex-row">
+          <div className="grid grid-flow-row items-center justify-center gap-16 px-4 md:grid-flow-col md:px-0">
             <ProductCard
               image={SmartWatch}
               altText="Smart Watch"
               productName="Android Elite Version"
               price="Tsh 135,000"
+              onLearnMoreClick={() => router.push("/product/android")}
             />
             <ProductCard
-              image={SmartWatch}
+              image={SmartWatch2}
               altText="Smart Watch"
               productName="RTO's Modern Version"
               price="Tsh 99,000"
+              onLearnMoreClick={() => router.push("/product/rto")}
             />
           </div>
         </div>
@@ -244,8 +247,8 @@ export default function Home() {
 
       {/* ======================== VIDEO SECTION ======================== */}
       <section className="min-h-fit bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-0 lg:flex-row lg:gap-x-20 lg:gap-y-0">
-          <div className="text-center text-3xl font-semibold md:text-start">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-0 lg:grid lg:grid-cols-2 lg:gap-y-0">
+          <div className="text-center text-3xl font-semibold md:text-center lg:col-span-1">
             The future of your kid lies
             <br /> within{" "}
             <span className="highlight highlight-rose-400 highlight-variant-5">
@@ -253,12 +256,11 @@ export default function Home() {
             </span>{" "}
             Watches
           </div>
-          <div className="">
-            <iframe
-              className="aspect-video min-h-[35dvh] w-full rounded-2xl lg:min-h-[60dvh]"
-              src="https://www.youtube.com/embed/cNS-mJcR6yc?si=0lCTDSm3xjqEP3LZ&controls=0&modestbranding=1&rel=0&showinfo=0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+          <div className="lg:col-span-1">
+            <VideoThumbnail
+              thumbnailSrc={ChildrenPlaying} // Replace with your image path
+              altText="Thumbnail of children playing"
+              videoUrl="https://www.youtube.com/embed/cNS-mJcR6yc?si=0lCTDSm3xjqEP3LZ&controls=0&modestbranding=1&rel=0&showinfo=0"
             />
           </div>
         </div>
@@ -277,35 +279,40 @@ export default function Home() {
               hard but missing opportunity would be harder. The next one billion
               in Africa deserve a 21st century platform.
             </div>
-            <div className="group inline-flex items-center gap-x-2 pt-6 font-semibold text-primaryCrimsonColor">
-              <div className="group-hover:cursor-pointer group-hover:underline group-hover:underline-offset-8">
-                Read more about our story
-              </div>
-              <svg
-                width="21"
-                height="20"
-                viewBox="0 0 21 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="group-hover:scale-110 group-hover:cursor-pointer"
+            <div className="pt-6 font-semibold text-primaryCrimsonColor">
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-x-2"
               >
-                <path
-                  d="M12.5859 4.94165L17.6443 9.99998L12.5859 15.0583"
-                  stroke="#CC0000"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3.47754 10H17.5025"
-                  stroke="#CC0000"
-                  strokeWidth="1.5"
-                  strokeMiterlimit="10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+                <div className="group-hover:cursor-pointer group-hover:underline group-hover:underline-offset-8">
+                  Read more about our story
+                </div>
+                <svg
+                  width="21"
+                  height="20"
+                  viewBox="0 0 21 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="group-hover:scale-110 group-hover:cursor-pointer"
+                >
+                  <path
+                    d="M12.5859 4.94165L17.6443 9.99998L12.5859 15.0583"
+                    stroke="#CC0000"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M3.47754 10H17.5025"
+                    stroke="#CC0000"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
@@ -313,7 +320,7 @@ export default function Home() {
 
       {/* ======================== CONTACT US SECTION ======================== */}
       <section className="bg-white px-4 pb-20 pt-10 md:px-0">
-        <div className="container relative mx-auto flex flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:px-12">
+        <div className="container relative mx-auto hidden flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:flex md:px-12">
           <Title>Looking forward</Title>
 
           {/* Description */}

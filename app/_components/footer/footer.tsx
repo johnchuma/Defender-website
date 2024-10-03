@@ -85,7 +85,7 @@ function Footer() {
                 </div>
               </div>
               <div className="inline-flex gap-x-4 text-sm">
-                <div className="inline-flex w-3/4 items-center gap-x-3 rounded-lg bg-white px-4 shadow-md">
+                <div className="inline-flex w-3/4 items-center gap-x-1 rounded-lg bg-white px-4 shadow-md md:gap-x-3">
                   {/* Search icon */}
                   <svg
                     width="18"
@@ -113,7 +113,7 @@ function Footer() {
                 <CustomButton
                   btntext="Sign Up"
                   onClick={() => console.log("Footer sign up form submitted")}
-                  className="w-fit px-4 py-2 text-base font-medium capitalize"
+                  className="w-fit rounded-xl px-4 py-2 text-base font-medium capitalize"
                 />
               </div>
             </div>
