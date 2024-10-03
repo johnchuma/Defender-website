@@ -22,7 +22,9 @@ const WhySection: React.FC<WhySectionProps> = ({
   return (
     <div className="container mx-auto grid grid-cols-1 gap-y-6 px-4 md:grid-cols-5 md:gap-x-12 md:gap-y-12 md:px-0">
       {/* Title and Description */}
-      <div className={`flex flex-col gap-y-4 md:col-span-3 ${textOrderClass}`}>
+      <div
+        className={`flex flex-col gap-y-4 md:col-span-3 md:justify-center ${textOrderClass}`}
+      >
         <Title className="text-start text-lg md:text-2xl">{title}</Title>
         <div>{description}</div>
       </div>
