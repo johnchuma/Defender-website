@@ -4,6 +4,7 @@ import "./globals.css";
 import { FloatingNav } from "./_components/nav";
 import { siteConfig } from "./config/site";
 import Footer from "./_components/footer/footer";
+import { WishlistProvider } from "./(components)/WishlistContext"; 
 
 const Gilroy = localFont({
   src: [
@@ -53,9 +54,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${Gilroy.className}`}>
-        <FloatingNav navItems={siteConfig.navItems} />
-        <div className="pt-24">{children}</div>
-        <Footer />
+        <WishlistProvider>
+          <FloatingNav navItems={siteConfig.navItems} />
+          <div className="pt-24">{children}</div>
+          <Footer />
+        </WishlistProvider>
       </body>
     </html>
   );

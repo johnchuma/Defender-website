@@ -13,7 +13,7 @@ import { cn } from "@/app/lib/utils";
 import { siteConfig } from "../config/site";
 import SocialLinks from "./social-link";
 import { RiArrowDropDownLine } from "react-icons/ri";
-
+import { useWishlist } from "../(components)/WishlistContext";
 interface DropdownItem {
   label: string;
   link: string;
@@ -91,9 +91,9 @@ export const FloatingNav = ({
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
-  const [atTop, setAtTop] = useState(true); // New state to track if we are at the top
-  const [wishlistCount] = useState(0); // Example wishlist count
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null); // Tracks hovered item
+  const [atTop, setAtTop] = useState(true);
+  const { wishlistCount } = useWishlist();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const toggleMenu = () => setOpen((prevOpen) => !prevOpen);
 
@@ -256,7 +256,7 @@ export const FloatingNav = ({
               </Link>
               {wishlistCount > 0 && (
                 <div className="absolute -right-6 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primaryColor text-xs text-white">
-                  {wishlistCount}
+                 {wishlistCount}
                 </div>
               )}
             </div>

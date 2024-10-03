@@ -10,7 +10,7 @@ import ContactUs from "../(components)/contactForm";
 import Category from "../(components)/midNavBar";
 import CustomOutlineButton from "../(components)/customOutlineButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
-
+import { useWishlist } from "../(components)/WishlistContext";
 interface CartItem {
   id: number;
   name: string;
@@ -43,6 +43,7 @@ export default function Ecommerce() {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const featuresRef = useRef(null);
   const faqsRef = useRef(null);
+  const { setWishlistCount } = useWishlist();
 
   useEffect(() => {
     if (type === "android") {
@@ -64,19 +65,6 @@ export default function Ecommerce() {
 
   const calculateTotalPrice = (cartItems: CartItem[]): number =>
     cartItems.reduce((acc, item) => acc + item.price * item.count, 0);
-
-  const handleCountChange = (productId: number, increment: boolean) => {
-    setCart((prevCart) =>
-      prevCart.map((product) =>
-        product.id === productId
-          ? {
-              ...product,
-              count: increment ? product.count + 1 : Math.max(product.count - 1, 1),
-            }
-          : product
-      )
-    );
-  };
 
   useEffect(() => {
     setTotalPrice(calculateTotalPrice(cart));
@@ -113,6 +101,11 @@ export default function Ecommerce() {
 
     localStorage.setItem("cart", JSON.stringify(cart));
     setCart(cart);
+
+    const uniqueWishlistItems = new Set(cart.map((item) => item.id));
+    setWishlistCount(uniqueWishlistItems.size);  
+    document.dispatchEvent(new Event("cartUpdate"));
+
   };
 
   const handleBuyNow = () => {

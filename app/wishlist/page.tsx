@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import CustomButton from "../(components)/customButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
+import { useWishlist } from "../(components)/WishlistContext";
 interface CartItem {
   id: number;
   name: string;
@@ -23,6 +24,7 @@ export default function WishListPage() {
   );
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const { setWishlistCount } = useWishlist();
 
   const calculateTotalPrice = (cartItems: CartItem[]): number => {
     return cartItems.reduce((acc, item) => acc + item.price * item.count, 0);
@@ -43,6 +45,11 @@ export default function WishListPage() {
 
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       setTotalPrice(calculateTotalPrice(updatedCart));
+
+      const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
+      setWishlistCount(uniqueWishlistItems.size); 
+      document.dispatchEvent(new Event("cartUpdate"));
+
       return updatedCart;
     });
   };
@@ -65,6 +72,10 @@ export default function WishListPage() {
     }
     setCart(updatedCart);
     setTotalPrice(calculateTotalPrice(updatedCart));
+    const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
+    setWishlistCount(uniqueWishlistItems.size); 
+    document.dispatchEvent(new Event("cartUpdate"));
+
   };
 
   const handleEditCart = (productToEdit: CartItem) => {
@@ -79,6 +90,11 @@ export default function WishListPage() {
 
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         setTotalPrice(calculateTotalPrice(updatedCart));
+
+        const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
+        setWishlistCount(uniqueWishlistItems.size);  // Update wishlist count
+        document.dispatchEvent(new Event("cartUpdate")); // Dispatch update event
+  
         return updatedCart;
       }
 

@@ -187,7 +187,7 @@ export const samsungPoints = [
 
 export const rto = [
   {
-    id: 1,
+    id: 101,
     name: "RTO`s Modern Version",
     price: 99000,
     image: "/v2blackwatch.png",
@@ -196,7 +196,7 @@ export const rto = [
       "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
-    id: 2,
+    id: 102,
     name: "RTO`s Modern Version",
     price: 99000,
     image: "/pinkwatch.png",
@@ -205,7 +205,7 @@ export const rto = [
       "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
-    id: 3,
+    id: 103,
     name: "RTO`s Modern Version",
     price: 99000,
     image: "/bluewatch.png",
@@ -217,7 +217,7 @@ export const rto = [
 
 export const android = [
   {
-    id: 1,
+    id: 201,
     name: "Android Elite Watch",
     price: 135000,
     image: "/blackwatch.svg",
@@ -226,7 +226,7 @@ export const android = [
       "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
   {
-    id: 2,
+    id: 202,
     name: "Android Elite Watch",
     price: 135000,
     image: "/greywatch.png",
@@ -255,7 +255,6 @@ import { FiPhone } from "react-icons/fi";
 import { CiVolumeMute } from "react-icons/ci";
 import { GrUserExpert } from "react-icons/gr";
 import { PiVideoCameraSlashLight } from "react-icons/pi";
-import { title } from "process";
 
 export const safetyFeatures = [
   { icon: <PiGpsFixLight className="text-cyan-600" />, title: "GPS Tracking" },
