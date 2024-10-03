@@ -23,7 +23,7 @@ function AboutPage() {
         <div className="mb-20 space-y-6">
           <header className="space-y-2">
             <Title className="capitalize">Get to know us</Title>
-            <div className="text-center">
+            <div className="text-start md:text-center">
               At Defender, we are dedicated to helping parents create a safer,
               smarter world for their children. Our flagship product, the
               Defender Kids Smartwatch, is designed to offer peace of mind
@@ -55,43 +55,58 @@ function AboutPage() {
             <Title className="capitalize">Message from CEO</Title>
 
             {/* CEO card */}
-            <div className="grid gap-x-12 rounded-xl p-8 shadow-xl md:grid-cols-5">
-              <div
-                className="col-span-2 hidden rounded-2xl bg-cover bg-bottom bg-no-repeat md:block"
-                style={{
-                  backgroundImage: `url("/images/ceo.png")`,
-                }}
-              />
+            <div className="rounded-xl p-8 shadow-xl">
+              <div className="grid w-full grid-cols-1 gap-x-12 space-y-4 md:grid-cols-5">
+                {/* for sm to md */}
+                <div className="inline-flex w-full gap-x-4 md:hidden">
+                  <div
+                    className="h-24 min-w-24 rounded-2xl bg-cover bg-bottom bg-no-repeat md:hidden"
+                    style={{ backgroundImage: `url("images/ceo.png")` }}
+                  />
+                  <div className="w-full place-self-center font-semibold capitalize">
+                    Chief executive officer - Defender technologies
+                  </div>
+                </div>
 
-              <div className="space-y-6 md:col-span-3">
-                <p>Welcome to Defender Technologies!</p>
-                <p>
-                  As the CEO, I am proud to lead a team that is deeply committed
-                  to making a difference in the lives of families. Our journey
-                  began with a powerful realization: the increasing challenges
-                  parents face in ensuring their children&apos;s safety.
-                  Inspired by the alarming incidents we witnessed, we set out to
-                  create a solution that would empower parents and provide peace
-                  of mind. Our flagship product, the Defender Kids Smartwatch,
-                  embodies this mission.
-                </p>
-                <p>
-                  It is more than just a device; it is a tool designed to foster
-                  communication, connection, and security. We believe that every
-                  child deserves the freedom to explore the world while knowing
-                  that their parents can reach them anytime.At Defender
-                  Technologies, we value feedback from our users, as it drives
-                  our innovation and helps us improve. Our commitment to quality
-                  and safety is unwavering. Thank you for trusting us to be a
-                  part of your family&apos;s journey. Together, we can create a
-                  safer world for our children.
-                </p>
+                {/* for md and up */}
+                <div
+                  className="hidden rounded-2xl bg-cover bg-bottom bg-no-repeat md:col-span-2 md:block"
+                  style={{
+                    backgroundImage: `url("/images/ceo.png")`,
+                  }}
+                />
+
+                <div className="space-y-6 md:col-span-3">
+                  <p>Welcome to Defender Technologies!</p>
+                  <p>
+                    As the CEO, I am proud to lead a team that is deeply
+                    committed to making a difference in the lives of families.
+                    Our journey began with a powerful realization: the
+                    increasing challenges parents face in ensuring their
+                    children&apos;s safety. Inspired by the alarming incidents
+                    we witnessed, we set out to create a solution that would
+                    empower parents and provide peace of mind. Our flagship
+                    product, the Defender Kids Smartwatch, embodies this
+                    mission.
+                  </p>
+                  <p>
+                    It is more than just a device; it is a tool designed to
+                    foster communication, connection, and security. We believe
+                    that every child deserves the freedom to explore the world
+                    while knowing that their parents can reach them anytime.At
+                    Defender Technologies, we value feedback from our users, as
+                    it drives our innovation and helps us improve. Our
+                    commitment to quality and safety is unwavering. Thank you
+                    for trusting us to be a part of your family&apos;s journey.
+                    Together, we can create a safer world for our children.
+                  </p>
+                </div>
               </div>
             </div>
           </section>
 
           {/* ======================== MESSAGE FROM CEO SECTION ======================== */}
-          <section className="space-y-12 pb-20">
+          <section className="flex flex-col items-center justify-center space-y-12 pb-20">
             <Title className="capitalize">Why we do what we do</Title>
             <WhySection
               index={0}
@@ -116,21 +131,21 @@ function AboutPage() {
           <section className="space-y-12 pb-10">
             <div className="space-y-4">
               <Title className="capitalize">Priority SDGs</Title>
-              <div className="text-center">
+              <div className="text-start md:text-center">
                 Defender Technology operates in the CONSUMER ELECTRONICS SECTOR,
                 specifically within wearable technology for children, our
                 commitment to innovation and child safety goes hand in hand with
                 our dedication to contributing to a safer and more sustainable
-                world. Our mission aligns with several of the United Nations'
-                Sustainable Development Goals (SDGs), particularly in fostering
-                industry innovation and protecting children.
+                world. Our mission aligns with several of the United
+                Nations&apos; Sustainable Development Goals (SDGs), particularly
+                in fostering industry innovation and protecting children.
               </div>
             </div>
 
             {/* SDG 09 */}
-            <div className="grid gap-x-12 rounded-xl p-8 shadow-lg md:grid-cols-5">
-              <div className="col-span-2">
-                <div className="flex flex-col place-content-center place-items-center gap-y-4">
+            <div className="grid grid-cols-1 gap-x-12 gap-y-4 rounded-xl p-8 shadow-lg md:grid-cols-5 md:gap-y-0">
+              <div className="md:col-span-2">
+                <div className="flex flex-row place-items-center gap-x-6 gap-y-4 md:flex-col md:place-content-center">
                   <Image
                     src={"/images/sdg-09.png"}
                     alt="SDG 09"
@@ -138,7 +153,7 @@ function AboutPage() {
                     height={150}
                   />
 
-                  <div className="text-center text-2xl font-semibold">
+                  <div className="text-start text-lg font-semibold md:text-center md:text-2xl">
                     <p>SDG 09</p>
                     <p>
                       Industry, Innovation, and
@@ -152,8 +167,8 @@ function AboutPage() {
                 <p>
                   Defender Technologies is proud to be a pioneer in Tanzania and
                   several other East African countries by introducing the first
-                  kids' smartwatches in the region. This achievement aligns with
-                  Target 9.5: Enhance scientific research, upgrade the
+                  kids&apos; smartwatches in the region. This achievement aligns
+                  with Target 9.5: Enhance scientific research, upgrade the
                   technological capabilities of industrial sectors in all
                   countries, particularly developing countries.
                 </p>
@@ -170,9 +185,9 @@ function AboutPage() {
             </div>
 
             {/* SDG 16 */}
-            <div className="grid gap-x-12 rounded-xl p-8 shadow-lg md:grid-cols-5">
-              <div className="col-span-2">
-                <div className="flex flex-col place-content-center place-items-center gap-y-4">
+            <div className="grid grid-cols-1 gap-x-12 gap-y-4 rounded-xl p-8 shadow-lg md:grid-cols-5 md:gap-y-0">
+              <div className="md:col-span-2">
+                <div className="flex flex-row place-items-center gap-x-6 gap-y-4 md:flex-col md:place-content-center">
                   <Image
                     src={"/images/sdg-16.png"}
                     alt="SDG 16"
@@ -180,7 +195,7 @@ function AboutPage() {
                     height={150}
                   />
 
-                  <div className="text-center text-2xl font-semibold">
+                  <div className="text-start text-lg font-semibold md:text-center md:text-2xl">
                     <p>SDG 16</p>
                     <p>
                       Peace, Justice and Strong

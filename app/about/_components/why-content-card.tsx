@@ -15,21 +15,27 @@ const WhySection: React.FC<WhySectionProps> = ({
   imageSrc,
   index, // Index to check for position swapping
 }) => {
-  // Determine order based on even or odd index
+  // Determine order based on even or odd index for larger screens
   const imageOrderClass = index % 2 === 0 ? "md:order-first" : "md:order-last";
   const textOrderClass = index % 2 === 0 ? "md:order-last" : "md:order-first";
 
   return (
-    <div className="container mx-auto grid grid-cols-1 items-center justify-center gap-x-12 gap-y-12 px-4 md:grid-cols-5 md:px-0">
-      {/* Image */}
-      <div className={`order-last col-span-2 ${imageOrderClass}`}>
-        <Image src={imageSrc} alt={`${title} Section Image`} width={500} />
+    <div className="container mx-auto grid grid-cols-1 gap-y-6 px-4 md:grid-cols-5 md:gap-x-12 md:gap-y-12 md:px-0">
+      {/* Title and Description */}
+      <div className={`flex flex-col gap-y-4 md:col-span-3 ${textOrderClass}`}>
+        <Title className="text-start text-lg md:text-2xl">{title}</Title>
+        <div>{description}</div>
       </div>
 
-      {/* Text Content */}
-      <div className={`flex flex-col gap-y-4 md:col-span-3 ${textOrderClass}`}>
-        <Title className="text-start text-2xl">{title}</Title>
-        <div>{description}</div>
+      {/* Image */}
+      <div className={`order-last col-span-1 ${imageOrderClass} md:col-span-2`}>
+        <Image
+          src={imageSrc}
+          alt={`${title} Section Image`}
+          width={500}
+          height={400}
+          className="object-cover"
+        />
       </div>
     </div>
   );
