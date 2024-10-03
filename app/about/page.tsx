@@ -56,7 +56,7 @@ function AboutPage() {
 
             {/* CEO card */}
             <div className="rounded-xl p-8 shadow-xl">
-              <div className="grid w-full grid-cols-1 gap-x-12 space-y-4 md:grid-cols-5">
+              <div className="grid w-full grid-cols-1 gap-x-12 space-y-4 md:grid-cols-5 md:grid-rows-2">
                 {/* for sm to md */}
                 <div className="inline-flex w-full gap-x-4 md:hidden">
                   <div
@@ -70,13 +70,14 @@ function AboutPage() {
 
                 {/* for md and up */}
                 <div
-                  className="hidden rounded-2xl bg-cover bg-bottom bg-no-repeat md:col-span-2 md:block"
+                  className="hidden rounded-2xl bg-cover bg-bottom bg-no-repeat md:col-span-2 md:row-span-1 md:block xl:row-span-2"
                   style={{
                     backgroundImage: `url("/images/ceo.png")`,
                   }}
                 />
 
-                <div className="space-y-6 md:col-span-3">
+                {/* For both */}
+                <div className="space-y-6 md:col-span-3 md:row-span-2 xl:row-span-2">
                   <p>Welcome to Defender Technologies!</p>
                   <p>
                     As the CEO, I am proud to lead a team that is deeply
