@@ -10,13 +10,28 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setDataToLocalStorage } from "../utils/auth";
 import GoogleLogin from "../(components)/googleLogin";
+import { useRouter } from "next/navigation";
+import { setDataToLocalStorage, getDataFromLocalStorage } from "../utils/auth";
 
 const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const handlePostLogin = (accessToken: string) => {
+    setDataToLocalStorage("defender_userToken", accessToken);
+
+    const cartItems = getDataFromLocalStorage("defenderCart");
+    const wishlistItems = getDataFromLocalStorage("wishlist");
+
+    if (cartItems || wishlistItems) {
+      router.push("/payment");
+    } else {
+      router.push("/dashboard");
+    }
+  };
 
   const validationSchema = Yup.object({
     email: Yup.string().email().required("put valid email"),
@@ -40,10 +55,7 @@ const Login = () => {
               if (response.data.status === true) {
                 resetForm();
                 setFormSent(true);
-                setDataToLocalStorage(
-                  "defender_userToken",
-                  response.data.body.tokens.ACCESS_TOKEN,
-                );
+                handlePostLogin(response.data.body.tokens.ACCESS_TOKEN);
               } else {
                 toast.error(response.data.message || "Login failed");
                 throw new Error("Failed to Login");

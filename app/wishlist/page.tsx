@@ -1,12 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import CustomButton from "../(components)/customButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
+import { USERDETAILS_API } from "../(api)/user";
+import { getDataFromLocalStorage } from "../utils/auth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface CartItem {
   id: number;
   name: string;
@@ -19,9 +23,7 @@ interface CartItem {
 
 export default function WishListPage() {
   const router = useRouter();
-  const [selectedProduct, setSelectedProduct] = useState<CartItem>(
-    {} as CartItem
-  );
+  const [selectedProduct, setSelectedProduct] = useState<CartItem>({} as CartItem);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const { setWishlistCount } = useWishlist();
@@ -43,7 +45,7 @@ export default function WishListPage() {
           : product
       );
 
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      localStorage.setItem("defenderCart", JSON.stringify(updatedCart));
       setTotalPrice(calculateTotalPrice(updatedCart));
 
       const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
@@ -55,9 +57,7 @@ export default function WishListPage() {
   };
 
   useEffect(() => {
-    const savedCart = JSON.parse(
-      localStorage.getItem("cart") || "[]"
-    ) as CartItem[];
+    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
     setCart(savedCart);
     setTotalPrice(calculateTotalPrice(savedCart));
   }, []);
@@ -66,16 +66,15 @@ export default function WishListPage() {
     const updatedCart = cart.filter((product) => product.id !== productId);
 
     if (updatedCart.length === 0) {
-      localStorage.removeItem("cart");
+      localStorage.removeItem("defenderCart");
     } else {
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      localStorage.setItem("defenderCart", JSON.stringify(updatedCart));
     }
     setCart(updatedCart);
     setTotalPrice(calculateTotalPrice(updatedCart));
     const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
     setWishlistCount(uniqueWishlistItems.size); 
     document.dispatchEvent(new Event("cartUpdate"));
-
   };
 
   const handleEditCart = (productToEdit: CartItem) => {
@@ -88,13 +87,13 @@ export default function WishListPage() {
         const updatedCart = [...prevCart];
         updatedCart[existingProductIndex].count = productToEdit.count;
 
-        localStorage.setItem("cart", JSON.stringify(updatedCart));
+        localStorage.setItem("defenderCart", JSON.stringify(updatedCart));
         setTotalPrice(calculateTotalPrice(updatedCart));
 
         const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
-        setWishlistCount(uniqueWishlistItems.size);  // Update wishlist count
-        document.dispatchEvent(new Event("cartUpdate")); // Dispatch update event
-  
+        setWishlistCount(uniqueWishlistItems.size); 
+        document.dispatchEvent(new Event("cartUpdate"));
+
         return updatedCart;
       }
 
@@ -102,31 +101,44 @@ export default function WishListPage() {
     });
   };
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
     if (cart.length === 0) {
-      alert(
-        "Your cart is empty. Please add items to your cart before proceeding."
-      );
+      toast.warning("Your cart is empty. Please add items to your cart before proceeding.");
       return;
     }
-
-    if (selectedProduct) {
-      handleEditCart(selectedProduct);
-      router.push("/payment");
+  
+    const accessToken = getDataFromLocalStorage("defender_userToken");
+  
+    if (!accessToken) {
+      router.push("/register");
+      return;
+    }
+  
+    try {
+      const response = await USERDETAILS_API(accessToken);
+      const userData = response.data;
+  
+      if (selectedProduct) {
+        handleEditCart(selectedProduct);
+      }
+  
+      router.push(`/payment?token=${encodeURIComponent(accessToken)}&user=${encodeURIComponent(JSON.stringify(userData))}`);
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+      toast.error("Error fetching user details. Please try again.");
     }
   };
 
   return (
     <div className="md:w-9/12 mx-auto space-y-10 pb-20">
-      <nav className="flex py-2 px-4 rounded-md">
-        <Link href={"/product"}>
+      <ToastContainer /> 
+      <nav className="flex py-2 px-4 rounded-md"  onClick={() => router.back()}>
           <div className="flex items-center">
             <span className="mx-2 text-mutedText">
               <IoIosArrowBack />
             </span>
             <span className="text-mutedText">Continue Shopping</span>
           </div>
-        </Link>
       </nav>
       <div className="text-center leading-[4rem]">
         <h2 className="font-semibold text-3xl">Your Wishlist</h2>
@@ -163,7 +175,6 @@ export default function WishListPage() {
                       </h4>
                       <p className="text-mutedText ">{product.color}</p>
                       <p className="text-mutedText py-4">{`AT&T's Network`}</p>
-
                       <p className="mt-2 text-black text-xl">
                         Tsh {product.price}
                       </p>

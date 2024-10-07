@@ -19,16 +19,16 @@ export const WishlistProvider = ({ children }: { children: React.ReactNode }) =>
   const [wishlistCount, setWishlistCount] = useState(0);
 
   const computeUniqueWishlistCount = () => {
-    const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]");
     const uniqueWishlistItems = new Set(savedCart.map((item: { id: number }) => item.id));
     setWishlistCount(uniqueWishlistItems.size);
   };
 
   useEffect(() => {
-    computeUniqueWishlistCount(); // Initial load
+    computeUniqueWishlistCount();
 
     const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === "cart") {
+      if (event.key === "defenderCart") {
         computeUniqueWishlistCount();
       }
     };

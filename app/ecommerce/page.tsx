@@ -71,14 +71,14 @@ export default function Ecommerce() {
   }, [cart]);
 
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
+    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
     setCart(savedCart);
     setTotalPrice(calculateTotalPrice(savedCart));
   }, []);
 
   useEffect(() => {
     if (selectedProduct) {
-      const cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
+      const cart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
       const existingProduct = cart.find((p) => p.id === selectedProduct.id);
 
       if (existingProduct) {
@@ -90,7 +90,7 @@ export default function Ecommerce() {
   }, [selectedProduct]);
 
   const handleAddToCart = (product: CartItem) => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
+    const cart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
     const productIndex = cart.findIndex((p) => p.id === product.id);
 
     if (productIndex !== -1) {
@@ -99,7 +99,7 @@ export default function Ecommerce() {
       cart.push(product);
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("defenderCart", JSON.stringify(cart));
     setCart(cart);
 
     const uniqueWishlistItems = new Set(cart.map((item) => item.id));

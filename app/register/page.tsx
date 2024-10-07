@@ -10,12 +10,28 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setDataToLocalStorage } from '../utils/auth';
+import { setDataToLocalStorage, getDataFromLocalStorage } from '../utils/auth';
 import GoogleLogin from "../(components)/googleLogin";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
+
+
+  const handlePostRegistration = (accessToken: string) => {
+    setDataToLocalStorage("defender_userToken", accessToken);
+    
+    const cartItems = getDataFromLocalStorage("defenderCart");
+    const wishlistItems = getDataFromLocalStorage("wishlist");
+
+    if (cartItems || wishlistItems) {
+      router.push("/payment");
+    } else {
+      router.push("/dashboard");
+    }
+  };
 
   const validationSchema = Yup.object({
     name: Yup.string().required().max(50),
@@ -47,6 +63,7 @@ export default function Register() {
                 resetForm();
                 setFormSent(true);
                 setDataToLocalStorage('defender_userToken', response.data.body.tokens.ACCESS_TOKEN);
+                handlePostRegistration(response.data.body.tokens.ACCESS_TOKEN);
               } else {
                 toast.error(response.data.message || "Registration failed");
                 throw new Error("Failed to Register");

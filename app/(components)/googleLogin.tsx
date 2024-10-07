@@ -4,9 +4,24 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GOOGLELOGIN_API } from "../(api)/auth";
-import { setDataToLocalStorage } from "../utils/auth";
+import { useRouter } from "next/navigation";
+import { setDataToLocalStorage, getDataFromLocalStorage } from "../utils/auth";
 
 export default function GoogleLogin() {
+  const router = useRouter();
+
+  const handlePostGoogleLogin = (accessToken: string) => {
+    setDataToLocalStorage("defender_userToken", accessToken);
+
+    const cartItems = getDataFromLocalStorage("defenderCart");
+    const wishlistItems = getDataFromLocalStorage("wishlist");
+
+    if (cartItems || wishlistItems) {
+      router.push("/payment");
+    } else {
+      router.push("/dashboard");
+    }
+  };
 
   const handleGoogleLogin = async () => {
     try {
@@ -21,12 +36,7 @@ export default function GoogleLogin() {
         })
           .then((response) => {
             if (response.data.status === true) {
-              setDataToLocalStorage(
-                "defender_userToken",
-                response.data.body.tokens.ACCESS_TOKEN,
-              );
-
-              window.location.href = "/dashboard";
+              handlePostGoogleLogin(response.data.body.tokens.ACCESS_TOKEN);
               toast.success("Login successful!");
             } else {
               toast.error(response.data.message || "Login failed");

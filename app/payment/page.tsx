@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import * as Yup from "yup";
@@ -8,6 +9,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import CustomButton from "../(components)/customButton";
 import CustomOutlineButton from "../(components)/customOutlineButton";
 import { eastAfricanCountries } from "../utils/constants";
+import { USERDETAILS_API } from "../(api)/user";
+import { getDataFromLocalStorage } from "../utils/auth";
 interface CartItem {
   id: string;
   name: string;
@@ -17,6 +20,7 @@ interface CartItem {
 }
 
 export default function PaymentPage() {
+  const router = useRouter();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [delivery, setDelivery] = useState<string>("no");
@@ -27,15 +31,11 @@ export default function PaymentPage() {
     name: string;
     districts: string[];
   } | null>(null);
-
+  const setFieldValueRef = useRef<(field: string, value: any) => void>();
 
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("Name is required")
-      .max(50, "Max 50 characters"),
-    phone: Yup.string()
-      .required("Phone is required")
-      .max(15, "Max 15 characters"),
+    name: Yup.string().required("Name is required").max(50, "Max 50 characters"),
+    phone: Yup.string().required("Phone is required").max(15, "Max 15 characters"),
     country: Yup.string().required("Country is required"),
     region: Yup.string().required("Region is required"),
     district: Yup.string().required("District is required"),
@@ -47,15 +47,39 @@ export default function PaymentPage() {
   };
 
   useEffect(() => {
+    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    setCart(savedCart);
+    setTotalPrice(calculateTotalPrice(savedCart));
+  }, []);
+
+  useEffect(() => {
     setTotalPrice(calculateTotalPrice(cart));
   }, [cart]);
 
+  const fetchUserDetails = async () => {
+    try {
+      const token = getDataFromLocalStorage("defender_userToken");
+      if (!token) return;
+
+      const response = await USERDETAILS_API(token);
+      if (!response.status) {
+        console.error("Failed to fetch user details");
+        return;
+      }
+
+      const { body: userData } = response.data;
+
+      if (setFieldValueRef.current) {
+        setFieldValueRef.current("name", userData.name);
+        setFieldValueRef.current("phone", userData.phone);
+      }
+    } catch (error) {
+      console.error("Error fetching user details:", error);
+    }
+  };
+
   useEffect(() => {
-    const savedCart = JSON.parse(
-      localStorage.getItem("cart") || "[]"
-    ) as CartItem[];
-    setCart(savedCart);
-    setTotalPrice(calculateTotalPrice(savedCart));
+    fetchUserDetails();
   }, []);
 
   const handleToggle = () => {
@@ -83,17 +107,16 @@ export default function PaymentPage() {
     setSelectedRegionData(regionData || null);
   };
 
+
   return (
     <div className="w-9/12 mx-auto space-y-8 pb-20">
-      <nav className="flex py-2 rounded-md">
-        <Link href={"/wishlist"}>
+      <nav className="flex py-2 rounded-md" onClick={() => router.back()}>
           <div className="flex items-center">
             <span className="mx-2 text-mutedText">
               <IoIosArrowBack />
             </span>
             <span className="text-mutedText">Continue Shopping</span>
           </div>
-        </Link>
       </nav>
 
       <div className="text-center leading-[4rem]">
@@ -106,15 +129,17 @@ export default function PaymentPage() {
             <p className="uppercase text-xl py-3">Shipping Information</p>
           </div>
           <div>
-            <Formik
-              validationSchema={validationSchema}
-              onSubmit={(values, { setSubmitting }) => {
-                console.log("Form submitted with values:", values);
-                setSubmitting(false);
-              }}
-              initialValues={{ name: "", phone: "", country: "", region: "", district: "", street: "" }}
-            >
-              {({ handleSubmit, handleChange, values, errors, touched }) => (
+          <Formik
+            validationSchema={validationSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              console.log("Form submitted with values:", values);
+              setSubmitting(false);
+            }}
+            initialValues={{ name: "", phone: "", country: "", region: "", district: "", street: "" }}
+          >
+            {({ handleSubmit, handleChange, values, setFieldValue, errors, touched }) => {
+             setFieldValueRef.current = setFieldValue;
+              return (
                 <div className="shadow-lg shadow-[#E0E0E0] rounded-lg">
                   <div className="w-full p-5">
                     <form onSubmit={handleSubmit}>
@@ -312,7 +337,8 @@ export default function PaymentPage() {
                     </form>
                   </div>
                 </div>
-              )}
+              );
+            }}
             </Formik>
           </div>
         </div>
