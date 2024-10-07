@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import CustomButton from "../(components)/customButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
@@ -23,7 +24,9 @@ interface CartItem {
 
 export default function WishListPage() {
   const router = useRouter();
-  const [selectedProduct, setSelectedProduct] = useState<CartItem>({} as CartItem);
+  const [selectedProduct, setSelectedProduct] = useState<CartItem>(
+    {} as CartItem,
+  );
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const { setWishlistCount } = useWishlist();
@@ -42,14 +45,14 @@ export default function WishListPage() {
                 ? product.count + 1
                 : Math.max(product.count - 1, 1),
             }
-          : product
+          : product,
       );
 
       localStorage.setItem("defenderCart", JSON.stringify(updatedCart));
       setTotalPrice(calculateTotalPrice(updatedCart));
 
       const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
-      setWishlistCount(uniqueWishlistItems.size); 
+      setWishlistCount(uniqueWishlistItems.size);
       document.dispatchEvent(new Event("cartUpdate"));
 
       return updatedCart;
@@ -57,7 +60,9 @@ export default function WishListPage() {
   };
 
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    const savedCart = JSON.parse(
+      localStorage.getItem("defenderCart") || "[]",
+    ) as CartItem[];
     setCart(savedCart);
     setTotalPrice(calculateTotalPrice(savedCart));
   }, []);
@@ -73,14 +78,14 @@ export default function WishListPage() {
     setCart(updatedCart);
     setTotalPrice(calculateTotalPrice(updatedCart));
     const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
-    setWishlistCount(uniqueWishlistItems.size); 
+    setWishlistCount(uniqueWishlistItems.size);
     document.dispatchEvent(new Event("cartUpdate"));
   };
 
   const handleEditCart = (productToEdit: CartItem) => {
     setCart((prevCart) => {
       const existingProductIndex = prevCart.findIndex(
-        (product) => product.id === productToEdit.id
+        (product) => product.id === productToEdit.id,
       );
 
       if (existingProductIndex !== -1) {
@@ -91,7 +96,7 @@ export default function WishListPage() {
         setTotalPrice(calculateTotalPrice(updatedCart));
 
         const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
-        setWishlistCount(uniqueWishlistItems.size); 
+        setWishlistCount(uniqueWishlistItems.size);
         document.dispatchEvent(new Event("cartUpdate"));
 
         return updatedCart;
@@ -103,26 +108,31 @@ export default function WishListPage() {
 
   const handleBuyNow = async () => {
     if (cart.length === 0) {
-      toast.warning("Your cart is empty. Please add items to your cart before proceeding.");
+      toast.warning(
+        "Your cart is empty. Please add items to your cart before proceeding.",
+      );
       return;
     }
-  
+
     const accessToken = getDataFromLocalStorage("defender_userToken");
-  
+
     if (!accessToken) {
       router.push("/register");
       return;
     }
-  
+
     try {
       const response = await USERDETAILS_API(accessToken);
       const userData = response.data;
-  
+
       if (selectedProduct) {
         handleEditCart(selectedProduct);
       }
-  
-      router.push(`/payment?token=${encodeURIComponent(accessToken)}&user=${encodeURIComponent(JSON.stringify(userData))}`);
+
+      router.push(
+        `/payment`,
+        // `/payment?token=${encodeURIComponent(accessToken)}&user=${encodeURIComponent(JSON.stringify(userData))}`,
+      );
     } catch (error) {
       console.error("Error fetching user details:", error);
       toast.error("Error fetching user details. Please try again.");
@@ -130,80 +140,86 @@ export default function WishListPage() {
   };
 
   return (
-    <div className="md:w-9/12 mx-auto space-y-10 pb-20">
-      <ToastContainer /> 
-      <nav className="flex py-2 px-4 rounded-md"  onClick={() => router.back()}>
-          <div className="flex items-center">
-            <span className="mx-2 text-mutedText">
-              <IoIosArrowBack />
-            </span>
-            <span className="text-mutedText">Continue Shopping</span>
-          </div>
+    <div className="mx-auto w-11/12 space-y-10 pb-20 md:w-9/12">
+      <ToastContainer />
+      <nav className="flex rounded-md px-4 py-2" onClick={() => router.back()}>
+        <div className="flex items-center">
+          <span className="mx-2 block text-mutedText md:hidden">
+            <FaArrowLeftLong />
+          </span>
+
+          <span className="mx-2 hidden text-mutedText md:block">
+            <IoIosArrowBack />
+          </span>
+          <span className="hidden text-mutedText md:block">
+            Continue Shopping
+          </span>
+        </div>
       </nav>
       <div className="text-center leading-[4rem]">
-        <h2 className="font-semibold text-3xl">Your Wishlist</h2>
+        <h2 className="text-3xl font-semibold">Your Wishlist</h2>
       </div>
-      <div className="flex space-x-10">
-        <div className="w-8/12 m-3">
-          <div className="space-y-1">
-            <div className="border-b-2 border-secondaryColor">
-              <p className="uppercase text-xl py-3">Your Selection</p>
+      <div className="flex flex-col md:flex-row md:space-x-10">
+        <div className="m-2 w-full md:w-8/12">
+          <div className="space-y-2">
+            <div className="hidden border-b border-secondaryColor md:block">
+              <p className="py-2 text-lg uppercase">Your Selection</p>
             </div>
             <div>
               {cart.length === 0 ? (
-                <div className="flex justify-center items-center p-5">
+                <div className="flex items-center justify-center p-4">
                   Your cart is empty.
                 </div>
               ) : (
                 cart.map((product) => (
                   <div
-                    className="flex space-x-8 items-center py-5"
+                    className="flex items-center space-x-4 py-3"
                     key={product.id}
                   >
-                    <div className="w-2/5">
+                    <div className="w-1/3">
                       <Image
                         src={product.image}
-                        height={2000}
-                        width={2000}
-                        className="rounded-lg bg-backgroundColor w-full h-48 object-contain py-10"
+                        height={1500}
+                        width={1500}
+                        className="h-36 w-full rounded-lg bg-backgroundColor object-contain py-6"
                         alt="Watch"
                       />
                     </div>
-                    <div className="w-1/5">
-                      <h4 className="mt-4 font-semibold text-black text-lg">
+                    <div className="w-1/4">
+                      <h4 className="text-xs md:text-md mt-2 font-semibold text-black">
                         {product.name}
                       </h4>
-                      <p className="text-mutedText ">{product.color}</p>
-                      <p className="text-mutedText py-4">{`AT&T's Network`}</p>
-                      <p className="mt-2 text-black text-xl">
+                      <p className="text-xs md:text-sm text-mutedText">{product.color}</p>
+                      <p className="py-2 text-xs md:text-sm text-mutedText">{`AT&T's Network`}</p>
+                      <p className="mt-1 text-xs md:text-lg text-black">
                         Tsh {product.price}
                       </p>
                     </div>
-                    <div className="w-1/5 flex items-center space-x-5">
+                    <div className="flex w-1/4 items-center space-x-3">
                       <div
-                        className={`inline-flex items-center justify-center p-2 border-2 border-[#E0E0E0] rounded-lg ${
+                        className={`inline-flex items-center justify-center rounded-lg border-2 border-[#E0E0E0] p-1 ${
                           product.count === 1
                             ? "cursor-not-allowed opacity-50"
                             : "cursor-pointer"
                         }`}
                         onClick={() => handleCountChange(product.id, false)}
                       >
-                        <FaMinus />
+                        <FaMinus className="text-xs"/>
                       </div>
-                      <p className="mt-2 text-black">{product.count}</p>
+                      <p className="mt-1 text-xs text-black">{product.count}</p>
                       <div
-                        className="inline-flex items-center justify-center p-2 bg-[#E0E0E0] rounded-lg cursor-pointer"
+                        className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-[#E0E0E0] p-1"
                         onClick={() => handleCountChange(product.id, true)}
                       >
-                        <FaPlus />
+                        <FaPlus className="text-xs"/>
                       </div>
                     </div>
-                    <div className="w-1/5">
-                      <p className="mt-2 text-black text-lg font-semibold">
+                    <div className="w-1/4">
+                      <p className="text-xs md:text-lg mt-1 font-semibold text-black">
                         Tsh {product.price}
                       </p>
                       <div onClick={() => handleRemoveFromCart(product.id)}>
-                        <p className="uppercase my-2 text-mutedText text-sm cursor-pointer">
+                        <p className="my-1 cursor-pointer text-xs md:text-md uppercase text-mutedText">
                           REMOVE
                         </p>
                       </div>
@@ -214,31 +230,37 @@ export default function WishListPage() {
             </div>
           </div>
         </div>
-        <div className="w-4/12 sticky top-32">
+
+        <div className="sticky top-32 w-full md:w-4/12">
           <div className="space-y-10">
-            <div className="shadow-lg shadow-[#E0E0E0] rounded-lg p-5 space-y-3">
+            <div className="space-y-3 rounded-lg p-5 shadow-lg shadow-[#E0E0E0]">
               <div className="border-b-2 border-slate-200">
-                <p className="uppercase text-lg font-semibold py-2">
+                <p className="py-2 text-lg font-semibold uppercase">
                   ORDER SUMMARY
                 </p>
               </div>
-              <div className="flex justify-between items-center">
-                <p className="text-mutedText font-medium">Subtotal</p>
-                <p className="text-mutedText text-sm">
+              <div className="flex items-center justify-between">
+                <p className="font-medium text-mutedText">Subtotal</p>
+                <p className="text-sm text-mutedText">
                   Tsh {totalPrice.toLocaleString()}
                 </p>
               </div>
-              <p className="text-mutedText text-sm">
+              <p className="text-sm text-mutedText">
                 Taxes and shipping calculated at checkout
               </p>
+              <CustomButton
+                btntext="Proceed to Checkout"
+                className="block w-full px-12 md:hidden"
+                onClick={handleBuyNow}
+              />
             </div>
 
-            <div>
-              <div className="flex justify-center shadow-lg shadow-[#E0E0E0] rounded-lg">
+            <div className="hidden md:block">
+              <div className="flex justify-center rounded-lg shadow-lg shadow-[#E0E0E0]">
                 <div className="w-full p-5">
-                  <div className="flex flex-col space-y-3 my-1">
+                  <div className="my-1 flex flex-col space-y-3">
                     <label className="font-semibold">CHECKOUT</label>
-                    <div className="text-mutedText text-sm">
+                    <div className="text-sm text-mutedText">
                       You`re almost there! Complete your purchase now to enjoy
                       fast delivery and amazing deals. Don`t miss out - checkout
                       today!
@@ -246,7 +268,7 @@ export default function WishListPage() {
                   </div>
                   <CustomButton
                     btntext="Proceed to Checkout"
-                    className="px-12 w-full"
+                    className="w-full px-12"
                     onClick={handleBuyNow}
                   />
                 </div>

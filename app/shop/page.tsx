@@ -19,7 +19,7 @@ export default function Shop() {
   };
 
   return (
-    <div className="w-9/12 mx-auto pb-20">
+    <div className="w-11/12 md:w-9/12 mx-auto pb-20">
       <div className="text-center mt-4 space-y-2">
         <h2 className="font-semibold text-black text-3xl ">Shop Page</h2>
         <p className="text-black">The safe phone kids wear</p>
@@ -58,7 +58,7 @@ export default function Shop() {
         </div>
       </div>
 
-      <div className="w-8/12 mx-auto my-24 space-y-4">
+      <div className="w-full md:w-8/12 mx-auto my-24 space-y-4">
         <div className="text-center">
           <h2 className="font-semibold text-secondaryColor text-2xl">
             Comparison between our watches & Apple/Samsung
@@ -72,7 +72,7 @@ export default function Shop() {
             {comparisonTitles.map((item, index) => {
               return (
                 <div className="py-1" key={index}>
-                  <div className="border-none text-black">{item.title}</div>
+                  <div className="border-none text-black text-sm md:text-md">{item.title}</div>
                 </div>
               );
             })}
@@ -82,13 +82,13 @@ export default function Shop() {
             <div className="pb-4">
               <Image
                 src={"/DefenderLogo.svg"}
-                height={90}
-                width={90}
-                className="inline-block object-contain"
+                height={1000}
+                width={1000}
+                className="inline-block object-contain h-6 md:h-9 w-full"
                 alt="Defender Logo"
               />
-            </div>{" "}
-            <div className="bg-red-100 rounded-2xl">
+            </div>
+            <div className="md:bg-red-100 rounded-2xl">
               {defenderPoints.map((item, index) => {
                 return (
                   <div className="py-2 flex justify-center" key={index}>
@@ -100,7 +100,7 @@ export default function Shop() {
           </div>
           <div className="col-span-2">
             {" "}
-            <div className="text-black font-semibold pb-4 text-center">
+            <div className="text-black font-semibold pb-4 text-xs md:text-md text-center">
               Apple
             </div>{" "}
             {ApplePoints.map((item, index) => {
@@ -112,7 +112,7 @@ export default function Shop() {
             })}
           </div>
           <div className="col-span-2">
-            <div className="text-black font-semibold pb-4 tex">Samsung</div>
+            <div className="text-black font-semibold pb-4 text-xs md:text-md text-center">Samsung</div>
             {samsungPoints.map((item, index) => {
               return (
                 <div className="py-2 flex justify-center" key={index}>
@@ -124,7 +124,7 @@ export default function Shop() {
         </div>
       </div>
 
-      <div className="w-8/12 mx-auto my-24">
+      <div className="w-full md:w-8/12 mx-auto my-24">
         <div className="text-center space-y-3 mb-12">
           <h4 className="font-semibold text-black text-xl">
             Frequently Asked Questions

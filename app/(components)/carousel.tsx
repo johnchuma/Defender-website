@@ -39,10 +39,20 @@ const SimpleCarousel = ({ type }: { type: string }) => {
         </div>
       </div>
     ),
+    responsive: [
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: false,
+        },
+      },
+    ],
   };
 
   return (
-    <div className="carousel-container max-w-5xl mx-auto px-4 py-10 relative">
+    <div className="carousel-container max-w-xs md:max-w-5xl mx-auto px-4 py-10 relative">
       <Slider {...settings}>
         {products.map((product:any) => (
           <div
@@ -67,7 +77,7 @@ const NextArrow = (props: any) => {
   const { onClick } = props;
   return (
     <div
-      className="absolute -left-14 top-1/2 transform -translate-y-1/2 z-10 inline-flex items-center justify-center p-2 border-2 border-primaryColor rounded-full cursor-pointer hover:shadow-primaryColor hover:shadow-lg hover:ease-linear hover:ring-2 hover:ring-primaryColor"
+      className="absolute -left-5 md:-left-14 top-1/2 transform -translate-y-1/2 z-10 inline-flex items-center justify-center p-2 border-2 border-primaryColor rounded-full cursor-pointer hover:shadow-primaryColor hover:shadow-lg hover:ease-linear hover:ring-2 hover:ring-primaryColor"
       onClick={onClick}
     >
       <IoIosArrowBack className="text-primaryColor" />
@@ -79,7 +89,7 @@ const PrevArrow = (props: any) => {
   const { onClick } = props;
   return (
     <div
-      className="absolute -right-14 top-1/2 transform -translate-y-1/2 z-10 inline-flex items-center justify-center p-2 bg-primaryColor rounded-full cursor-pointer hover:shadow-primaryColor hover:shadow-lg hover:ease-linear hover:ring-2 hover:ring-primaryColor"
+      className="absolute -right-5 md:-right-14 top-1/2 transform -translate-y-1/2 z-10 inline-flex items-center justify-center p-2 bg-primaryColor rounded-full cursor-pointer hover:shadow-primaryColor hover:shadow-lg hover:ease-linear hover:ring-2 hover:ring-primaryColor"
       onClick={onClick}
     >
       <IoIosArrowForward className="text-white" />

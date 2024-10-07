@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { IoIosArrowBack } from "react-icons/io";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import CustomButton from "../(components)/customButton";
 import CustomOutlineButton from "../(components)/customOutlineButton";
 import { eastAfricanCountries } from "../utils/constants";
@@ -34,8 +35,12 @@ export default function PaymentPage() {
   const setFieldValueRef = useRef<(field: string, value: any) => void>();
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Name is required").max(50, "Max 50 characters"),
-    phone: Yup.string().required("Phone is required").max(15, "Max 15 characters"),
+    name: Yup.string()
+      .required("Name is required")
+      .max(50, "Max 50 characters"),
+    phone: Yup.string()
+      .required("Phone is required")
+      .max(15, "Max 15 characters"),
     country: Yup.string().required("Country is required"),
     region: Yup.string().required("Region is required"),
     district: Yup.string().required("District is required"),
@@ -47,7 +52,9 @@ export default function PaymentPage() {
   };
 
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    const savedCart = JSON.parse(
+      localStorage.getItem("defenderCart") || "[]",
+    ) as CartItem[];
     setCart(savedCart);
     setTotalPrice(calculateTotalPrice(savedCart));
   }, []);
@@ -107,131 +114,154 @@ export default function PaymentPage() {
     setSelectedRegionData(regionData || null);
   };
 
-
   return (
-    <div className="w-9/12 mx-auto space-y-8 pb-20">
-      <nav className="flex py-2 rounded-md" onClick={() => router.back()}>
-          <div className="flex items-center">
-            <span className="mx-2 text-mutedText">
-              <IoIosArrowBack />
-            </span>
-            <span className="text-mutedText">Continue Shopping</span>
-          </div>
+    <div className="mx-auto w-11/12 space-y-8 pb-20 md:w-9/12">
+      <nav className="flex rounded-md py-2" onClick={() => router.back()}>
+        <div className="flex items-center">
+          <span className="mx-2 block text-mutedText md:hidden">
+            <FaArrowLeftLong />
+          </span>
+          <span className="mx-2 hidden text-mutedText md:block">
+            <IoIosArrowBack />
+          </span>
+          <span className="hidden text-mutedText md:block">
+            Continue Shopping
+          </span>
+        </div>
       </nav>
 
       <div className="text-center leading-[4rem]">
-        <h2 className="font-semibold text-3xl">Payments</h2>
+        <h2 className="text-3xl font-semibold">Payments</h2>
       </div>
 
-      <div className="flex py-8 space-x-10">
-        <div className="w-8/12">
+      <div className="flex flex-col md:space-x-10 py-8 md:flex-row">
+        <div className="mt-7 w-full md:mt-0 md:w-8/12">
           <div className="border-b-2 border-secondaryColor">
-            <p className="uppercase text-xl py-3">Shipping Information</p>
+            <p className="py-3 text-xl uppercase">Shipping Information</p>
           </div>
           <div>
-          <Formik
-            validationSchema={validationSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log("Form submitted with values:", values);
-              setSubmitting(false);
-            }}
-            initialValues={{ name: "", phone: "", country: "", region: "", district: "", street: "" }}
-          >
-            {({ handleSubmit, handleChange, values, setFieldValue, errors, touched }) => {
-             setFieldValueRef.current = setFieldValue;
-              return (
-                <div className="shadow-lg shadow-[#E0E0E0] rounded-lg">
-                  <div className="w-full p-5">
-                    <form onSubmit={handleSubmit}>
-                      <div className="flex w-full space-x-4">
-                        <div className="flex flex-col w-6/12 space-y-3 my-1">
-                          <label>Full Name</label>
-                          <input
-                            className="w-full p-3 py-2 rounded-lg placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0] outline-[#E0E0E0] border-2"
-                            name="name"
-                            value={values.name}
-                            onChange={handleChange}
-                            placeholder="firstname"
-                          />
-                          {errors.name && touched.name && (
-                            <p className="text-red-600 text-xs">
-                              {errors.name}
-                            </p>
-                          )}
-                        </div>
+            <Formik
+              validationSchema={validationSchema}
+              onSubmit={(values, { setSubmitting }) => {
+                console.log("Form submitted with values:", values);
+                setSubmitting(false);
+              }}
+              initialValues={{
+                name: "",
+                phone: "",
+                country: "",
+                region: "",
+                district: "",
+                street: "",
+              }}
+            >
+              {({
+                handleSubmit,
+                handleChange,
+                values,
+                setFieldValue,
+                errors,
+                touched,
+              }) => {
+                setFieldValueRef.current = setFieldValue;
+                return (
+                  <div className="rounded-lg shadow-lg shadow-[#E0E0E0]">
+                    <div className="w-full p-5">
+                      <form onSubmit={handleSubmit}>
+                        <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                        <div className="my-1 flex w-full md:w-6/12 flex-col space-y-3">
+                        <label>Full Name</label>
+                            <input
+                              className="w-full rounded-lg border-2 p-3 py-2 outline-[#E0E0E0] placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0]"
+                              name="name"
+                              value={values.name}
+                              onChange={handleChange}
+                              placeholder="firstname"
+                            />
+                            {errors.name && touched.name && (
+                              <p className="text-xs text-red-600">
+                                {errors.name}
+                              </p>
+                            )}
+                          </div>
 
-                        <div className="flex flex-col w-6/12 space-y-3 my-1">
+                          <div className="my-1 flex w-full md:w-6/12 flex-col space-y-3">
                           <label>Phone Number</label>
-                          <input
-                            className="w-full p-3 py-2 rounded-lg placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0] outline-[#E0E0E0] border-2"
-                            name="phone"
-                            value={values.phone}
-                            onChange={handleChange}
-                            placeholder="Phone"
-                          />
-                          {errors.phone && touched.phone && (
-                            <p className="text-red-600 text-xs">
-                              {errors.phone}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col space-y-3 my-3">
-                        <label className="font-medium">
-                          Would you like Delivery service?
-                        </label>
-                        <div className="flex mt-2 space-x-14">
-                          <label className="flex cursor-pointer  items-center space-x-2">
                             <input
-                              type="radio"
-                              name="delivery"
-                              value="yes"
-                              checked={delivery === "yes"}
-                              onChange={() => setDelivery("yes")}
+                              className="w-full rounded-lg border-2 p-3 py-2 outline-[#E0E0E0] placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0]"
+                              name="phone"
+                              value={values.phone}
+                              onChange={handleChange}
+                              placeholder="Phone"
                             />
-
-                            <p> Yes</p>
-                          </label>
-                          <label className="flex cursor-pointer space-x-2 items-center">
-                            <input
-                              type="radio"
-                              name="delivery"
-                              value="no"
-                              checked={delivery === "no"}
-                              onChange={() => setDelivery("no")}
-                            />
-                            <p>No</p>
-                          </label>
+                            {errors.phone && touched.phone && (
+                              <p className="text-xs text-red-600">
+                                {errors.phone}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                      </div>
+
+                        <div className="my-3 flex flex-col space-y-3">
+                          <label className="font-medium">
+                            Would you like Delivery service?
+                          </label>
+                          <div className="mt-2 flex space-x-14">
+                            <label className="flex cursor-pointer items-center space-x-2">
+                              <input
+                                type="radio"
+                                name="delivery"
+                                value="yes"
+                                checked={delivery === "yes"}
+                                onChange={() => setDelivery("yes")}
+                              />
+
+                              <p> Yes</p>
+                            </label>
+                            <label className="flex cursor-pointer items-center space-x-2">
+                              <input
+                                type="radio"
+                                name="delivery"
+                                value="no"
+                                checked={delivery === "no"}
+                                onChange={() => setDelivery("no")}
+                              />
+                              <p>No</p>
+                            </label>
+                          </div>
+                        </div>
                         {delivery === "yes" && (
                           <>
-                           <div className="flex w-full space-x-4">
-                            <div className="flex flex-col w-6/12 space-y-3 my-1">
-                              <label>Country</label>
-                              <select
-                                className="w-full p-3 py-2 rounded-lg border-2"
-                                name="country"
-                                value={selectedCountry}
-                                onChange={handleCountryChange}
-                              >
-                                <option value="">Select Country</option>
-                                {eastAfricanCountries.map((country) => (
-                                  <option key={country.country} value={country.country}>
-                                    {country.country}
-                                  </option>
-                                ))}
-                              </select>
-                              {errors.country && touched.country && (
-                                <p className="text-red-600 text-xs">{errors.country}</p>
-                              )}
-                            </div>
-  
-                              <div className="flex flex-col w-6/12 space-y-3 my-1">
+                            <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                              <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                                <label>Country</label>
+                                <select
+                                  className="w-full rounded-lg border-2 p-3 py-2"
+                                  name="country"
+                                  value={selectedCountry}
+                                  onChange={handleCountryChange}
+                                >
+                                  <option value="">Select Country</option>
+                                  {eastAfricanCountries.map((country) => (
+                                    <option
+                                      key={country.country}
+                                      value={country.country}
+                                    >
+                                      {country.country}
+                                    </option>
+                                  ))}
+                                </select>
+                                {errors.country && touched.country && (
+                                  <p className="text-xs text-red-600">
+                                    {errors.country}
+                                  </p>
+                                )}
+                              </div>
+
+                              <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
                                 <label>Region</label>
                                 <select
-                                  className="w-full p-3 py-2 rounded-lg border-2"
+                                  className="w-full rounded-lg border-2 p-3 py-2"
                                   name="region"
                                   value={selectedRegion}
                                   onChange={handleRegionChange}
@@ -240,111 +270,124 @@ export default function PaymentPage() {
                                   {eastAfricanCountries
                                     .find((c) => c.country === selectedCountry)
                                     ?.regions.map((region) => (
-                                      <option key={region.name} value={region.name}>
+                                      <option
+                                        key={region.name}
+                                        value={region.name}
+                                      >
                                         {region.name}
                                       </option>
                                     ))}
                                 </select>
                                 {errors.region && touched.region && (
-                                  <p className="text-red-600 text-xs">{errors.region}</p>
+                                  <p className="text-xs text-red-600">
+                                    {errors.region}
+                                  </p>
                                 )}
                               </div>
                             </div>
                             {selectedRegion && selectedRegionData && (
-                            <div className="flex w-full space-x-4">
-                              <div className="flex flex-col w-6/12 space-y-3 my-1">
-                                <label>District</label>
-                                <select
-                                  className="w-full p-3 py-2 rounded-lg border-2"
-                                  name="district"
-                                  value={values.district}
-                                  onChange={handleChange}
-                                >
-                                  <option value="">Select District</option>
-                                  {selectedRegionData.districts.map((district) => (
-                                    <option key={district} value={district}>
-                                      {district}
-                                    </option>
-                                  ))}
-                                </select>
-                                {errors.district && touched.district && (
-                                  <p className="text-red-600 text-xs">{errors.district}</p>
-                                )}
-                              </div>
+                              <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                                <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                                  <label>District</label>
+                                  <select
+                                    className="w-full rounded-lg border-2 p-3 py-2"
+                                    name="district"
+                                    value={values.district}
+                                    onChange={handleChange}
+                                  >
+                                    <option value="">Select District</option>
+                                    {selectedRegionData.districts.map(
+                                      (district) => (
+                                        <option key={district} value={district}>
+                                          {district}
+                                        </option>
+                                      ),
+                                    )}
+                                  </select>
+                                  {errors.district && touched.district && (
+                                    <p className="text-xs text-red-600">
+                                      {errors.district}
+                                    </p>
+                                  )}
+                                </div>
 
-                              <div className="flex flex-col w-6/12 space-y-3 my-1">
-                              <label>Street Address</label>
-                              <input
-                                className="w-full p-3 py-2 rounded-lg border-2"
-                                name="street"
-                                value={values.street}
-                                onChange={handleChange}
-                                placeholder="Street Address"
-                              />
-                              {errors.street && touched.street && (
-                                <p className="text-red-600 text-xs">{errors.street}</p>
-                              )}
-                            </div>
-                          </div>
-                            )}
-                        </>
-                        )}
-                      <div>
-                        <p className="uppercase text-xl py-3">PAYMENT</p>
-                        <div className="border-[#E0E0E0] border-2 rounded-lg">
-                          <div
-                            className="flex items-center justify-between rounded-lg cursor-pointer space-x-12 py-1 px-5"
-                            onClick={handleToggle}
-                          >
-                            <div className="flex space-x-5 items-center">
-                              <span>
-                                <label className="cursor-pointer">
+                                <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                                  <label>Street Address</label>
                                   <input
-                                    type="radio"
-                                    name="paymentMethod"
-                                    checked={isChecked}
-                                    onChange={handleToggle}
+                                    className="w-full rounded-lg border-2 p-3 py-2"
+                                    name="street"
+                                    value={values.street}
+                                    onChange={handleChange}
+                                    placeholder="Street Address"
                                   />
-                                </label>
-                              </span>
-                              <span className="text-black text-lg font-medium">
-                                FlutterWave
-                              </span>
-                            </div>
-                            <div>
-                              {" "}
-                              <Image
-                                src={"/flutterwave_logo.svg"}
-                                height={2000}
-                                width={2000}
-                                className="rounded-lg bg-transparent w-full h-12 object-contain p-3"
-                                alt="paymentlogo"
-                              />
+                                  {errors.street && touched.street && (
+                                    <p className="text-xs text-red-600">
+                                      {errors.street}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        )}
+                        <div>
+                          <p className="py-3 text-xl uppercase">PAYMENT</p>
+                          <div className="rounded-lg border-2 border-[#E0E0E0]">
+                            <div
+                              className="flex cursor-pointer items-center justify-between space-x-12 rounded-lg px-5 py-1"
+                              onClick={handleToggle}
+                            >
+                              <div className="flex items-center space-x-5">
+                                <span>
+                                  <label className="cursor-pointer">
+                                    <input
+                                      type="radio"
+                                      name="paymentMethod"
+                                      checked={isChecked}
+                                      onChange={handleToggle}
+                                    />
+                                  </label>
+                                </span>
+                                <span className="text-lg font-medium text-black">
+                                  FlutterWave
+                                </span>
+                              </div>
+                              <div>
+                                {" "}
+                                <Image
+                                  src={"/flutterwave_logo.svg"}
+                                  height={2000}
+                                  width={2000}
+                                  className="h-12 w-full rounded-lg bg-transparent object-contain p-3"
+                                  alt="paymentlogo"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      <div className="flex justify-between space-x-4 mt-10">
-                        <Link href={"/wishlist"}>
-                          <CustomOutlineButton
-                            btntext="Back to Wishlist"
-                            className="px-8"
+                        <div className="mt-10 flex flex-col justify-between space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+                          <Link href={"/wishlist"} className="hidden md:block">
+                            <CustomOutlineButton
+                              btntext="Back to Wishlist"
+                              className="px-8"
+                            />
+                          </Link>
+                          <CustomButton
+                            btntext="Pay Now"
+                            className="w-full md:px-12"
                           />
-                        </Link>
-                        <CustomButton btntext="Pay Now" className="px-12" />
-                      </div>
-                    </form>
+                        </div>
+                      </form>
+                    </div>
                   </div>
-                </div>
-              );
-            }}
+                );
+              }}
             </Formik>
           </div>
         </div>
 
-        <div className="w-4/12 mt-7">
-          <div className="shadow-lg  shadow-[#E0E0E0] rounded-lg p-5 space-y-3">
+        <div className="order-first mt-0 w-full md:order-last md:mt-7 md:w-4/12">
+          <div className="space-y-3 rounded-lg p-5 shadow-lg shadow-[#E0E0E0]">
             {cart.map((product) => (
               <div className="flex space-x-4" key={product.id}>
                 <div className="relative inline-block">
@@ -352,48 +395,48 @@ export default function PaymentPage() {
                     src={"/blackwatch.svg"}
                     height={2000}
                     width={2000}
-                    className="rounded-lg bg-backgroundColor w-full h-16 object-contain p-3"
+                    className="h-16 w-full rounded-lg bg-backgroundColor object-contain p-3"
                     alt="Watch"
                   />
                   {product.count > 0 && (
-                    <div className="absolute top-0 right-0 w-4 h-4 bg-red-600 rounded-full text-white text-xs flex items-center justify-center">
+                    <div className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-xs text-white">
                       {product.count}
                     </div>
                   )}
                 </div>
                 <div className="items-center">
-                  <h4 className="mt-2 font-semibold text-black text-sm">
+                  <h4 className="mt-2 text-sm font-semibold text-black">
                     Android Elite Watch
                   </h4>
-                  <p className="text-mutedText text-sm py-2">Tsh 135,000</p>
+                  <p className="py-2 text-sm text-mutedText">Tsh 135,000</p>
                 </div>
               </div>
             ))}
 
             <div className="border-b-2 border-slate-200">
-              <p className="uppercase text-lg font-semibold py-2">
+              <p className="py-2 text-lg font-semibold uppercase">
                 ORDER SUMMARY
               </p>
             </div>
 
-            <div className="flex justify-between items-center space-x-2">
-              <p className="text-mutedText font-medium">Subtotal</p>
-              <p className="text-mutedText text-sm">
+            <div className="flex items-center justify-between space-x-2">
+              <p className="font-medium text-mutedText">Subtotal</p>
+              <p className="text-sm text-mutedText">
                 Tsh {totalPrice.toLocaleString()}
               </p>
             </div>
-            <div className="flex justify-between items-center space-x-2">
-              <p className="text-mutedText font-medium">Estimated Tax</p>
-              <p className="text-mutedText text-sm">Tsh 135,000 </p>
+            <div className="flex items-center justify-between space-x-2">
+              <p className="font-medium text-mutedText">Estimated Tax</p>
+              <p className="text-sm text-mutedText">Tsh 135,000 </p>
             </div>
-            <div className="flex justify-between items-center space-x-2">
-              <p className="text-mutedText font-medium">
+            <div className="flex items-center justify-between space-x-2">
+              <p className="font-medium text-mutedText">
                 Delivery (Within Dar)
               </p>
-              <p className="text-mutedText text-sm">Free </p>
+              <p className="text-sm text-mutedText">Free </p>
             </div>
 
-            <div className="flex justify-between items-center space-x-2">
+            <div className="flex items-center justify-between space-x-2">
               <p className="font-medium">Total</p>
               <p>Tsh {totalPrice.toLocaleString()} </p>
             </div>

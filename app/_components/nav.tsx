@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   motion,
   AnimatePresence,
@@ -14,6 +14,7 @@ import { siteConfig } from "../config/site";
 import SocialLinks from "./social-link";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useWishlist } from "../(components)/WishlistContext";
+import { getDataFromLocalStorage } from "../utils/auth";
 interface DropdownItem {
   label: string;
   link: string;
@@ -94,8 +95,24 @@ export const FloatingNav = ({
   const [atTop, setAtTop] = useState(true);
   const { wishlistCount } = useWishlist();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = getDataFromLocalStorage("defender_userToken");
+    setIsLoggedIn(!!token); // If token exists, set isLoggedIn to true
+  }, []);
 
   const toggleMenu = () => setOpen((prevOpen) => !prevOpen);
+
+  const handleAccountClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      router.push("/dashboard");
+    } else {
+      router.push("/login");
+    }
+  };
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -256,10 +273,21 @@ export const FloatingNav = ({
               </Link>
               {wishlistCount > 0 && (
                 <div className="absolute -right-6 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primaryColor text-xs text-white">
-                 {wishlistCount}
+                  {wishlistCount}
                 </div>
               )}
             </div>
+
+            {/* { My Account } */}
+            <span
+              onClick={handleAccountClick}
+              className="relative cursor-pointer whitespace-nowrap"
+            >
+              My Account
+              {pathname.includes("/myAccount") && (
+                <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+              )}
+            </span>
           </div>
 
           {/* Hamburger menu */}
