@@ -281,7 +281,7 @@ export const FloatingNav = ({
             {/* { My Account } */}
             <span
               onClick={handleAccountClick}
-              className="relative cursor-pointer whitespace-nowrap"
+              className="relative cursor-pointer whitespace-nowrap text-base text-gray-600 hover:text-primaryColor"
             >
               My Account
               {pathname.includes("/myAccount") && (
