@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
-import { FaHome, FaUser, FaCog } from 'react-icons/fa';
+"use client";
+import React, { useState } from "react";
+import { IoSettingsOutline } from "react-icons/io5";
+import { AiOutlineAppstore } from "react-icons/ai";
+import { TbBuildingStore } from "react-icons/tb";
+import { useRouter } from "next/navigation"; 
 
 const Sidebar = () => {
-  const [activeLink, setActiveLink] = useState<string>('home');
+  const [activeLink, setActiveLink] = useState<string>("myAccount");
+  const router = useRouter(); 
 
   const links = [
-    { id: 'home', label: 'Home', icon: <FaHome /> },
-    { id: 'profile', label: 'Profile', icon: <FaUser /> },
-    { id: 'settings', label: 'Settings', icon: <FaCog /> },
+    { id: "myAccount", label: "Dashboard", icon: <AiOutlineAppstore />, route: "/myAccount" },
+    { id: "orders", label: "Orders", icon: <TbBuildingStore />, route: "/orders" },
+    { id: "settings", label: "Settings", icon: <IoSettingsOutline />, route: "/settings" },
   ];
+
+  const handleLinkClick = (id: string, route: string) => {
+    setActiveLink(id); 
+    router.push(route); 
+  };
 
   return (
     <div className="flex">
-      <div className="fixed top-0 left-0 h-screen w-64 bg-gray-100 md:w-48 lg:w-64 p-5 shadow-lg">
+      <div className="fixed bottom-5 left-5 top-24 w-64 rounded-lg bg-white p-5 shadow-lg md:w-48 lg:w-64">
         <ul className="space-y-4">
           {links.map((link) => (
             <li
               key={link.id}
-              className={`flex items-center space-x-3 p-3 rounded-lg cursor-pointer transition-colors
-                ${activeLink === link.id ? 'bg-red-500 text-white' : 'text-gray-500 hover:text-red-500 hover:bg-gray-200'}`}
-              onClick={() => setActiveLink(link.id)}
+              className={`flex cursor-pointer items-center space-x-3 rounded-lg p-3 transition-colors ${activeLink === link.id ? "bg-primaryColor text-white" : "text-mutedText hover:text-primaryColor"}`}
+              onClick={() => handleLinkClick(link.id, link.route)}
             >
               <span className="text-xl">{link.icon}</span>
               <span className="font-medium">{link.label}</span>
             </li>
           ))}
         </ul>
-      </div>
-
-      {/* Main content area */}
-      <div className="ml-64 md:ml-48 lg:ml-64 p-5">
-        {/* Your main content goes here */}
       </div>
     </div>
   );

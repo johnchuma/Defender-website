@@ -108,7 +108,7 @@ export const FloatingNav = ({
   const handleAccountClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (isLoggedIn) {
-      router.push("/dashboard");
+      router.push("/myAccount");
     } else {
       router.push("/login");
     }
