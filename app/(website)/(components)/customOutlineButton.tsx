@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/app/utils/cn";
 
 interface BtnItem {
   btntext: string;
@@ -27,9 +27,9 @@ export default function CustomOutlineButton({
     <div>
       <button
         className={cn(
-          "text-primaryColor border-2 border-primaryColor text-xs py-3 rounded transition-all",
-          "hover:shadow-primaryColor hover:ease-linear hover:duration-300 hover:shadow-lg",
-          "hover:outline-primaryColor hover:outline-offset-8 hover:ring-2 hover:ring-primaryColor",
+          "rounded border-2 border-primaryColor py-3 text-xs text-primaryColor transition-all",
+          "hover:shadow-lg hover:shadow-primaryColor hover:duration-300 hover:ease-linear",
+          "hover:outline-offset-8 hover:outline-primaryColor hover:ring-2 hover:ring-primaryColor",
           width ? width : "w-auto",
           disabled ? "cursor-not-allowed opacity-50" : "",
           className,

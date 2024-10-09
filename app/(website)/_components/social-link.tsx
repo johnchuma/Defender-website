@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { siteConfig } from "../config/site";
+import { siteConfig } from "@/app/config/site";
 
 const SocialLinks = () => {
   return (

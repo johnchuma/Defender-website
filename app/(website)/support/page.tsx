@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Title from "../_components/title";
+import Title from "../../_components/title";
 import SupportCard from "./_components/support-card";
 import Faqs from "../(components)/faqs";
 import { faqsItems } from "../../utils/constants";

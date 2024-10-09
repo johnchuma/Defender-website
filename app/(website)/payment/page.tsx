@@ -7,11 +7,12 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import CustomOutlineButton from "../(components)/customOutlineButton";
-import { eastAfricanCountries } from "../../utils/constants";
+import { eastAfricanCountries } from "@/app/utils/constants";
 import { USERDETAILS_API } from "../../(api)/user";
-import { getDataFromLocalStorage } from "../../utils/auth";
+import { getDataFromLocalStorage } from "@/app/utils/auth";
+
 interface CartItem {
   id: string;
   name: string;
@@ -134,7 +135,7 @@ export default function PaymentPage() {
         <h2 className="text-3xl font-semibold">Payments</h2>
       </div>
 
-      <div className="flex flex-col md:space-x-10 py-8 md:flex-row">
+      <div className="flex flex-col py-8 md:flex-row md:space-x-10">
         <div className="mt-7 w-full md:mt-0 md:w-8/12">
           <div className="border-b-2 border-secondaryColor">
             <p className="py-3 text-xl uppercase">Shipping Information</p>
@@ -168,9 +169,9 @@ export default function PaymentPage() {
                   <div className="rounded-lg shadow-lg shadow-[#E0E0E0]">
                     <div className="w-full p-5">
                       <form onSubmit={handleSubmit}>
-                        <div className="flex w-full flex-col md:space-x-4 md:flex-row">
-                        <div className="my-1 flex w-full md:w-6/12 flex-col space-y-3">
-                        <label>Full Name</label>
+                        <div className="flex w-full flex-col md:flex-row md:space-x-4">
+                          <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                            <label>Full Name</label>
                             <input
                               className="w-full rounded-lg border-2 p-3 py-2 outline-[#E0E0E0] placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0]"
                               name="name"
@@ -185,8 +186,8 @@ export default function PaymentPage() {
                             )}
                           </div>
 
-                          <div className="my-1 flex w-full md:w-6/12 flex-col space-y-3">
-                          <label>Phone Number</label>
+                          <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                            <label>Phone Number</label>
                             <input
                               className="w-full rounded-lg border-2 p-3 py-2 outline-[#E0E0E0] placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0]"
                               name="phone"
@@ -232,7 +233,7 @@ export default function PaymentPage() {
                         </div>
                         {delivery === "yes" && (
                           <>
-                            <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                            <div className="flex w-full flex-col md:flex-row md:space-x-4">
                               <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
                                 <label>Country</label>
                                 <select
@@ -286,7 +287,7 @@ export default function PaymentPage() {
                               </div>
                             </div>
                             {selectedRegion && selectedRegionData && (
-                              <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                              <div className="flex w-full flex-col md:flex-row md:space-x-4">
                                 <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
                                   <label>District</label>
                                   <select

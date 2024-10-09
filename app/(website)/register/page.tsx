@@ -2,7 +2,7 @@
 import { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import { REGISTER_API } from "../../(api)/auth";
 import { HiOutlineUser, HiOutlinePhone } from "react-icons/hi2";
 import { MdOutlineEmail } from "react-icons/md";
@@ -10,7 +10,10 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setDataToLocalStorage, getDataFromLocalStorage } from '../../utils/auth';
+import {
+  setDataToLocalStorage,
+  getDataFromLocalStorage,
+} from "../../utils/auth";
 import GoogleLogin from "../(components)/googleLogin";
 import { useRouter } from "next/navigation";
 
@@ -19,10 +22,9 @@ export default function Register() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
 
-
   const handlePostRegistration = (accessToken: string) => {
     setDataToLocalStorage("defender_userToken", accessToken);
-    
+
     const cartItems = getDataFromLocalStorage("defenderCart");
     const wishlistItems = getDataFromLocalStorage("wishlist");
 
@@ -62,7 +64,10 @@ export default function Register() {
               if (response.data.status === true) {
                 resetForm();
                 setFormSent(true);
-                setDataToLocalStorage('defender_userToken', response.data.body.tokens.ACCESS_TOKEN);
+                setDataToLocalStorage(
+                  "defender_userToken",
+                  response.data.body.tokens.ACCESS_TOKEN,
+                );
                 handlePostRegistration(response.data.body.tokens.ACCESS_TOKEN);
               } else {
                 toast.error(response.data.message || "Registration failed");

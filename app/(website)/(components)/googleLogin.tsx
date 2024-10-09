@@ -1,11 +1,14 @@
 import { FcGoogle } from "react-icons/fc";
-import { auth } from "../utils/firebase";
+import { auth } from "@/app/utils/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GOOGLELOGIN_API } from "../(api)/auth";
+import { GOOGLELOGIN_API } from "@/app/(api)/auth";
 import { useRouter } from "next/navigation";
-import { setDataToLocalStorage, getDataFromLocalStorage } from "../utils/auth";
+import {
+  setDataToLocalStorage,
+  getDataFromLocalStorage,
+} from "@/app/utils/auth";
 
 export default function GoogleLogin() {
   const router = useRouter();

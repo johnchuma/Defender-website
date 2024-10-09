@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 // component
 import FeatureCard from "./_components/feature-cards";
 import ProductCard from "./_components/product-card";
-import Title from "./_components/title";
+import Title from "../_components/title";
 import SocialLinks from "./_components/social-link";
-import CustomButton from "./(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import Carousel from "./_components/carousel";
 import VideoThumbnail from "./_components/video-thumbnail";
 

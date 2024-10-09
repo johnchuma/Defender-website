@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { siteConfig } from "@/app/(website)/config/site";
-import Title from "@/app/(website)/_components/title";
+import { siteConfig } from "@/app/config/site";
+import Title from "@/app/_components/title";
 import SocialLinks from "@/app/(website)/_components/social-link";
 
 const ContactInfo = () => {

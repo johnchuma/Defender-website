@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { FloatingNav } from "../(website)/_components/nav";
-import { siteConfig } from "../(website)/config/site";
+import { FloatingNav } from "@/app/_components/nav";
+import { siteConfig } from "../config/site";
 import Sidebar from "./(components)/sideBar";
 
 export const metadata: Metadata = {
@@ -21,8 +21,8 @@ export default function UserDashboardLayout({
   return (
     <section className="flex">
       <Sidebar />
-        <FloatingNav navItems={siteConfig.navItems} />
-        <div className="pt-24">{children}</div>
+      <FloatingNav navItems={siteConfig.navItems} />
+      <div className="pt-24">{children}</div>
     </section>
   );
 }

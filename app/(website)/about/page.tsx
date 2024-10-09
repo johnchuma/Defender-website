@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Title from "../_components/title";
+import Title from "../../_components/title";
 import BackgroundBanner from "../_components/background-banner";
 import ContentSection from "./_components/content-section";
 import {

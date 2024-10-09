@@ -9,12 +9,13 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { cn } from "@/app/lib/utils";
-import { siteConfig } from "../config/site";
-import SocialLinks from "./social-link";
+import { cn } from "@/app/utils/cn";
+import { siteConfig } from "@/app/config/site";
+import SocialLinks from "@/app/(website)/_components/social-link";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useWishlist } from "../(components)/WishlistContext";
-import { getDataFromLocalStorage } from "../../utils/auth";
+import { useWishlist } from "@/app/(website)/(components)/WishlistContext";
+import { getDataFromLocalStorage } from "@/app/utils/auth";
+
 interface DropdownItem {
   label: string;
   link: string;

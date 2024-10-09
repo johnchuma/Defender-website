@@ -1,6 +1,6 @@
 import React from "react";
 import BlogCard from "./_components/blog-card";
-import Title from "../_components/title";
+import Title from "../../_components/title";
 import BlogPostCard from "./_components/blog-post-card";
 import ScrollCarousel from "../_components/scroll-carousel";
 

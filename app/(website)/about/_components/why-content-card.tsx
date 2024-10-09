@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import Image, { StaticImageData } from "next/image";
-import Title from "@/app/(website)/_components/title";
+import Title from "@/app/_components/title";
 
 interface WhySectionProps {
   title: string;

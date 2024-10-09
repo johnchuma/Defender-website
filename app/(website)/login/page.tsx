@@ -2,7 +2,7 @@
 import { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import { LOGIN_API } from "../../(api)/auth";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -12,7 +12,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import GoogleLogin from "../(components)/googleLogin";
 import { useRouter } from "next/navigation";
-import { setDataToLocalStorage, getDataFromLocalStorage } from "../../utils/auth";
+import {
+  setDataToLocalStorage,
+  getDataFromLocalStorage,
+} from "../../utils/auth";
 
 const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);

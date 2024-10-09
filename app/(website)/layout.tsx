@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { FloatingNav } from "./_components/nav";
-import { siteConfig } from "./config/site";
+import { FloatingNav } from "@/app/_components/nav";
+import { siteConfig } from "../config/site";
 import Footer from "./_components/footer/footer";
 
 export const metadata: Metadata = {
