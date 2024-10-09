@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { cn } from "@/app/lib/utils";
+import { cn } from "@/app/utils/cn";
 
 interface BtnItem {
   btntext: string;
@@ -27,7 +27,7 @@ export default function CustomButton({
     <div>
       <button
         className={cn(
-          "rounded bg-primaryColor px-20 py-3 text-xs text-white transition-all border-2 border-primaryColor",
+          "rounded border-2 border-primaryColor bg-primaryColor px-20 py-3 text-xs text-white transition-all",
           "hover:border-white hover:shadow-lg hover:shadow-primaryColor",
           "hover:outline-offset-8 hover:outline-primaryColor hover:ring-2",
           "hover:ring-primaryColor hover:duration-300 hover:ease-linear",

@@ -1,5 +1,5 @@
 "use client";
-import CustomButton from "@/app/(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import React from "react";
 
 interface SupportCardProps {

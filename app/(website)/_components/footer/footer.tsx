@@ -3,15 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { siteConfig } from "../../config/site";
-import Title from "../title";
+import { siteConfig } from "@/app/config/site";
+import Title from "@/app/_components/title";
 import FooterLinks from "./footer-links";
 import SocialLinks from "../social-link";
+import CustomButton from "@/app/_components/customButton";
 
 // images
 import GoogleBadge from "@/public/images/google-play.png";
 import AppleBadge from "@/public/images/apple-store.png";
-import CustomButton from "../../(components)/customButton";
 
 function Footer() {
   const homeLinks = [

@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 
 interface ProductCardProps {
   image: StaticImageData;

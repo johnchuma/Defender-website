@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
 import { USERDETAILS_API } from "../../(api)/user";
@@ -186,12 +186,14 @@ export default function WishListPage() {
                       />
                     </div>
                     <div className="w-1/4">
-                      <h4 className="text-xs md:text-md mt-2 font-semibold text-black">
+                      <h4 className="md:text-md mt-2 text-xs font-semibold text-black">
                         {product.name}
                       </h4>
-                      <p className="text-xs md:text-sm text-mutedText">{product.color}</p>
-                      <p className="py-2 text-xs md:text-sm text-mutedText">{`AT&T's Network`}</p>
-                      <p className="mt-1 text-xs md:text-lg text-black">
+                      <p className="text-xs text-mutedText md:text-sm">
+                        {product.color}
+                      </p>
+                      <p className="py-2 text-xs text-mutedText md:text-sm">{`AT&T's Network`}</p>
+                      <p className="mt-1 text-xs text-black md:text-lg">
                         Tsh {product.price}
                       </p>
                     </div>
@@ -204,22 +206,22 @@ export default function WishListPage() {
                         }`}
                         onClick={() => handleCountChange(product.id, false)}
                       >
-                        <FaMinus className="text-xs"/>
+                        <FaMinus className="text-xs" />
                       </div>
                       <p className="mt-1 text-xs text-black">{product.count}</p>
                       <div
                         className="inline-flex cursor-pointer items-center justify-center rounded-lg bg-[#E0E0E0] p-1"
                         onClick={() => handleCountChange(product.id, true)}
                       >
-                        <FaPlus className="text-xs"/>
+                        <FaPlus className="text-xs" />
                       </div>
                     </div>
                     <div className="w-1/4">
-                      <p className="text-xs md:text-lg mt-1 font-semibold text-black">
+                      <p className="mt-1 text-xs font-semibold text-black md:text-lg">
                         Tsh {product.price}
                       </p>
                       <div onClick={() => handleRemoveFromCart(product.id)}>
-                        <p className="my-1 cursor-pointer text-xs md:text-md uppercase text-mutedText">
+                        <p className="md:text-md my-1 cursor-pointer text-xs uppercase text-mutedText">
                           REMOVE
                         </p>
                       </div>

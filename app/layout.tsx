@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { siteConfig } from "./(website)/config/site";
-import { WishlistProvider } from "./(website)/(components)/WishlistContext"; 
+import { siteConfig } from "./config/site";
+import { WishlistProvider } from "./(website)/(components)/WishlistContext";
 
 const Gilroy = localFont({
   src: [
@@ -53,7 +53,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${Gilroy.className}`}>
         <WishlistProvider>
-        <main>{children}</main>
+          <main>{children}</main>
         </WishlistProvider>
       </body>
     </html>

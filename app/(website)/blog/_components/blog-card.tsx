@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { truncateWords } from "@/app/lib/utils"; // Adjust the import path as necessary
+import { truncateWords } from "@/app/utils/truncate"; // Adjust the import path as necessary
 
 interface BlogCardProps {
   title: string;

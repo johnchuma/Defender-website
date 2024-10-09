@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { siteConfig } from "@/app/(website)/config/site";
+import { siteConfig } from "@/app/config/site";
 import HeaderTabs from "./_components/header-tabs";
 
 export const metadata: Metadata = {

@@ -2,10 +2,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { productDetails, faqsItems, rto, android } from "../../utils/constants";
+import { productDetails, faqsItems, rto, android } from "@/app/utils/constants";
 import Faqs from "../(components)/faqs";
-import ProductDetails from "../(components)/productDetails";
-import CustomButton from "../(components)/customButton";
+import ProductDetails from "@/app/(website)/(components)/productDetails";
+import CustomButton from "@/app/_components/customButton";
 import ContactUs from "../(components)/contactForm";
 import Category from "../(components)/midNavBar";
 import CustomOutlineButton from "../(components)/customOutlineButton";
@@ -35,7 +35,9 @@ export default function Ecommerce() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const [productVariations, setProductVariations] = useState<ProductVariation[]>([]);
+  const [productVariations, setProductVariations] = useState<
+    ProductVariation[]
+  >([]);
   const [selectedProduct, setSelectedProduct] = useState<CartItem | null>(null);
   const [productCount, setProductCount] = useState<number>(1);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -71,26 +73,33 @@ export default function Ecommerce() {
   }, [cart]);
 
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    const savedCart = JSON.parse(
+      localStorage.getItem("defenderCart") || "[]",
+    ) as CartItem[];
     setCart(savedCart);
     setTotalPrice(calculateTotalPrice(savedCart));
   }, []);
 
   useEffect(() => {
     if (selectedProduct) {
-      const cart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+      const cart = JSON.parse(
+        localStorage.getItem("defenderCart") || "[]",
+      ) as CartItem[];
       const existingProduct = cart.find((p) => p.id === selectedProduct.id);
 
       if (existingProduct) {
         setIsModified(
-          existingProduct.count !== selectedProduct.count || existingProduct.color !== selectedProduct.color
+          existingProduct.count !== selectedProduct.count ||
+            existingProduct.color !== selectedProduct.color,
         );
       }
     }
   }, [selectedProduct]);
 
   const handleAddToCart = (product: CartItem) => {
-    const cart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    const cart = JSON.parse(
+      localStorage.getItem("defenderCart") || "[]",
+    ) as CartItem[];
     const productIndex = cart.findIndex((p) => p.id === product.id);
 
     if (productIndex !== -1) {
@@ -103,9 +112,8 @@ export default function Ecommerce() {
     setCart(cart);
 
     const uniqueWishlistItems = new Set(cart.map((item) => item.id));
-    setWishlistCount(uniqueWishlistItems.size);  
+    setWishlistCount(uniqueWishlistItems.size);
     document.dispatchEvent(new Event("cartUpdate"));
-
   };
 
   const handleBuyNow = () => {
@@ -125,9 +133,9 @@ export default function Ecommerce() {
   };
 
   return (
-    <div className="mx-auto my-20 w-11/12 md:w-9/12 space-y-20">
+    <div className="mx-auto my-20 w-11/12 space-y-20 md:w-9/12">
       <div className="grid grid-cols-12 items-start md:gap-10 lg:gap-20">
-        <div className="col-span-12 md:col-span-6 space-y-5 pb-5">
+        <div className="col-span-12 space-y-5 pb-5 md:col-span-6">
           <Image
             src={selectedProduct?.image || ""}
             height={2000}
@@ -147,7 +155,9 @@ export default function Ecommerce() {
                   height={2000}
                   width={2000}
                   className={`h-28 w-full rounded-lg object-contain py-5 ${
-                    selectedProduct?.id === product.id ? "border-2 border-primaryColor" : ""
+                    selectedProduct?.id === product.id
+                      ? "border-2 border-primaryColor"
+                      : ""
                   }`}
                   alt={product.name}
                 />
@@ -155,58 +165,70 @@ export default function Ecommerce() {
             ))}
           </div>
         </div>
-        <div className="col-span-12 md:col-span-6 space-y-5">
-          <h4 className="text-lg font-semibold text-black">{selectedProduct?.name}</h4>
+        <div className="col-span-12 space-y-5 md:col-span-6">
+          <h4 className="text-lg font-semibold text-black">
+            {selectedProduct?.name}
+          </h4>
           <p className="text-mutedText">{selectedProduct?.description}</p>
-          <p className="text-xl font-semibold text-black">Tzs {selectedProduct?.price}</p>
+          <p className="text-xl font-semibold text-black">
+            Tzs {selectedProduct?.price}
+          </p>
           <div className="w-3/4 space-y-4">
-              <p className="my-2 text-black">Colors</p>
-              <div className="flex items-center justify-between space-x-10">
-                <div className="flex items-center space-x-3">
-                  {productVariations.map((product, index) => (
+            <p className="my-2 text-black">Colors</p>
+            <div className="flex items-center justify-between space-x-10">
+              <div className="flex items-center space-x-3">
+                {productVariations.map((product, index) => (
+                  <div
+                    key={index}
+                    className={"pb-1"}
+                    style={{
+                      borderBottom:
+                        selectedProduct?.id === product.id
+                          ? `2px solid ${selectedProduct?.color}`
+                          : "none",
+                    }}
+                  >
                     <div
-                      key={index}
-                      className={"pb-1"}
-                      style={{
-                        borderBottom:
-                          selectedProduct?.id === product.id
-                            ? `2px solid ${selectedProduct?.color}`
-                            : "none",
-                      }}
-                    >
-                      <div
-                        className={`p-3 rounded-full cursor-pointer`}
-                        onClick={() => handleProductSelection(product)}
-                        style={{ backgroundColor: product.color }}
-                      />
-                    </div>
-                  ))}
-                </div>
-  
-                <div className="flex items-center space-x-5">
-                  <div
-                    className={`cursor-pointer rounded-lg border-2 p-2 ${
-                      productCount === 1 ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                    onClick={() => productCount > 1 && setProductCount(productCount - 1)}
-                  >
-                    <FaMinus />
+                      className={`cursor-pointer rounded-full p-3`}
+                      onClick={() => handleProductSelection(product)}
+                      style={{ backgroundColor: product.color }}
+                    />
                   </div>
-                  <p>{productCount}</p>
-                  <div
-                    className="cursor-pointer rounded-lg bg-gray-200 p-2"
-                    onClick={() => setProductCount(productCount + 1)}
-                  >
-                    <FaPlus />
-                  </div>
-                </div>
-        
+                ))}
               </div>
-              <div className="flex justify-between space-x-5">
-              <CustomButton btntext="Buy Now" className="px-14" onClick={handleBuyNow} />
-              <CustomOutlineButton btntext="Add to Wishlist" className="px-10" onClick={handleAddToWishlist} />
-            </div>
 
+              <div className="flex items-center space-x-5">
+                <div
+                  className={`cursor-pointer rounded-lg border-2 p-2 ${
+                    productCount === 1 ? "cursor-not-allowed opacity-50" : ""
+                  }`}
+                  onClick={() =>
+                    productCount > 1 && setProductCount(productCount - 1)
+                  }
+                >
+                  <FaMinus />
+                </div>
+                <p>{productCount}</p>
+                <div
+                  className="cursor-pointer rounded-lg bg-gray-200 p-2"
+                  onClick={() => setProductCount(productCount + 1)}
+                >
+                  <FaPlus />
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-between space-x-5">
+              <CustomButton
+                btntext="Buy Now"
+                className="px-14"
+                onClick={handleBuyNow}
+              />
+              <CustomOutlineButton
+                btntext="Add to Wishlist"
+                className="px-10"
+                onClick={handleAddToWishlist}
+              />
+            </div>
           </div>
           <div className="mt-4">
             {productDetails.map((item, index) => (
@@ -220,55 +242,102 @@ export default function Ecommerce() {
         <div ref={featuresRef} className="space-y-16">
           <div className="grid grid-cols-12 gap-10">
             <div className="col-span-12 md:col-span-6">
-              <h4 className="text-xl font-semibold text-black">Two-Way Communication</h4>
+              <h4 className="text-xl font-semibold text-black">
+                Two-Way Communication
+              </h4>
               <p className="text-mutedText">
-              Stay connected with your child through secure two-way voice communication. Our smartwatches allow parents and kids to easily communicate without the need for a smartphone.
-              With a simple touch, parents can call their children or receive calls, fostering a sense of security and connection throughout the day.
+                Stay connected with your child through secure two-way voice
+                communication. Our smartwatches allow parents and kids to easily
+                communicate without the need for a smartphone. With a simple
+                touch, parents can call their children or receive calls,
+                fostering a sense of security and connection throughout the day.
               </p>
             </div>
             <div className="col-span-12 md:col-span-6">
-              <Image src="/watch5.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+              <Image
+                src="/watch5.svg"
+                height={2000}
+                width={2000}
+                className="h-60 w-full object-contain"
+                alt="Watch"
+              />
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 md:col-span-6 order-last md:order-first  items-center">
-              <Image src="/pink-redblur.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+            <div className="order-last col-span-12 items-center md:order-first md:col-span-6">
+              <Image
+                src="/pink-redblur.svg"
+                height={2000}
+                width={2000}
+                className="h-60 w-full object-contain"
+                alt="Watch"
+              />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <h4 className="text-xl font-semibold text-black">Real-Time GPS Tracking</h4>
+              <h4 className="text-xl font-semibold text-black">
+                Real-Time GPS Tracking
+              </h4>
               <p className="text-mutedText">
-              Our devices come equipped with advanced GPS technology that allows parents to monitor their child`s location in real-time.
-              This feature provides peace of mind, enabling parents to track their children`s movements and ensure their safety, whether they`re at school, playing outside, or on an adventure
+                Our devices come equipped with advanced GPS technology that
+                allows parents to monitor their child`s location in real-time.
+                This feature provides peace of mind, enabling parents to track
+                their children`s movements and ensure their safety, whether
+                they`re at school, playing outside, or on an adventure
               </p>
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10">
             <div className="col-span-12 md:col-span-6">
-              <h4 className="text-xl font-semibold text-black">Emergency SOS Alerts</h4>
+              <h4 className="text-xl font-semibold text-black">
+                Emergency SOS Alerts
+              </h4>
               <p className="text-mutedText">
-              Safety is our top priority. Our devices feature an emergency SOS button that children can use to alert their parents in case of an emergency. When activated, the watch sends immediate notifications to designated contacts, ensuring a quick response during critical situations.
+                Safety is our top priority. Our devices feature an emergency SOS
+                button that children can use to alert their parents in case of
+                an emergency. When activated, the watch sends immediate
+                notifications to designated contacts, ensuring a quick response
+                during critical situations.
               </p>
             </div>
-            <div className="col-span-12 md:col-span-6 items-center">
-              <Image src="/grey-redblur.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+            <div className="col-span-12 items-center md:col-span-6">
+              <Image
+                src="/grey-redblur.svg"
+                height={2000}
+                width={2000}
+                className="h-60 w-full object-contain"
+                alt="Watch"
+              />
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 md:col-span-6 order-last md:order-first  items-center">
-              <Image src="/purple-redblur.svg" height={2000} width={2000} className="h-60 w-full object-contain" alt="Watch" />
+            <div className="order-last col-span-12 items-center md:order-first md:col-span-6">
+              <Image
+                src="/purple-redblur.svg"
+                height={2000}
+                width={2000}
+                className="h-60 w-full object-contain"
+                alt="Watch"
+              />
             </div>
             <div className="col-span-12 md:col-span-6">
-              <h4 className="text-xl font-semibold text-black">Geofencing Alerts</h4>
+              <h4 className="text-xl font-semibold text-black">
+                Geofencing Alerts
+              </h4>
               <p className="text-mutedText">
-              Our smartwatches come with customizable geofencing capabilities that allow parents to set safe zones for their children. If a child exits these designated areas, the parent receives instant alerts, helping to keep them safe and secure while encouraging independence.
+                Our smartwatches come with customizable geofencing capabilities
+                that allow parents to set safe zones for their children. If a
+                child exits these designated areas, the parent receives instant
+                alerts, helping to keep them safe and secure while encouraging
+                independence.
               </p>
             </div>
-         
           </div>
         </div>
       </div>
       <div ref={faqsRef} className="space-y-8">
-        <h4 className="text-xl font-semibold text-black text-center">Frequently Asked Questions</h4>
+        <h4 className="text-center text-xl font-semibold text-black">
+          Frequently Asked Questions
+        </h4>
         <div className="grid grid-cols-12 gap-10">
           <div className="col-span-12 md:col-span-6">
             {faqsItems.map((item) => (

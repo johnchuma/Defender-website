@@ -2,7 +2,7 @@
 import { useParams } from "next/navigation";
 import React from "react";
 import Image from "next/image";
-import Title from "@/app/(website)/_components/title";
+import Title from "@/app/_components/title";
 import BlogPostCard from "@/app/(website)/blog/_components/blog-post-card";
 import ArticleAuthor from "@/app/(website)/blog/_components/article-author";
 import PostCarousel from "@/app/(website)/_components/scroll-carousel";

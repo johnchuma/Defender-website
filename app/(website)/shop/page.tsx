@@ -9,58 +9,64 @@ import {
   faqsItems,
 } from "../../utils/constants";
 import Faqs from "../(components)/faqs";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 
 export default function Shop() {
   const router = useRouter();
 
-  const handlelearnMore = (watchType:string) => {
+  const handlelearnMore = (watchType: string) => {
     router.push(`/product/${watchType}`);
   };
 
   return (
-    <div className="w-11/12 md:w-9/12 mx-auto pb-20">
-      <div className="text-center mt-4 space-y-2">
-        <h2 className="font-semibold text-black text-3xl ">Shop Page</h2>
+    <div className="mx-auto w-11/12 pb-20 md:w-9/12">
+      <div className="mt-4 space-y-2 text-center">
+        <h2 className="text-3xl font-semibold text-black">Shop Page</h2>
         <p className="text-black">The safe phone kids wear</p>
       </div>
       <div className="mt-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div className="flex flex-col items-center p-4 rounded-lg">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="flex flex-col items-center rounded-lg p-4">
             <Image
               src={"/blackwatch.svg"}
               height={2000}
               width={2000}
-              className="rounded-lg w-full object-contain h-80 bg-[#F2F2F2]"
+              className="h-80 w-full rounded-lg bg-[#F2F2F2] object-contain"
               alt="Watch"
             />
-            <h4 className="mt-4 font-semibold text-black text-lg">
+            <h4 className="mt-4 text-lg font-semibold text-black">
               Android Elite Version
             </h4>
             <p className="mt-2 text-black">Tzs 135,000</p>
-            <CustomButton btntext="Learn More" onClick={() => handlelearnMore('android')} />
-            </div>
+            <CustomButton
+              btntext="Learn More"
+              onClick={() => handlelearnMore("android")}
+            />
+          </div>
 
-          <div className="flex flex-col items-center p-4 rounded-lg">
+          <div className="flex flex-col items-center rounded-lg p-4">
             <Image
               src="/v2blackwatch.png"
               height={2000}
               width={2000}
-              className="rounded-lg w-full object-contain h-80 bg-[#F2F2F2]"
+              className="h-80 w-full rounded-lg bg-[#F2F2F2] object-contain"
               alt="Watch"
             />
-            <h4 className="mt-4 font-semibold text-black text-lg">
+            <h4 className="mt-4 text-lg font-semibold text-black">
               RTO`s Modern Version
             </h4>
             <p className="mt-2 text-black">Tzs 99,000</p>
-            <CustomButton btntext="Learn More" onClick={() => handlelearnMore('rto')} />
-            </div>
+            <CustomButton
+              btntext="Learn More"
+              onClick={() => handlelearnMore("rto")}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="w-full md:w-8/12 mx-auto my-24 space-y-4">
+      <div className="mx-auto my-24 w-full space-y-4 md:w-8/12">
         <div className="text-center">
-          <h2 className="font-semibold text-secondaryColor text-2xl">
+          <h2 className="text-2xl font-semibold text-secondaryColor">
             Comparison between our watches & Apple/Samsung
           </h2>
         </div>
@@ -68,11 +74,13 @@ export default function Shop() {
         <div className="grid grid-cols-12 items-center gap-5">
           <div className="col-span-6">
             {" "}
-            <div className="pb-4">{" "}</div>{" "}
+            <div className="pb-4"> </div>{" "}
             {comparisonTitles.map((item, index) => {
               return (
                 <div className="py-1" key={index}>
-                  <div className="border-none text-black text-sm md:text-md">{item.title}</div>
+                  <div className="md:text-md border-none text-sm text-black">
+                    {item.title}
+                  </div>
                 </div>
               );
             })}
@@ -84,14 +92,14 @@ export default function Shop() {
                 src={"/DefenderLogo.svg"}
                 height={1000}
                 width={1000}
-                className="inline-block object-contain h-6 md:h-9 w-full"
+                className="inline-block h-6 w-full object-contain md:h-9"
                 alt="Defender Logo"
               />
             </div>
-            <div className="md:bg-red-100 rounded-2xl">
+            <div className="rounded-2xl md:bg-red-100">
               {defenderPoints.map((item, index) => {
                 return (
-                  <div className="py-2 flex justify-center" key={index}>
+                  <div className="flex justify-center py-2" key={index}>
                     <div>{item.icon}</div>
                   </div>
                 );
@@ -100,22 +108,24 @@ export default function Shop() {
           </div>
           <div className="col-span-2">
             {" "}
-            <div className="text-black font-semibold pb-4 text-xs md:text-md text-center">
+            <div className="md:text-md pb-4 text-center text-xs font-semibold text-black">
               Apple
             </div>{" "}
             {ApplePoints.map((item, index) => {
               return (
-                <div className="py-2 flex justify-center" key={index}>
+                <div className="flex justify-center py-2" key={index}>
                   <div>{item.icon}</div>
                 </div>
               );
             })}
           </div>
           <div className="col-span-2">
-            <div className="text-black font-semibold pb-4 text-xs md:text-md text-center">Samsung</div>
+            <div className="md:text-md pb-4 text-center text-xs font-semibold text-black">
+              Samsung
+            </div>
             {samsungPoints.map((item, index) => {
               return (
-                <div className="py-2 flex justify-center" key={index}>
+                <div className="flex justify-center py-2" key={index}>
                   <div>{item.icon}</div>
                 </div>
               );
@@ -124,9 +134,9 @@ export default function Shop() {
         </div>
       </div>
 
-      <div className="w-full md:w-8/12 mx-auto my-24">
-        <div className="text-center space-y-3 mb-12">
-          <h4 className="font-semibold text-black text-xl">
+      <div className="mx-auto my-24 w-full md:w-8/12">
+        <div className="mb-12 space-y-3 text-center">
+          <h4 className="text-xl font-semibold text-black">
             Frequently Asked Questions
           </h4>
           <p className="text-black">Have any question? We are here to help</p>
@@ -143,4 +153,3 @@ export default function Shop() {
     </div>
   );
 }
-

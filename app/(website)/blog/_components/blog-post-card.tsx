@@ -1,4 +1,4 @@
-import { truncateWords } from "@/app/lib/utils";
+import { truncateWords } from "@/app/utils/truncate";
 import Image from "next/image";
 
 interface BlogPostCardProps {

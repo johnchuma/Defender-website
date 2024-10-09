@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import CustomButton from "../(components)/customButton";
+import CustomButton from "@/app/_components/customButton";
 import { jobOffers, Testimonials, whyJoinUs } from "../../utils/constants";
 import { motion } from "framer-motion";
 import { FaGooglePlay } from "react-icons/fa";
@@ -263,7 +263,7 @@ export default function Career() {
             </h1>
             <div className="space-y-16">
               <div className="grid grid-cols-1 items-end md:grid-cols-12 md:gap-20">
-                <div className="col-span-12 md:col-span-6 pb-10 md:pb-24 md:pr-12">
+                <div className="col-span-12 pb-10 md:col-span-6 md:pb-24 md:pr-12">
                   <h4 className="text-xl font-semibold text-black">
                     Application Submission
                   </h4>
@@ -310,7 +310,7 @@ export default function Career() {
                     />
                   </div>
                 </div>
-                <div className="col-span-12 pb-10 md:pb-24 md:col-span-6">
+                <div className="col-span-12 pb-10 md:col-span-6 md:pb-24">
                   <h4 className="text-xl font-semibold text-black">
                     Initial Screening
                   </h4>
@@ -329,7 +329,7 @@ export default function Career() {
                 </div>
               </div>
               <div className="grid grid-cols-1 items-end md:grid-cols-12 md:gap-20">
-                <div className="col-span-12 pb-10 md:pb-24 md:col-span-6 md:pr-24">
+                <div className="col-span-12 pb-10 md:col-span-6 md:pb-24 md:pr-24">
                   <h4 className="text-xl font-semibold text-black">
                     Assessment
                   </h4>
@@ -373,7 +373,7 @@ export default function Career() {
                     />
                   </div>
                 </div>
-                <div className="col-span-12 pb-10 md:pb-24 md:col-span-6">
+                <div className="col-span-12 pb-10 md:col-span-6 md:pb-24">
                   <h4 className="text-xl font-semibold text-black">
                     In-Depth Interviews
                   </h4>
@@ -392,7 +392,7 @@ export default function Career() {
                 </div>
               </div>
               <div className="grid grid-cols-1 items-end md:grid-cols-12 md:gap-20">
-                <div className="col-span-11 pb-10 md:pb-24 md:col-span-6 md:pr-24">
+                <div className="col-span-11 pb-10 md:col-span-6 md:pb-24 md:pr-24">
                   <h4 className="text-xl font-semibold text-black">
                     Final Review
                   </h4>
@@ -423,7 +423,7 @@ export default function Career() {
               </div>
               <div className="grid grid-cols-1 items-end md:grid-cols-12">
                 <div className="col-span-6 hidden md:block"> </div>
-                <div className="col-span-12 md:col-span-6 pb-10 md:pb-24">
+                <div className="col-span-12 pb-10 md:col-span-6 md:pb-24">
                   <h4 className="text-xl font-semibold text-black">
                     Onboarding
                   </h4>
