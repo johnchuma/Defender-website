@@ -7,7 +7,6 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import CustomButton from "../(components)/customButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
-import { USERDETAILS_API } from "../../(api)/user";
 import { getDataFromLocalStorage } from "../../utils/auth";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -122,9 +121,6 @@ export default function WishListPage() {
     }
 
     try {
-      const response = await USERDETAILS_API(accessToken);
-      const userData = response.data;
-
       if (selectedProduct) {
         handleEditCart(selectedProduct);
       }

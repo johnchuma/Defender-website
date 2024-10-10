@@ -12,6 +12,9 @@ import CustomOutlineButton from "../(components)/customOutlineButton";
 import { eastAfricanCountries } from "../../utils/constants";
 import { USERDETAILS_API } from "../../(api)/user";
 import { getDataFromLocalStorage } from "../../utils/auth";
+import { ORDER_API } from "@/app/(api)/order";
+import Spinner from "../(components)/spinner";
+import { FaRegCheckCircle } from "react-icons/fa";
 interface CartItem {
   id: string;
   name: string;
@@ -22,6 +25,8 @@ interface CartItem {
 
 export default function PaymentPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [delivery, setDelivery] = useState<string>("no");
@@ -32,6 +37,7 @@ export default function PaymentPage() {
     name: string;
     districts: string[];
   } | null>(null);
+  const [userUuid, setUserUuid] = useState<string>("");
   const setFieldValueRef = useRef<(field: string, value: any) => void>();
 
   const validationSchema = Yup.object({
@@ -41,10 +47,10 @@ export default function PaymentPage() {
     phone: Yup.string()
       .required("Phone is required")
       .max(15, "Max 15 characters"),
-    country: Yup.string().required("Country is required"),
-    region: Yup.string().required("Region is required"),
-    district: Yup.string().required("District is required"),
-    street: Yup.string().required("Street address is required"),
+    country: Yup.string(),
+    region: Yup.string(),
+    district: Yup.string(),
+    street: Yup.string(),
   });
 
   const calculateTotalPrice = (cartItems: CartItem[]): number => {
@@ -75,6 +81,7 @@ export default function PaymentPage() {
       }
 
       const { body: userData } = response.data;
+      setUserUuid(userData.uuid);
 
       if (setFieldValueRef.current) {
         setFieldValueRef.current("name", userData.name);
@@ -82,6 +89,46 @@ export default function PaymentPage() {
       }
     } catch (error) {
       console.error("Error fetching user details:", error);
+    }
+  };
+
+  const handleSubmitOrder = async (values: any) => {
+    const orderData = {
+      user_uuid: userUuid,
+      withDelivery: delivery === "yes",
+      country: values.country,
+      region: values.region,
+      district: values.district,
+      address: values.street,
+      products: cart.map((item) => ({
+        product: item.name,
+        color: item.color,
+        count: item.count,
+        price: item.price,
+      })),
+    };
+
+    try {
+      setLoading(true);
+      setIsSuccess(false);
+
+      setTimeout(async () => {
+        const response = await ORDER_API(orderData);
+
+        if (response.status === 200) {
+          console.log("Order placed successfully!");
+          setIsSuccess(true);
+          router.push(`/myAccount?user_uuid=${userUuid}`);
+        } else {
+          console.error("Failed to place order", response.data);
+          setIsSuccess(false);
+        }
+
+        setLoading(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error placing order:", error);
+      setLoading(false);
     }
   };
 
@@ -116,6 +163,30 @@ export default function PaymentPage() {
 
   return (
     <div className="mx-auto w-11/12 space-y-8 pb-20 md:w-9/12">
+      {loading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="flex flex-col items-center justify-center space-y-2 rounded-lg bg-white px-14 py-8">
+            {isSuccess ? (
+              <FaRegCheckCircle className="h-14 w-14 text-green-500" />
+            ) : (
+              <Spinner borderColor="border-blue-400" size="w-14 h-14" />
+            )}
+            <div className="text-xl font-semibold text-black">
+              {isSuccess ? "Payment received" : "Payment Processing..."}
+            </div>
+            {isSuccess ? (
+              <div className="text-mutedText">
+                Please wait, do not close this screen
+              </div>
+            ) : (
+              <div className="text-mutedText">
+                Your order is now on the way, Please check your email for the
+                receipt.
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       <nav className="flex rounded-md py-2" onClick={() => router.back()}>
         <div className="flex items-center">
           <span className="mx-2 block text-mutedText md:hidden">
@@ -134,7 +205,7 @@ export default function PaymentPage() {
         <h2 className="text-3xl font-semibold">Payments</h2>
       </div>
 
-      <div className="flex flex-col md:space-x-10 py-8 md:flex-row">
+      <div className="flex flex-col py-8 md:flex-row md:space-x-10">
         <div className="mt-7 w-full md:mt-0 md:w-8/12">
           <div className="border-b-2 border-secondaryColor">
             <p className="py-3 text-xl uppercase">Shipping Information</p>
@@ -143,7 +214,7 @@ export default function PaymentPage() {
             <Formik
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting }) => {
-                console.log("Form submitted with values:", values);
+                handleSubmitOrder(values);
                 setSubmitting(false);
               }}
               initialValues={{
@@ -168,9 +239,9 @@ export default function PaymentPage() {
                   <div className="rounded-lg shadow-lg shadow-[#E0E0E0]">
                     <div className="w-full p-5">
                       <form onSubmit={handleSubmit}>
-                        <div className="flex w-full flex-col md:space-x-4 md:flex-row">
-                        <div className="my-1 flex w-full md:w-6/12 flex-col space-y-3">
-                        <label>Full Name</label>
+                        <div className="flex w-full flex-col md:flex-row md:space-x-4">
+                          <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                            <label>Full Name</label>
                             <input
                               className="w-full rounded-lg border-2 p-3 py-2 outline-[#E0E0E0] placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0]"
                               name="name"
@@ -185,8 +256,8 @@ export default function PaymentPage() {
                             )}
                           </div>
 
-                          <div className="my-1 flex w-full md:w-6/12 flex-col space-y-3">
-                          <label>Phone Number</label>
+                          <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                            <label>Phone Number</label>
                             <input
                               className="w-full rounded-lg border-2 p-3 py-2 outline-[#E0E0E0] placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0]"
                               name="phone"
@@ -232,7 +303,7 @@ export default function PaymentPage() {
                         </div>
                         {delivery === "yes" && (
                           <>
-                            <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                            <div className="flex w-full flex-col md:flex-row md:space-x-4">
                               <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
                                 <label>Country</label>
                                 <select
@@ -286,7 +357,7 @@ export default function PaymentPage() {
                               </div>
                             </div>
                             {selectedRegion && selectedRegionData && (
-                              <div className="flex w-full flex-col md:space-x-4 md:flex-row">
+                              <div className="flex w-full flex-col md:flex-row md:space-x-4">
                                 <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
                                   <label>District</label>
                                   <select
@@ -375,6 +446,7 @@ export default function PaymentPage() {
                           <CustomButton
                             btntext="Pay Now"
                             className="w-full md:px-12"
+                            type="submit"
                           />
                         </div>
                       </form>

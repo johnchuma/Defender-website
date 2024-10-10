@@ -149,7 +149,7 @@ export const FloatingNav = ({
             duration: 0.2,
           }}
           className={cn(
-            "max-w-screen container fixed inset-x-0 top-2 z-[5000] mx-auto grid grid-cols-2 items-center justify-center rounded-2xl bg-white px-10 py-3 lg:grid-cols-3 2xl:top-4",
+            "max-w-screen container sticky inset-x-0 top-2 z-[5000] mx-auto grid grid-cols-2 items-center justify-center rounded-2xl bg-white px-10 py-3 lg:grid-cols-3 2xl:top-4",
             atTop
               ? ""
               : "border border-transparent shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]",
@@ -284,7 +284,7 @@ export const FloatingNav = ({
               className="relative cursor-pointer whitespace-nowrap text-base text-gray-600 hover:text-primaryColor"
             >
               My Account
-              {pathname.includes("/myAccount") && (
+              {(pathname.includes("/myAccount") || pathname.includes("/orders") || pathname.includes("/settings")) && (
                 <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
               )}
             </span>

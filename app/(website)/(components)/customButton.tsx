@@ -8,6 +8,7 @@ interface BtnItem {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export default function CustomButton({
@@ -16,6 +17,7 @@ export default function CustomButton({
   disabled = false,
   onClick,
   className,
+  type = "button",
 }: BtnItem) {
   const handleClick = () => {
     if (onClick && !disabled) {
@@ -36,7 +38,7 @@ export default function CustomButton({
           className,
         )}
         onClick={handleClick}
-        type="button"
+        type={type}
         disabled={disabled}
       >
         {btntext}
