@@ -19,10 +19,14 @@ export default function UserDashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex">
-      <Sidebar />
+    <section className="bg-[#F2F2F2]">
       <FloatingNav navItems={siteConfig.navItems} />
-      <div className="pt-24">{children}</div>
+      <div className="flex">
+        <div className="fixed h-[85vh] w-[18%] left-5 top-24 rounded-lg bg-white px-3 shadow-lg">
+          <Sidebar />
+        </div>
+        <div className="ms-auto min-h-[90vh] w-[82%] px-5 pt-10">{children}</div>
+      </div>
     </section>
   );
 }
