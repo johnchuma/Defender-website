@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import CustomButton from "./customButton";
-import { CONTACT_API } from "../(api)/contact";
+import { CONTACT_API } from "../../(api)/contact";
 
 export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -56,7 +56,7 @@ export default function ContactUs() {
             <h4 className="font-semibold text-black text-xl">
               Didn`t find your answer?
             </h4>
-            <p className="text-black">Don't hestitate to contact us</p>
+            <p className="text-black">Don`t hestitate to contact us</p>
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col space-y-3 my-3">
                 <label>Your name</label>

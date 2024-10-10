@@ -1,4 +1,4 @@
-import Link from "next/link";
+"use client"
 import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { TbMoodEmpty } from "react-icons/tb";
@@ -10,13 +10,15 @@ interface OrderTableProps {
     total: string;
     paymentStatus: string;
     items: number;
-    deliveryStatus: string;
+    isDelivered: boolean; 
   }>;
+  mapDeliveryStatus: (isDelivered: boolean) => "Pending" | "Delivered"; 
   itemsPerPage?: number;
 }
 
 const OrderTable: React.FC<OrderTableProps> = ({
   tableData,
+  mapDeliveryStatus,
   itemsPerPage = 5,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -55,13 +57,13 @@ const OrderTable: React.FC<OrderTableProps> = ({
         <tbody>
           {currentData.length > 0 ? (
             currentData.map((order, index) => (
-              <tr key={index} >
+              <tr key={index}>
                 <td>{order.order}</td>
                 <td>{order.date}</td>
                 <td>{order.total}</td>
                 <td>{order.paymentStatus}</td>
                 <td>{order.items}</td>
-                <td>{order.deliveryStatus}</td>
+                <td>{mapDeliveryStatus(order.isDelivered)}</td> 
               </tr>
             ))
           ) : (

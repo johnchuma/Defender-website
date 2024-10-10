@@ -164,7 +164,7 @@ export default function PaymentPage() {
   return (
     <div className="mx-auto w-11/12 space-y-8 pb-20 md:w-9/12">
       {loading && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="absolute inset-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
           <div className="flex flex-col items-center justify-center space-y-2 rounded-lg bg-white px-14 py-8">
             {isSuccess ? (
               <FaRegCheckCircle className="h-14 w-14 text-green-500" />
@@ -174,16 +174,12 @@ export default function PaymentPage() {
             <div className="text-xl font-semibold text-black">
               {isSuccess ? "Payment received" : "Payment Processing..."}
             </div>
-            {isSuccess ? (
-              <div className="text-mutedText">
-                Please wait, do not close this screen
-              </div>
-            ) : (
-              <div className="text-mutedText">
-                Your order is now on the way, Please check your email for the
-                receipt.
-              </div>
-            )}
+
+            <div className="text-mutedText">
+              {isSuccess
+                ? "Your order is now on the way, Please check your email for the receipt."
+                : "Please wait, do not close this screen"}
+            </div>
           </div>
         </div>
       )}
