@@ -121,7 +121,7 @@ const SettingsPage = () => {
                     <button
                       onClick={item.onToggle}
                       className={`relative inline-flex h-6 w-11 items-center rounded-full p-1 transition-colors ${
-                        item.isToggled ? "bg-blue-500" : "bg-gray-300"
+                        item.isToggled ? "bg-primaryColor" : "bg-gray-300"
                       }`}
                     >
                       <span
