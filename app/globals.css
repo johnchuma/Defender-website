@@ -5,3 +5,21 @@
 .form-inputstyle{
   @apply w-full rounded placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0] border-[#E0E0E0]
 }
+
+.sideNav-scroll {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
+}
+
+.sideNav-scroll::-webkit-scrollbar {
+  width: 4px; /* Thin scrollbar width */
+}
+
+.sideNav-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Dark thumb for better visibility */
+  border-radius: 10px; /* Rounded scrollbar */
+}
+
+.sideNav-scroll::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent track */
+}
