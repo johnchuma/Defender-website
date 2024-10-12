@@ -2,8 +2,9 @@
 import { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import CustomButton from "./customButton";
+// import CustomButton from "./customButton";
 import { CONTACT_API } from "../../(api)/contact";
+import CustomButton from "@/app/_components/customButton";
 
 export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false);
