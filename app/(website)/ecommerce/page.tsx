@@ -11,6 +11,8 @@ import Category from "../(components)/midNavBar";
 import CustomOutlineButton from "../(components)/customOutlineButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface CartItem {
   id: number;
   name: string;
@@ -35,24 +37,16 @@ export default function Ecommerce() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const [productVariations, setProductVariations] = useState<
-    ProductVariation[]
-  >([]);
+  const [productVariations, setProductVariations] = useState<ProductVariation[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<CartItem | null>(null);
   const [productCount, setProductCount] = useState<number>(1);
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [isModified, setIsModified] = useState<boolean>(false);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
   const featuresRef = useRef(null);
   const faqsRef = useRef(null);
   const { setWishlistCount } = useWishlist();
 
   useEffect(() => {
-    if (type === "android") {
-      setProductVariations(android);
-    } else {
-      setProductVariations(rto);
-    }
+    setProductVariations(type === "android" ? android : rto);
   }, [type]);
 
   useEffect(() => {
@@ -65,41 +59,13 @@ export default function Ecommerce() {
     setSelectedProduct({ ...product, count: 1 });
   };
 
-  const calculateTotalPrice = (cartItems: CartItem[]): number =>
-    cartItems.reduce((acc, item) => acc + item.price * item.count, 0);
-
   useEffect(() => {
-    setTotalPrice(calculateTotalPrice(cart));
-  }, [cart]);
-
-  useEffect(() => {
-    const savedCart = JSON.parse(
-      localStorage.getItem("defenderCart") || "[]",
-    ) as CartItem[];
+    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
     setCart(savedCart);
-    setTotalPrice(calculateTotalPrice(savedCart));
   }, []);
 
-  useEffect(() => {
-    if (selectedProduct) {
-      const cart = JSON.parse(
-        localStorage.getItem("defenderCart") || "[]",
-      ) as CartItem[];
-      const existingProduct = cart.find((p) => p.id === selectedProduct.id);
-
-      if (existingProduct) {
-        setIsModified(
-          existingProduct.count !== selectedProduct.count ||
-            existingProduct.color !== selectedProduct.color,
-        );
-      }
-    }
-  }, [selectedProduct]);
-
   const handleAddToCart = (product: CartItem) => {
-    const cart = JSON.parse(
-      localStorage.getItem("defenderCart") || "[]",
-    ) as CartItem[];
+    const cart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
     const productIndex = cart.findIndex((p) => p.id === product.id);
 
     if (productIndex !== -1) {
@@ -128,12 +94,19 @@ export default function Ecommerce() {
     if (selectedProduct) {
       const productToAdd = { ...selectedProduct, count: productCount };
       handleAddToCart(productToAdd);
-      router.push("/wishlist");
+  
+      if (cart.length > 0) {
+        router.push("/wishlist");
+      } else {
+        toast.error("Cart is empty, cannot add to wishlist.");
+      }
     }
   };
+  
 
   return (
     <div className="mx-auto my-20 w-11/12 space-y-20 md:w-9/12">
+       <ToastContainer />
       <div className="grid grid-cols-12 items-start md:gap-10 lg:gap-20">
         <div className="col-span-12 space-y-5 pb-5 md:col-span-6">
           <Image

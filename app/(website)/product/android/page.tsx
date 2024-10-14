@@ -11,6 +11,17 @@ import CustomButton from "@/app/_components/customButton";
 import VideoPlayer from "../../(components)/videoPlayer";
 import SimpleCarousel from "../../(components)/carousel";
 
+interface TechnicalSpecification {
+  title: string;
+  description: string; 
+}
+interface SafetyFeature {
+  icon: JSX.Element;
+  title: string;
+}
+interface MoreSpecification {
+  text: string;
+}
 export default function ProductPage() {
   const router = useRouter();
   const handleBuyNow = () => {
@@ -37,7 +48,7 @@ export default function ProductPage() {
           Safety Features
         </h1>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-9">
-          {safetyFeatures.map((item: any, index: any) => {
+        {safetyFeatures.map((item: SafetyFeature, index: number) => {
             return (
               <div
                 className="flex flex-col items-center space-y-6 rounded-lg p-6 shadow-md md:p-20"
@@ -76,14 +87,14 @@ export default function ProductPage() {
           Technical Specifications
         </h1>
         <div>
-          {technicalSpecifications.map((item: any, index: any) => {
+        {technicalSpecifications.map((item: TechnicalSpecification, index: number) => {
             return (
               <div className="border-b-2 border-[#E0E0E0] py-4" key={index}>
                 <div className="grid grid-cols-2 justify-start gap-4 md:gap-9">
                   <div className="font-semibold text-textColor">
                     {item.title}
                   </div>
-                  <div className="text-textColor">{item.decription}</div>
+                  <div className="text-textColor">{item.description}</div>
                 </div>
               </div>
             );
@@ -99,7 +110,7 @@ export default function ProductPage() {
               to know
             </h1>
             <div className="grid grid-cols-2 gap-5">
-              {moreSpecification.map((item: any, index: any) => {
+              {moreSpecification.map((item: MoreSpecification, index: number) => {
                 return (
                   <div className="w-2/3" key={index}>
                     <div className="text-textColor"> {item.text}</div>

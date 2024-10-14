@@ -9,6 +9,14 @@ import OrderCategory from "../(components)/orderNav";
 
 import { TbBuildingStore } from "react-icons/tb";
 import { FaInstagram } from "react-icons/fa6";
+type Order = {
+  order: string;
+  date: string;
+  total: string;
+  paymentStatus: string;
+  items: number;
+  isDelivered: boolean;
+};
 const generateDummyData = (num: number) => {
   const statuses = ["Paid", "Pending", "Failed"];
   const itemsCount = [1, 2, 3, 4, 5];
@@ -57,8 +65,8 @@ const OrdersPage = () => {
   const searchParams = useSearchParams();
   const user_uuid = searchParams.get("user_uuid");
   const [isLoading, setIsLoading] = useState(false);
-  const [allOrders, setAllOrders] = useState<any[]>([]);
-  const [filteredOrders, setFilteredOrders] = useState<any[]>([]);
+  const [allOrders, setAllOrders] = useState<Order[]>([]);
+  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [activeTab, setActiveTab] = useState(0); 
 
   const fetchOrderDetails = async () => {
@@ -82,7 +90,7 @@ const OrdersPage = () => {
     }
   };
 
-  const filterOrders = (orders: any[], tab: number) => {
+  const filterOrders = (orders: Order[], tab: number) => {
     const statusMap = ["All", "Pending", "Delivered"];
     const filtered = orders.filter((order) => {
       if (statusMap[tab] === "All") return true;
@@ -108,7 +116,7 @@ const OrdersPage = () => {
     <div className="space-y-5 p-5">
       <div>
         <h1 className="text-xl font-semibold">Your Orders</h1>
-        <p className="text-mutedText">Let’s get your orders right</p>
+        <p className="text-mutedText">Let`s get your orders right</p>
       </div>
       <Tiles tilesItems={myOrdersTiles} />
       <OrderCategory 

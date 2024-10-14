@@ -27,11 +27,6 @@ const api = axios.create({
     products: Product[];
   }  
 
-  interface UniqueOrderData {
-    user_uuid: string;
-  }  
-
-
 export const ORDER_API = (data:InquiryData) => {
     return api({
         url: `/orders`,

@@ -2,7 +2,7 @@
 
 import OrderTable from "../(components)/orderTable";
 import Tiles from "../(components)/tiles";
-import { PREVIOUS_ORDER_API, ACTIVE_ORDER_API, UNIQUE_ORDER_API } from "../../(api)/order";
+import { UNIQUE_ORDER_API } from "../../(api)/order";
 import { IoIosArrowDown } from "react-icons/io";
 import { useEffect, useState } from "react";
 import Spinner from "@/app/(website)/(components)/spinner";
@@ -30,6 +30,14 @@ const myAccountTiles = [
     price: "756,000",
   },
 ];
+type Order = {
+  order: string;
+  date: string;
+  total: string;
+  paymentStatus: string;
+  items: number;
+  isDelivered: boolean;
+};
 
 export default function MyAccount() {
   const searchParams = useSearchParams();
@@ -37,7 +45,7 @@ export default function MyAccount() {
   console.log("🚀 ~ MyAccount ~ user_uuid:", user_uuid);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [allOrders, setAllOrders] = useState<any[]>([]);
+  const [allOrders, setAllOrders] = useState<Order[]>([]);
 
   const fetchOrderDetails = async () => {
     try {

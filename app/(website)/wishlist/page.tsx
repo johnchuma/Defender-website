@@ -23,9 +23,6 @@ interface CartItem {
 
 export default function WishListPage() {
   const router = useRouter();
-  const [selectedProduct, setSelectedProduct] = useState<CartItem>(
-    {} as CartItem,
-  );
   const [cart, setCart] = useState<CartItem[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const { setWishlistCount } = useWishlist();
@@ -81,30 +78,6 @@ export default function WishListPage() {
     document.dispatchEvent(new Event("cartUpdate"));
   };
 
-  const handleEditCart = (productToEdit: CartItem) => {
-    setCart((prevCart) => {
-      const existingProductIndex = prevCart.findIndex(
-        (product) => product.id === productToEdit.id,
-      );
-
-      if (existingProductIndex !== -1) {
-        const updatedCart = [...prevCart];
-        updatedCart[existingProductIndex].count = productToEdit.count;
-
-        localStorage.setItem("defenderCart", JSON.stringify(updatedCart));
-        setTotalPrice(calculateTotalPrice(updatedCart));
-
-        const uniqueWishlistItems = new Set(updatedCart.map((item) => item.id));
-        setWishlistCount(uniqueWishlistItems.size);
-        document.dispatchEvent(new Event("cartUpdate"));
-
-        return updatedCart;
-      }
-
-      return prevCart;
-    });
-  };
-
   const handleBuyNow = async () => {
     if (cart.length === 0) {
       toast.warning(
@@ -121,13 +94,8 @@ export default function WishListPage() {
     }
 
     try {
-      if (selectedProduct) {
-        handleEditCart(selectedProduct);
-      }
-
       router.push(
         `/payment`,
-        // `/payment?token=${encodeURIComponent(accessToken)}&user=${encodeURIComponent(JSON.stringify(userData))}`,
       );
     } catch (error) {
       console.error("Error fetching user details:", error);

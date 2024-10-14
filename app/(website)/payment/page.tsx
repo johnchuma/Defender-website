@@ -22,7 +22,14 @@ interface CartItem {
   count: number;
   price: number;
 }
-
+interface OrderFormValues {
+  name: string;
+  phone: string;
+  country: string;
+  region: string;
+  district: string;
+  street: string;
+}
 export default function PaymentPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -38,7 +45,7 @@ export default function PaymentPage() {
     districts: string[];
   } | null>(null);
   const [userUuid, setUserUuid] = useState<string>("");
-  const setFieldValueRef = useRef<(field: string, value: any) => void>();
+  const setFieldValueRef = useRef<(field: string, value: string) => void>();
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -92,7 +99,7 @@ export default function PaymentPage() {
     }
   };
 
-  const handleSubmitOrder = async (values: any) => {
+  const handleSubmitOrder = async (values: OrderFormValues) => {
     const orderData = {
       user_uuid: userUuid,
       withDelivery: delivery === "yes",

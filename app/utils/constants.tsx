@@ -281,19 +281,19 @@ export const safetyFeatures = [
 ];
 
 export const technicalSpecifications = [
-  { title: "Screen", decription: "1.4 inch IPS screen, Pixel 240x240" },
-  { title: "Touch panel", decription: "Full lamination, 2.5D" },
-  { title: "Operating system", decription: "RTOS" },
+  { title: "Screen", description: "1.4 inch IPS screen, Pixel 240x240" },
+  { title: "Touch panel", description: "Full lamination, 2.5D" },
+  { title: "Operating system", description: "RTOS" },
   {
     title: "Solution",
-    decription: "ASR3603S, 832MHz, One-core ARM Cortex-R5 processor",
+    description: "ASR3603S, 832MHz, One-core ARM Cortex-R5 processor",
   },
-  { title: "GPS Accuracy", decription: "5-15m" },
-  { title: "WIFI Accuracy", decription: "30-50m" },
-  { title: "LBS Accuracy", decription: "100m  above" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
+  { title: "GPS Accuracy", description: "5-15m" },
+  { title: "WIFI Accuracy", description: "30-50m" },
+  { title: "LBS Accuracy", description: "100m  above" },
+  { title: "Operating system", description: "Windows 11 Home" },
+  { title: "Operating system", description: "Windows 11 Home" },
+  { title: "Operating system", description: "Windows 11 Home" },
 ];
 
 export const moreSpecification = [

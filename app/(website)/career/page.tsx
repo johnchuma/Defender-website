@@ -9,6 +9,24 @@ import { HiOutlineComputerDesktop } from "react-icons/hi2";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
+interface WhyJoinUsItem {
+  icon: JSX.Element;
+  title: string;
+  description: string;
+}
+interface JobOffer {
+  title: string;
+  description: string;
+  prospects: string;
+  duration: string;
+  location: string;
+}
+interface Testimonial {
+  image: string;
+  videosrc: string;
+  name: string;
+  position: string;
+}
 export default function Career() {
   const jobsRef = useRef<HTMLDivElement>(null);
   const [showVideo, setShowVideo] = useState(false);
@@ -47,12 +65,12 @@ export default function Career() {
               Why Join Us
             </h1>
             <p className="text-center text-mutedText">
-              In addition to a competitive world of today, here're a few
+              In addition to a competitive world of today, here`re a few
               resources we offer
               <br /> to help our team excel.
             </p>
             <div className="hidden grid-cols-1 gap-9 md:grid md:grid-cols-3">
-              {whyJoinUs.map((item: any, index: any) => {
+            {whyJoinUs.map((item: WhyJoinUsItem, index: number) => {
                 return (
                   <div
                     className="flex flex-col items-start space-y-6 rounded-lg p-10 shadow-md"
@@ -73,7 +91,7 @@ export default function Career() {
             </div>
             <div className="block md:hidden">
               <Swiper spaceBetween={20} slidesPerView={1.2}>
-                {whyJoinUs.map((item: any, index: any) => {
+              {whyJoinUs.map((item: WhyJoinUsItem, index: number) => {
                   return (
                     <SwiperSlide key={index}>
                       <div className="flex flex-col items-start space-y-6 rounded-lg p-10 shadow-md">
@@ -102,7 +120,7 @@ export default function Career() {
             </h1>
             <div className="space-x-5">
               <div className="hidden grid-cols-12 gap-10 md:grid">
-                {Testimonials.map((item: any, index: any) => {
+              {Testimonials.map((item: Testimonial, index: number) => {
                   return (
                     <div
                       className="relative col-span-4 h-72 w-full"
@@ -179,7 +197,7 @@ export default function Career() {
             </div>
             <div className="block md:hidden">
               <Swiper spaceBetween={20} slidesPerView={1.2}>
-                {Testimonials.map((item: any, index: any) => {
+              {Testimonials.map((item: Testimonial, index: number) => {
                   return (
                     <SwiperSlide key={index}>
                       <div className="relative h-72 w-full">
@@ -449,7 +467,7 @@ export default function Career() {
             </h1>
             <p className="text-center text-mutedText">Come join the team!</p>
             <div className="space-y-5">
-              {jobOffers.map((item: any, index: any) => {
+            {jobOffers.map((item: JobOffer, index: number) => {
                 return (
                   <div
                     className="flex w-full space-x-16 rounded-lg p-5 shadow-lg shadow-[#E0E0E0] md:p-14"
