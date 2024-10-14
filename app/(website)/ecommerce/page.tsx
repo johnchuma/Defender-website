@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { productDetails, faqsItems, rto, android } from "@/app/utils/constants";
@@ -13,6 +13,7 @@ import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from "../(components)/spinner";
 interface CartItem {
   id: number;
   name: string;
@@ -33,6 +34,13 @@ interface ProductVariation {
 }
 
 export default function Ecommerce() {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <EcommerceContent />
+    </Suspense>
+  );
+}
+function EcommerceContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");

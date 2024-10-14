@@ -1,5 +1,6 @@
-"use client"
-import { useEffect, useState } from "react";
+"use client";
+
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation"; 
 import { UNIQUE_ORDER_API } from "@/app/(api)/order";
 import OrderTable from "../(components)/orderTable";
@@ -9,6 +10,7 @@ import OrderCategory from "../(components)/orderNav";
 
 import { TbBuildingStore } from "react-icons/tb";
 import { FaInstagram } from "react-icons/fa6";
+
 type Order = {
   order: string;
   date: string;
@@ -17,6 +19,7 @@ type Order = {
   items: number;
   isDelivered: boolean;
 };
+
 const generateDummyData = (num: number) => {
   const statuses = ["Paid", "Pending", "Failed"];
   const itemsCount = [1, 2, 3, 4, 5];
@@ -94,19 +97,19 @@ const OrdersPage = () => {
     const statusMap = ["All", "Pending", "Delivered"];
     const filtered = orders.filter((order) => {
       if (statusMap[tab] === "All") return true;
-      if (statusMap[tab] === "Pending") return order.isDelivered === false;
-      if (statusMap[tab] === "Delivered") return order.isDelivered === true;
+      if (statusMap[tab] === "Pending") return !order.isDelivered;
+      if (statusMap[tab] === "Delivered") return order.isDelivered;
     });
     setFilteredOrders(filtered);
   };
 
   useEffect(() => {
     fetchOrderDetails();
-  });
+  }); // Fetch orders when user_uuid changes
 
   useEffect(() => {
     filterOrders(allOrders, activeTab); 
-  }, [activeTab, allOrders]);
+  }, [activeTab, allOrders]); // Re-filter when activeTab or allOrders changes
 
   const mapDeliveryStatus = (isDelivered: boolean) => {
     return isDelivered ? "Delivered" : "Pending";
@@ -137,4 +140,11 @@ const OrdersPage = () => {
   );
 };
 
-export default OrdersPage;
+// Wrap the OrdersPage component with Suspense for proper handling
+const OrdersPageWrapper = () => (
+  <Suspense fallback={<Spinner />}>
+    <OrdersPage />
+  </Suspense>
+);
+
+export default OrdersPageWrapper;

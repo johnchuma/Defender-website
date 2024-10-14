@@ -1,5 +1,5 @@
 "use client";
-
+import React, { Suspense } from "react";
 import OrderTable from "../(components)/orderTable";
 import Tiles from "../(components)/tiles";
 import { UNIQUE_ORDER_API } from "../../(api)/order";
@@ -30,6 +30,7 @@ const myAccountTiles = [
     price: "756,000",
   },
 ];
+
 type Order = {
   order: string;
   date: string;
@@ -40,6 +41,14 @@ type Order = {
 };
 
 export default function MyAccount() {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <MyAccountContent />
+    </Suspense>
+  );
+}
+
+function MyAccountContent() {
   const searchParams = useSearchParams();
   const user_uuid = searchParams.get("user_uuid");
   console.log("🚀 ~ MyAccount ~ user_uuid:", user_uuid);
@@ -68,7 +77,9 @@ export default function MyAccount() {
   };
 
   useEffect(() => {
-    fetchOrderDetails();
+    if (user_uuid) {
+      fetchOrderDetails();
+    }
   });
 
   const mapDeliveryStatus = (isDelivered: boolean) => {
@@ -79,8 +90,7 @@ export default function MyAccount() {
     <div className="space-y-5 p-5">
       <div>
         <h1 className="font-semibold text-xl">Welcome back, Jane!</h1>
-        <p className="text-mutedText">Let`
-          s get right into it</p>
+        <p className="text-mutedText">Let`s get right into it</p>
       </div>
       <div className="flex justify-center w-28 space-x-3 rounded-lg bg-white items-center p-2">
         <p className="text-mutedText">Filter</p>
