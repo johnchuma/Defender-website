@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.form-inputstyle{
+  @apply w-full rounded placeholder:text-mutedText focus:border-[#E0E0E0] focus:ring-[#E0E0E0] border-[#E0E0E0]
+}
+
+td {
+  @apply py-4 px-2 border-b-2 border-backgroundColor
+}
+
+th {
+  @apply uppercase text-mutedText py-2 text-start px-2 font-normal
+}
