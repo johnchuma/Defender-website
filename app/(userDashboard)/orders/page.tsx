@@ -102,7 +102,7 @@ const OrdersPage = () => {
 
   useEffect(() => {
     fetchOrderDetails();
-  }, [user_uuid]);
+  });
 
   useEffect(() => {
     filterOrders(allOrders, activeTab); 

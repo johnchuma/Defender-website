@@ -69,7 +69,7 @@ export default function MyAccount() {
 
   useEffect(() => {
     fetchOrderDetails();
-  }, []);
+  });
 
   const mapDeliveryStatus = (isDelivered: boolean) => {
     return isDelivered ? "Delivered" : "Pending";
