@@ -1,20 +1,27 @@
-"use client"
+"use client";
 import { LuPencilLine } from "react-icons/lu";
 import { FaCircleUser } from "react-icons/fa6";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import SettingCategory from "../(components)/settingdNav";
+import { UserContext } from "../layout";
+
 
 const SettingsPage = () => {
   const [emailNotifications, setEmailNotifications] = useState(false);
   const [smsNotifications, setSmsNotifications] = useState(false);
   const [promotionsNotifications, setPromotionsNotifications] = useState(false);
-
+  const user = useContext(UserContext);
   const [activeTab, setActiveTab] = useState(0);
 
   const allRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
   const addressRef = useRef<HTMLDivElement>(null);
   const notRef = useRef<HTMLDivElement>(null);
+
+  const fullName = user?.name || "";
+  const nameParts = fullName.split(" ");
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(" ") || "-";
 
   return (
     <div className="space-y-5 p-5">
@@ -31,27 +38,29 @@ const SettingsPage = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      
+
       <section ref={allRef}>
         {(activeTab === 0 || activeTab === 1) && (
-          <div className="bg-white p-5 mt-5 rounded-lg shadow-md" ref={infoRef}>
+          <div className="mt-5 rounded-lg bg-white p-5 shadow-md" ref={infoRef}>
             <div className="flex items-center justify-between space-x-3">
               <div className="flex w-60 items-center space-x-3">
                 <FaCircleUser className="text-5xl text-mutedText" />
-                <p className="text-lg font-semibold text-black">Esther Howard</p>
+                <p className="text-lg font-semibold text-black">{user?.name}</p>
               </div>
               <div className="flex w-28 items-center justify-center space-x-3 rounded-lg border-2 border-mutedText p-1">
                 <p className="text-mutedText">Edit</p>
                 <LuPencilLine className="text-mutedText" />
               </div>
             </div>
-            <p className="py-3 text-lg font-semibold text-black">Personal Information</p>
+            <p className="py-3 text-lg font-semibold text-black">
+              Personal Information
+            </p>
             <div className="grid grid-cols-2 space-y-2">
               {[
-                { label: "First name", value: "Esther" },
-                { label: "Last name", value: "Howard" },
-                { label: "Email", value: "esther@example.com" },
-                { label: "Phone", value: "123-456-7890" },
+                { label: "First name", value: firstName },
+                { label: "Last name", value: lastName },
+                { label: "Email", value: user?.email },
+                { label: "Phone", value: user?.phone },
               ].map((item, index) => (
                 <div className="space-y-1" key={index}>
                   <p className="text-sm text-mutedText">{item.label}</p>
@@ -63,7 +72,10 @@ const SettingsPage = () => {
         )}
 
         {(activeTab === 0 || activeTab === 2) && (
-          <div className="bg-white p-5 mt-5 rounded-lg shadow-md" ref={addressRef}>
+          <div
+            className="mt-5 rounded-lg bg-white p-5 shadow-md"
+            ref={addressRef}
+          >
             <div className="flex justify-between space-x-3">
               <p className="text-lg font-semibold text-black">Address</p>
               <div className="flex w-28 items-center justify-center space-x-3 rounded-lg border-2 border-mutedText p-1">
@@ -88,7 +100,7 @@ const SettingsPage = () => {
         )}
 
         {(activeTab === 0 || activeTab === 3) && (
-          <div className="bg-white p-5 mt-5 rounded-lg shadow-md" ref={notRef}>
+          <div className="mt-5 rounded-lg bg-white p-5 shadow-md" ref={notRef}>
             <div className="flex justify-between space-x-3">
               <p className="text-lg font-semibold text-black">Notifications</p>
               <div className="flex w-28 items-center justify-center space-x-3 rounded-lg border-2 border-mutedText p-1">
@@ -142,4 +154,3 @@ const SettingsPage = () => {
 };
 
 export default SettingsPage;
-

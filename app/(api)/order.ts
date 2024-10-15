@@ -18,7 +18,6 @@ const api = axios.create({
   }
   
   interface InquiryData {
-    user_uuid: string;
     withDelivery: boolean;
     country: string;
     region: string;
@@ -51,9 +50,33 @@ export const ACTIVE_ORDER_API = (data:InquiryData) => {
       });
 };
 
-export const UNIQUE_ORDER_API = (user_uuid: string) => {
+export const ORDERBYUSER_API = (user_uuid: string) => {
     return api({
         url: `/orders/user/${user_uuid}`,
         method: "GET",
       });
+};
+
+export const PENDING_ORDERBYUSER_API = (user_uuid: string) => {
+  return api({
+      url: `/orders/pending/user/${user_uuid}`,
+      method: "GET",
+    });
+};
+
+export const DELIVERED_ORDERBYUSER_API = (user_uuid: string) => {
+  return api({
+      url: `/orders/delivered/user/${user_uuid}`,
+      method: "GET",
+    });
+};
+
+export const ORDERSTATS_PERUSER_API = (user_uuid: string, accessToken:string) => {
+  return api({
+      url: `/stats/user/${user_uuid}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+    });
 };

@@ -31,7 +31,7 @@ export default function Register() {
     if (cartItems || wishlistItems) {
       router.push("/payment");
     } else {
-      router.push("/dashboard");
+      router.push("/myAccount");
     }
   };
 

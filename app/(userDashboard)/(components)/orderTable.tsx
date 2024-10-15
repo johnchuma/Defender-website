@@ -1,24 +1,24 @@
-"use client"
+"use client";
+
 import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { TbMoodEmpty } from "react-icons/tb";
+import formatDate from "@/app/(userDashboard)/(components)/dateFormatter";
 
 interface OrderTableProps {
   tableData: Array<{
-    order: string;
-    date: string;
-    total: string;
+    orderNo: string;
+    orderedAt: string;
+    totalPrice: string;
     paymentStatus: string;
-    items: number;
-    isDelivered: boolean; 
+    itemCount: number;
+    deliverStatus: string;
   }>;
-  mapDeliveryStatus: (isDelivered: boolean) => "Pending" | "Delivered"; 
   itemsPerPage?: number;
 }
 
 const OrderTable: React.FC<OrderTableProps> = ({
   tableData,
-  mapDeliveryStatus,
   itemsPerPage = 5,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,6 +40,19 @@ const OrderTable: React.FC<OrderTableProps> = ({
     }
   };
 
+  const getPaymentStatusStyle = (status: string) => {
+    switch (status) {
+      case "Completed":
+        return "bg-green-200 text-green-800";
+      case "cancelled":
+        return "bg-red-200 text-red-800";
+      case "pending":
+        return "bg-yellow-200 text-yellow-800";
+      default:
+        return "bg-gray-200 text-gray-800";
+    }
+  };
+
   return (
     <div className="space-y-4 bg-white p-5">
       <h1 className="text-xl font-semibold">My Orders</h1>
@@ -58,19 +71,26 @@ const OrderTable: React.FC<OrderTableProps> = ({
           {currentData.length > 0 ? (
             currentData.map((order, index) => (
               <tr key={index}>
-                <td>{order.order}</td>
-                <td>{order.date}</td>
-                <td>{order.total}</td>
-                <td>{order.paymentStatus}</td>
-                <td>{order.items}</td>
-                <td>{mapDeliveryStatus(order.isDelivered)}</td> 
+                <td>#{order.orderNo}</td>
+                <td>{formatDate(order.orderedAt)}</td>
+                <td>{order.totalPrice}</td>
+                <td>
+                  {" "}
+                  <div
+                    className={`rounded-lg p-2  opacity-90 ${getPaymentStatusStyle(order.paymentStatus)}`}
+                  >
+                    {order.paymentStatus}
+                  </div>
+                </td>
+                <td>{order.itemCount}</td>
+                <td>{order.deliverStatus}</td>
               </tr>
             ))
           ) : (
             <tr>
               <td colSpan={6} className="p-4">
                 <div className="flex flex-col items-center justify-center">
-                  <TbMoodEmpty className="text-5xl mb-2 text-mutedText" />
+                  <TbMoodEmpty className="mb-2 text-5xl text-mutedText" />
                   <span>No orders available</span>
                 </div>
               </td>
@@ -85,17 +105,17 @@ const OrderTable: React.FC<OrderTableProps> = ({
             <IoIosArrowBack /> <p>Previous</p>
           </div>
         </button>
-        
+
         <div className="flex space-x-2">
           {totalPages > 0 &&
             Array.from({ length: totalPages }, (_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentPage(index + 1)}
-                className={`px-2 py-1 rounded-md ${
+                className={`rounded-md px-2 py-1 ${
                   currentPage === index + 1
-                    ? "bg-primary text-mutedText border-2 border-backgroundColor"
-                    : "bg-backgroundColor text-mutedText border-2 border-backgroundColor"
+                    ? "bg-primary border-2 border-backgroundColor text-mutedText"
+                    : "border-2 border-backgroundColor bg-backgroundColor text-mutedText"
                 }`}
               >
                 {index + 1}

@@ -44,7 +44,6 @@ export default function PaymentPage() {
     name: string;
     districts: string[];
   } | null>(null);
-  const [userUuid, setUserUuid] = useState<string>("");
   const setFieldValueRef = useRef<(field: string, value: string) => void>();
 
   const validationSchema = Yup.object({
@@ -88,7 +87,6 @@ export default function PaymentPage() {
       }
 
       const { body: userData } = response.data;
-      setUserUuid(userData.uuid);
 
       if (setFieldValueRef.current) {
         setFieldValueRef.current("name", userData.name);
@@ -101,7 +99,6 @@ export default function PaymentPage() {
 
   const handleSubmitOrder = async (values: OrderFormValues) => {
     const orderData = {
-      user_uuid: userUuid,
       withDelivery: delivery === "yes",
       country: values.country,
       region: values.region,
@@ -125,7 +122,7 @@ export default function PaymentPage() {
         if (response.status === 200) {
           console.log("Order placed successfully!");
           setIsSuccess(true);
-          router.push(`/myAccount?user_uuid=${userUuid}`);
+          router.push(`/myAccount`);
         } else {
           console.error("Failed to place order", response.data);
           setIsSuccess(false);

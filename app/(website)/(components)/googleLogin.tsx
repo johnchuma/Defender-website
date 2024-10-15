@@ -19,7 +19,7 @@ export default function GoogleLogin() {
     if (cartItems || wishlistItems) {
       router.push("/payment");
     } else {
-      router.push("/dashboard");
+      router.push("/myAccount");
     }
   };
 
@@ -28,11 +28,12 @@ export default function GoogleLogin() {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const user_email = result.user.email;
-      console.log("🚀 ~ handleGoogleLogin ~ user_email:", user_email);
+      const user_name = result.user.displayName;
 
-      if (user_email) {
+      if (user_email && user_name) {
         GOOGLELOGIN_API({
           email: user_email,
+          name: user_name,
         })
           .then((response) => {
             if (response.data.status === true) {
