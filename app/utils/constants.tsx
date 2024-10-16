@@ -1,5 +1,5 @@
 import { TbScissors } from "react-icons/tb";
-import { LuBadgeCheck } from "react-icons/lu";
+import { LuBadgeCheck, LuBookOpen } from "react-icons/lu";
 import { CiDeliveryTruck } from "react-icons/ci";
 
 export const productDetails = [
@@ -250,7 +250,7 @@ export const visionContent = [
 ];
 
 import { PiGpsFixLight } from "react-icons/pi";
-import { HiOutlineLocationMarker } from "react-icons/hi";
+import { HiOutlineLocationMarker, HiOutlineUserGroup } from "react-icons/hi";
 import { FiPhone } from "react-icons/fi";
 import { CiVolumeMute } from "react-icons/ci";
 import { GrUserExpert } from "react-icons/gr";
@@ -281,19 +281,19 @@ export const safetyFeatures = [
 ];
 
 export const technicalSpecifications = [
-  { title: "Screen", decription: "1.4 inch IPS screen, Pixel 240x240" },
-  { title: "Touch panel", decription: "Full lamination, 2.5D" },
-  { title: "Operating system", decription: "RTOS" },
+  { title: "Screen", description: "1.4 inch IPS screen, Pixel 240x240" },
+  { title: "Touch panel", description: "Full lamination, 2.5D" },
+  { title: "Operating system", description: "RTOS" },
   {
     title: "Solution",
-    decription: "ASR3603S, 832MHz, One-core ARM Cortex-R5 processor",
+    description: "ASR3603S, 832MHz, One-core ARM Cortex-R5 processor",
   },
-  { title: "GPS Accuracy", decription: "5-15m" },
-  { title: "WIFI Accuracy", decription: "30-50m" },
-  { title: "LBS Accuracy", decription: "100m  above" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
-  { title: "Operating system", decription: "Windows 11 Home" },
+  { title: "GPS Accuracy", description: "5-15m" },
+  { title: "WIFI Accuracy", description: "30-50m" },
+  { title: "LBS Accuracy", description: "100m  above" },
+  { title: "Operating system", description: "Windows 11 Home" },
+  { title: "Operating system", description: "Windows 11 Home" },
+  { title: "Operating system", description: "Windows 11 Home" },
 ];
 
 export const moreSpecification = [
@@ -479,45 +479,320 @@ export const eastAfricanCountries = [
   },
 ];
 
-import { HiOutlineComputerDesktop, HiOutlineUsers, HiOutlineUser } from "react-icons/hi2";
+import {
+  HiOutlineComputerDesktop,
+  HiOutlineUsers,
+  HiOutlineUser,
+} from "react-icons/hi2";
 import { PiWindowsLogoLight } from "react-icons/pi";
 import { AiOutlineCoffee } from "react-icons/ai";
 import { LiaHeartbeatSolid } from "react-icons/lia";
+import { IoCashOutline } from "react-icons/io5";
+import { BsShop } from "react-icons/bs";
+import { MdOutlinePhone } from "react-icons/md";
 
 export const whyJoinUs = [
-  { icon: <LiaHeartbeatSolid className="text-cyan-600" />, title: "Health insurance", description: "Our comprehensive medical insurance covers a wide variety of needs"},
+  {
+    icon: <LiaHeartbeatSolid className="text-cyan-600" />,
+    title: "Health insurance",
+    description:
+      "Our comprehensive medical insurance covers a wide variety of needs",
+  },
   {
     icon: <HiOutlineComputerDesktop className="text-purple-600" />,
-    title: "New Macbook Pro", description:"All team members receive a brand new MacBook Pro work laptop on their first day",
+    title: "New Macbook Pro",
+    description:
+      "All team members receive a brand new MacBook Pro work laptop on their first day",
   },
   {
     icon: <HiOutlineUsers className="text-red-600" />,
-    title: "Smart, kind colleagues", description: "Learn and grow with highly accomplished colleagues who`re invested in your personal and professional development",
+    title: "Smart, kind colleagues",
+    description:
+      "Learn and grow with highly accomplished colleagues who`re invested in your personal and professional development",
   },
   {
     icon: <PiWindowsLogoLight className="text-yellow-600" />,
-    title: "Internet Reimbursement", description: "All team members receive a monthly budget to support their internet expenses",
+    title: "Internet Reimbursement",
+    description:
+      "All team members receive a monthly budget to support their internet expenses",
   },
   {
     icon: <AiOutlineCoffee className="text-cyan-600" />,
-    title: "Remote Work Budget", description: "We offer a one-time budget to assist team members in making their home office as productive as possible",
+    title: "Remote Work Budget",
+    description:
+      "We offer a one-time budget to assist team members in making their home office as productive as possible",
   },
   {
     icon: <HiOutlineUser className="text-blue-600" />,
-    title: "Professional Development", description: "We invest in our people to ensure they can achieve their short, medium, and long term professional goals",
+    title: "Professional Development",
+    description:
+      "We invest in our people to ensure they can achieve their short, medium, and long term professional goals",
   },
 ];
 
-
 export const jobOffers = [
-  { title: "Finance and Strategy Specialist", description: "We are looking for a dynamic Finance and Strategy Officer to join our team. The ideal candidate will have a strong background in finance, exceptional analytical skills, and the ability to translate financial data into actionable insights.", prospects:"Growth", duration:"Full-time", location:"Tanzania"},
-  { title: "Logistic and Inventory Officer", description: "We are seeking a skilled Logistics and Inventory Manager to oversee our supply chain operations and ensure efficient inventory management. The ideal candidate will have strong analytical skills, experience in logistics management, and a commitment to enhancing operational efficiency.", prospects:"Business", duration:"Full-time", location:"Tanzania"},
-  { title: "Customer Success Specialist", description: "We are looking for a dedicated Customer Success Specialist Officer to join our team. The ideal candidate will possess excellent communication skills, a passion for customer service, and a proactive approach to problem-solving.", prospects:"Business", duration:"Full-time", location:"Tanzania"},
-
+  {
+    title: "Finance and Strategy Specialist",
+    description:
+      "We are looking for a dynamic Finance and Strategy Officer to join our team. The ideal candidate will have a strong background in finance, exceptional analytical skills, and the ability to translate financial data into actionable insights.",
+    prospects: "Growth",
+    duration: "Full-time",
+    location: "Tanzania",
+  },
+  {
+    title: "Logistic and Inventory Officer",
+    description:
+      "We are seeking a skilled Logistics and Inventory Manager to oversee our supply chain operations and ensure efficient inventory management. The ideal candidate will have strong analytical skills, experience in logistics management, and a commitment to enhancing operational efficiency.",
+    prospects: "Business",
+    duration: "Full-time",
+    location: "Tanzania",
+  },
+  {
+    title: "Customer Success Specialist",
+    description:
+      "We are looking for a dedicated Customer Success Specialist Officer to join our team. The ideal candidate will possess excellent communication skills, a passion for customer service, and a proactive approach to problem-solving.",
+    prospects: "Business",
+    duration: "Full-time",
+    location: "Tanzania",
+  },
 ];
 
 export const Testimonials = [
-  { image: "/testimonial.svg", videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1", name: "Guy Hawkins", position: "Founder"},
-  { image: "/testimonial.svg", videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1", name: "Guy Hawkins", position: "Founder"},
-  { image: "/testimonial.svg", videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1", name: "Guy Hawkins", position: "Founder"},
+  {
+    image: "/testimonial.svg",
+    videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1",
+    name: "Guy Hawkins",
+    position: "Founder",
+  },
+  {
+    image: "/testimonial.svg",
+    videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1",
+    name: "Guy Hawkins",
+    position: "Founder",
+  },
+  {
+    image: "/testimonial.svg",
+    videosrc: "https://www.youtube.com/embed/d_pV8TGKfMc?autoplay=1",
+    name: "Guy Hawkins",
+    position: "Founder",
+  },
+];
+
+export const overviewStatsData = [
+  {
+    title: "Total Payments",
+    icon: IoCashOutline,
+    stats: "TZS 756,000",
+    positive: true,
+    description: "+12.00% this week",
+  },
+  {
+    title: "New Users",
+    icon: HiOutlineUserGroup,
+    stats: "150",
+    positive: true,
+    description: "+5.00% this week",
+  },
+  {
+    title: "Total Orders",
+    icon: BsShop,
+    stats: "1,200",
+    positive: false,
+    description: "-3.00% this week",
+  },
+  {
+    title: "Blog Views",
+    icon: LuBookOpen,
+    stats: "TZS 1,200,000",
+    positive: true,
+    description: "+20.00% this week",
+  },
+  {
+    title: "Inquiries",
+    icon: MdOutlinePhone,
+    stats: "30",
+    positive: false,
+    description: "+10.00% this week",
+  },
+];
+
+export const ordersStatsData = [
+  {
+    title: "Total Orders",
+    icon: BsShop,
+    stats: "TZS 756,000",
+    positive: true,
+    description: "+12.00% this week",
+  },
+  {
+    title: "Ordered Items",
+    stats: "150",
+    positive: true,
+    description: "+5.00% this week",
+  },
+  {
+    title: "Fulfilled Items",
+    stats: "1,200",
+    positive: false,
+    description: "-3.00% this week",
+  },
+  {
+    title: "Delivered Items",
+    stats: "TZS 1,200,000",
+    positive: true,
+    description: "+20.00% this week",
+  },
+  {
+    title: "Returned Items",
+    stats: "30",
+    positive: false,
+    description: "+10.00% this week",
+  },
+];
+
+export const paymentsStatsData = [
+  {
+    title: "Total Payments",
+    icon: IoCashOutline,
+    stats: "TZS 756,000",
+    positive: true,
+    description: "+12.00% this week",
+  },
+  {
+    title: "Successful Payments",
+    icon: IoCashOutline,
+    stats: "150",
+    positive: true,
+    description: "+5.00% this week",
+  },
+  {
+    title: "Pending Payments",
+    icon: IoCashOutline,
+    stats: "1,200",
+    positive: false,
+    description: "-3.00% this week",
+  },
+  {
+    title: "Failed Payments",
+    icon: IoCashOutline,
+    stats: "TZS 1,200,000",
+    positive: true,
+    description: "+20.00% this week",
+  },
+];
+
+export const customersStatsData = [
+  {
+    title: "New Customers",
+    icon: HiOutlineUserGroup,
+    stats: "250",
+    positive: true,
+    description: "+12.00% this week",
+  },
+  {
+    title: "Total Customers",
+    icon: HiOutlineUserGroup,
+    stats: "150",
+    positive: true,
+    description: "+5.00% this week",
+  },
+  {
+    title: "Active Customers",
+    icon: HiOutlineUserGroup,
+    stats: "1,200",
+    positive: false,
+    description: "-3.00% this week",
+  },
+];
+
+export const orderHeaders = [
+  { name: "orderId", label: "Order ID" },
+  { name: "age", label: "Age" },
+  { name: "location", label: "Location" },
+  { name: "occupation", label: "Occupation" },
+];
+
+export const ordersData = [
+  { orderId: "Alice", age: 30, location: "New York", occupation: "Engineer" },
+  {
+    orderId: "Bob",
+    age: 25,
+    location: "Los Angeles",
+    occupation: "Designer",
+  },
+  { orderId: "Charlie", age: 35, location: "Chicago", occupation: "Teacher" },
+];
+
+export const regionHeaders = [
+  { name: "region", label: "Region" },
+  { name: "revenue", label: "Revenue" },
+];
+
+export const regionData = [
+  {
+    region: "Dar es Salaam",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Mwanza",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Singida",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Njombe",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Pwani",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Kilimanjaro",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Simiyu",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Zanzibar",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Mbeya",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Ruvuma",
+    revenue: "TZS 227,000",
+  },
+  {
+    region: "Arusha",
+    revenue: "TZS 227,000",
+  },
+];
+
+export const blogTabs = [
+  { label: "Blog Home", href: "/blog" },
+  { label: "Child Safety", href: "/blog/child-safety" },
+  { label: "The Future of Parenting", href: "/blog/parenting" },
+  { label: "Product Features", href: "/blog/product-features" },
+  { label: "Stories & Testimonials", href: "/blog/stories-testimonials" },
+  { label: "News & Updates", href: "/blog/news-updates" },
+];
+
+export const orderAdminTabs = [
+  { label: "All", href: "/admin/orders" },
+  { label: "Pending", href: "/admin/orders/pending" },
+  { label: "Delivered", href: "/admin/orders/delivered" },
+];
+
+export const paymentAdminTabs = [
+  { label: "All", href: "/admin/payments" },
+  { label: "Successful", href: "/admin/payments/successful" },
+  { label: "Pending", href: "/admin/payments/pending" },
+  { label: "Failed", href: "/admin/payments/failed" },
 ];

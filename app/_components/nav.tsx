@@ -1,19 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { cn } from "@/app/lib/utils";
-import { siteConfig } from "../config/site";
-import SocialLinks from "./social-link";
+import { cn } from "@/app/utils/cn";
+import { siteConfig } from "@/app/config/site";
+import SocialLinks from "@/app/(website)/_components/social-link";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { useWishlist } from "../(components)/WishlistContext";
+import { useWishlist } from "@/app/(website)/(components)/WishlistContext";
+import { getDataFromLocalStorage } from "@/app/utils/auth";
+
 interface DropdownItem {
   label: string;
   link: string;
@@ -94,8 +96,24 @@ export const FloatingNav = ({
   const [atTop, setAtTop] = useState(true);
   const { wishlistCount } = useWishlist();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = getDataFromLocalStorage("defender_userToken");
+    setIsLoggedIn(!!token); // If token exists, set isLoggedIn to true
+  }, []);
 
   const toggleMenu = () => setOpen((prevOpen) => !prevOpen);
+
+  const handleAccountClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      router.push("/myAccount");
+    } else {
+      router.push("/login");
+    }
+  };
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     // Check if current is not undefined and is a number
@@ -132,7 +150,7 @@ export const FloatingNav = ({
             duration: 0.2,
           }}
           className={cn(
-            "max-w-screen container fixed inset-x-0 top-2 z-[5000] mx-auto grid grid-cols-2 items-center justify-center rounded-2xl bg-white px-10 py-3 lg:grid-cols-3 2xl:top-4",
+            "max-w-screen container sticky inset-x-0 top-2 z-[5000] mx-auto grid grid-cols-2 items-center justify-center rounded-2xl bg-white px-10 py-3 lg:grid-cols-3 2xl:top-4",
             atTop
               ? ""
               : "border border-transparent shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]",
@@ -256,10 +274,21 @@ export const FloatingNav = ({
               </Link>
               {wishlistCount > 0 && (
                 <div className="absolute -right-6 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primaryColor text-xs text-white">
-                 {wishlistCount}
+                  {wishlistCount}
                 </div>
               )}
             </div>
+
+            {/* { My Account } */}
+            <span
+              onClick={handleAccountClick}
+              className="relative cursor-pointer whitespace-nowrap text-base text-gray-600 hover:text-primaryColor"
+            >
+              My Account
+              {(pathname.includes("/myAccount") || pathname.includes("/orders") || pathname.includes("/settings")) && (
+                <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+              )}
+            </span>
           </div>
 
           {/* Hamburger menu */}

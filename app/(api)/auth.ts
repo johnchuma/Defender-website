@@ -17,6 +17,7 @@ const api = axios.create({
 
   interface GoogleLoginData {
     email: string;
+    name: string;
   }
 
   interface RegisterData {
