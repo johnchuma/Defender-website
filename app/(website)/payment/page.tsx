@@ -15,8 +15,11 @@ import { getDataFromLocalStorage } from "../../utils/auth";
 import { ORDER_API } from "@/app/(api)/order";
 import Spinner from "../(components)/spinner";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 interface CartItem {
   id: string;
+  image: string;
   name: string;
   color: string;
   count: number;
@@ -40,6 +43,7 @@ export default function PaymentPage() {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const [selectedRegionData, setSelectedRegionData] = useState<{
     name: string;
     districts: string[];
@@ -111,31 +115,32 @@ export default function PaymentPage() {
         price: item.price,
       })),
     };
-
+  
     try {
       setLoading(true);
       setIsSuccess(false);
-
-      setTimeout(async () => {
-        const response = await ORDER_API(orderData);
-
-        if (response.status === 200) {
-          console.log("Order placed successfully!");
-          setIsSuccess(true);
-          router.push(`/myAccount`);
-        } else {
-          console.error("Failed to place order", response.data);
-          setIsSuccess(false);
-        }
-
-        setLoading(false);
-      }, 3000);
+  
+      const response = await ORDER_API(orderData);
+  
+      if (response.status === 200) {
+        console.log("Order placed successfully!");
+        setIsSuccess(true);
+        router.push(`/myAccount`);
+      } else {
+        console.error("Failed to place order", response.data);
+        setIsSuccess(false);
+        toast.error("Failed to place order. Please try again.");
+      }
+  
     } catch (error) {
       console.error("Error placing order:", error);
+      setIsSuccess(false); 
+      toast.error("Error occurred while placing the order. Please try again later.");
+    } finally {
       setLoading(false);
     }
   };
-
+  
   useEffect(() => {
     fetchUserDetails();
   }, []);
@@ -167,8 +172,9 @@ export default function PaymentPage() {
 
   return (
     <div className="mx-auto w-11/12 space-y-8 pb-20 md:w-9/12">
+      <ToastContainer />
       {loading && (
-        <div className="absolute inset-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
           <div className="flex flex-col items-center justify-center space-y-2 rounded-lg bg-white px-14 py-8">
             {isSuccess ? (
               <FaRegCheckCircle className="h-14 w-14 text-green-500" />
@@ -462,9 +468,9 @@ export default function PaymentPage() {
           <div className="space-y-3 rounded-lg p-5 shadow-lg shadow-[#E0E0E0]">
             {cart.map((product) => (
               <div className="flex space-x-4" key={product.id}>
-                <div className="relative inline-block">
+                <div className="relative w-1/3 inline-block">
                   <Image
-                    src={"/blackwatch.svg"}
+                    src={product.image}
                     height={2000}
                     width={2000}
                     className="h-16 w-full rounded-lg bg-backgroundColor object-contain p-3"
@@ -478,9 +484,9 @@ export default function PaymentPage() {
                 </div>
                 <div className="items-center">
                   <h4 className="mt-2 text-sm font-semibold text-black">
-                    Android Elite Watch
+                  {product.name}
                   </h4>
-                  <p className="py-2 text-sm text-mutedText">Tsh 135,000</p>
+                  <p className="py-2 text-sm text-mutedText">Tsh {product.price}</p>
                 </div>
               </div>
             ))}
