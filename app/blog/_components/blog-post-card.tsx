@@ -1,7 +1,10 @@
 import { truncateWords } from "@/app/lib/utils";
 import Image from "next/image";
+import DOMPurify from "dompurify";
+import Link from "next/link";
 
 interface BlogPostCardProps {
+  uuid: string;
   imageUrl: string;
   date: string;
   title: string;
@@ -11,18 +14,25 @@ interface BlogPostCardProps {
 }
 
 export default function BlogPostCard({
+  uuid,
   imageUrl,
   date,
   title,
   description,
-  titleLength,
-  descriptionLength,
+  titleLength = 20,
+  descriptionLength = 32,
 }: BlogPostCardProps) {
+  // Strip HTML from description and truncate it
+  const sanitizedDescription = DOMPurify.sanitize(description); // Sanitize HTML to avoid XSS
+  const plainTextDescription = sanitizedDescription.replace(
+    /<\/?[^>]+(>|$)/g,
+    "",
+  ); // Remove HTML tags
   const truncatedTitle = titleLength
     ? truncateWords(title, titleLength)
     : title;
   const truncatedDescription = descriptionLength
-    ? truncateWords(description, descriptionLength)
+    ? truncateWords(plainTextDescription, descriptionLength)
     : description;
 
   return (
@@ -32,7 +42,7 @@ export default function BlogPostCard({
         <Image
           src={imageUrl}
           alt={title}
-          layout="fill"
+          fill
           objectFit="cover"
           className="rounded-lg"
         />
@@ -41,11 +51,11 @@ export default function BlogPostCard({
       {/* Content */}
       <div className="pt-4">
         {/* Date */}
-        <p className="text-sm uppercase tracking-wide text-gray-500">{date}</p>
+        <p className="text-sm lowercase tracking-wide text-gray-500">{date}</p>
 
         {/* Title */}
-        <h3 className="mt-2 text-lg font-semibold text-gray-900 underline-offset-8 group-hover:underline">
-          {truncatedTitle}
+        <h3 className="mt-2 text-lg font-semibold text-gray-900 underline-offset-8 group-hover:cursor-pointer group-hover:underline">
+          <Link href={`/blog/${uuid}`}>{truncatedTitle}</Link>
         </h3>
 
         {/* Description */}

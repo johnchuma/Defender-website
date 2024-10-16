@@ -13,7 +13,7 @@ export default function BlogLayout({
   children: React.ReactNode;
 }) {
   return (
-    // px for mobile devices throughout the app
+    // px for mobile devices throughout the blog sections
     // DEMO: Remove the px to observe changes in the layout
     //
     <div className="-mt-2 mb-20 min-h-screen space-y-4 bg-white px-4 md:px-0">
