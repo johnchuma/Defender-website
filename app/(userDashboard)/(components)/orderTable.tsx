@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { TbMoodEmpty } from "react-icons/tb";
@@ -7,6 +5,7 @@ import formatDate from "@/app/(userDashboard)/(components)/dateFormatter";
 
 interface OrderTableProps {
   tableData: Array<{
+    uuid: string;
     orderNo: string;
     orderedAt: string;
     totalPrice: string;
@@ -14,11 +13,13 @@ interface OrderTableProps {
     itemCount: number;
     deliverStatus: string;
   }>;
+  onOrderClick: (orderId: string) => void;
   itemsPerPage?: number;
 }
 
 const OrderTable: React.FC<OrderTableProps> = ({
   tableData,
+  onOrderClick,
   itemsPerPage = 5,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,6 +57,7 @@ const OrderTable: React.FC<OrderTableProps> = ({
   return (
     <div className="space-y-4 bg-white p-5">
       <h1 className="text-xl font-semibold">My Orders</h1>
+      <div className="overflow-x-auto"> 
       <table className="min-w-full table-auto">
         <thead className="bg-backgroundColor">
           <tr>
@@ -71,16 +73,20 @@ const OrderTable: React.FC<OrderTableProps> = ({
           {currentData.length > 0 ? (
             currentData.map((order, index) => (
               <tr key={index}>
-                <td>#{order.orderNo}</td>
+                <td
+                  className="cursor-pointer hover:text-primaryColor"
+                  onClick={() => onOrderClick(order.uuid)}
+                >
+                  #{order.orderNo}
+                </td>
                 <td>{formatDate(order.orderedAt)}</td>
                 <td>{order.totalPrice}</td>
                 <td>
-                  {" "}
-                  <div
-                    className={`rounded-lg p-2  opacity-90 ${getPaymentStatusStyle(order.paymentStatus)}`}
+                  <button
+                    className={`rounded-lg p-2 opacity-90 ${getPaymentStatusStyle(order.paymentStatus)}`}
                   >
                     {order.paymentStatus}
-                  </div>
+                  </button>
                 </td>
                 <td>{order.itemCount}</td>
                 <td>{order.deliverStatus}</td>
@@ -128,6 +134,7 @@ const OrderTable: React.FC<OrderTableProps> = ({
             <p>Next</p> <IoIosArrowForward />
           </div>
         </button>
+      </div>
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { UserContext } from "../layout";
 import { getDataFromLocalStorage } from "@/app/utils/auth";
 
 type Order = {
+  uuid: string;
   orderNo: string;
   orderedAt: string;
   totalPrice: string;
@@ -26,10 +27,11 @@ type Summary = {
   totalPayments: string;
 };
 
-export default function MyAccount() {
+const MyAccount: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [allOrders, setAllOrders] = useState<Order[]>([]);
   const [summaryTiles, setSummaryTiles] = useState<Summary | null>(null);
+  const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
   const user = useContext(UserContext);
 
   const fetchOrderDetails = async () => {
@@ -59,6 +61,10 @@ export default function MyAccount() {
     fetchOrderDetails();
   }, []);
 
+  const handleOrderClick = (orderId: string) => {
+    setSelectedOrder(orderId);
+  };
+  
   const myAccountTiles = [
     {
       title: "Total Orders",
@@ -88,7 +94,13 @@ export default function MyAccount() {
       </div>
 
       <Tiles tilesItems={myAccountTiles} />
-      {isLoading ? <Spinner /> : <OrderTable tableData={allOrders} />}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <OrderTable tableData={allOrders} onOrderClick={handleOrderClick} />
+      )}
     </div>
   );
-}
+};
+
+export default MyAccount;

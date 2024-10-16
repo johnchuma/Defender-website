@@ -14,7 +14,7 @@ export default function OrderCategory({
 
   return (
     <div>
-      <div className="flex justify-start space-x-14 px-3">
+      <div className="flex justify-start space-x-7 md:space-x-14 px-3">
         {["All", "Pending", "Delivered"].map((category, index) => (
           <div
             onClick={() => handleTabClick(index)}

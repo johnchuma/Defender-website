@@ -38,15 +38,15 @@ export const PREVIOUS_ORDER_API = (data:InquiryData) => {
     return api({
         url: `/orders/previous`,
         data: data,
-        method: "POST",
+        method: "GET",
       });
 };
 
 export const ACTIVE_ORDER_API = (data:InquiryData) => {
     return api({
-        url: `/orders/active`,
+        url: `/orders`,
         data: data,
-        method: "POST",
+        method: "GET",
       });
 };
 
@@ -78,5 +78,19 @@ export const ORDERSTATS_PERUSER_API = (user_uuid: string, accessToken:string) =>
       headers: {
         Authorization: `Bearer ${accessToken}`,
     },
+    });
+};
+
+export const UNIQUEORDER_API = (order_uuid: string) => {
+  return api({
+      url: `/orders/${order_uuid}`,
+      method: "GET",
+    });
+};
+
+export const ORDERTRACKING_API = (order_uuid: string) => {
+  return api({
+      url: `/order-tracking/order/${order_uuid}`,
+      method: "GET",
     });
 };

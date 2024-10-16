@@ -55,7 +55,7 @@ const SettingsPage = () => {
             <p className="py-3 text-lg font-semibold text-black">
               Personal Information
             </p>
-            <div className="grid grid-cols-2 space-y-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 space-y-2">
               {[
                 { label: "First name", value: firstName },
                 { label: "Last name", value: lastName },
@@ -83,7 +83,7 @@ const SettingsPage = () => {
                 <LuPencilLine className="text-mutedText" />
               </div>
             </div>
-            <div className="grid grid-cols-2 space-y-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 space-y-2">
               {[
                 { label: "Country", value: "Tanzania" },
                 { label: "City", value: "Dar es Salaam" },
@@ -100,7 +100,7 @@ const SettingsPage = () => {
         )}
 
         {(activeTab === 0 || activeTab === 3) && (
-          <div className="mt-5 rounded-lg bg-white p-5 shadow-md" ref={notRef}>
+          <div className="mt-5 rounded-lg bg-white p-5 shadow-md space-y-3" ref={notRef}>
             <div className="flex justify-between space-x-3">
               <p className="text-lg font-semibold text-black">Notifications</p>
               <div className="flex w-28 items-center justify-center space-x-3 rounded-lg border-2 border-mutedText p-1">
@@ -127,7 +127,7 @@ const SettingsPage = () => {
                     setPromotionsNotifications(!promotionsNotifications),
                 },
               ].map((item, index) => (
-                <div className="flex justify-between" key={index}>
+                <div className="flex justify-between space-x-8" key={index}>
                   <p className="text-sm">{item.label}</p>
                   <div>
                     <button
