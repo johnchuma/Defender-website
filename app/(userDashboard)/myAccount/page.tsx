@@ -39,7 +39,7 @@ const MyAccount: React.FC = () => {
       setIsLoading(true);
       const token = getDataFromLocalStorage("defender_userToken");
 
-      const orderResponse = await ORDERBYUSER_API(user!.uuid);
+      const orderResponse = await ORDERBYUSER_API(user!.uuid,token);
       const statsResponse = await ORDERSTATS_PERUSER_API(user!.uuid, token);
 
       if (orderResponse.status === 200) {

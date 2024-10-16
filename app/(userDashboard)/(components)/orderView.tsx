@@ -6,6 +6,7 @@ import { UNIQUEORDER_API } from "@/app/(api)/order";
 import formatDate from "./dateFormatter";
 import OrderTracking from "./orderTracker";
 import { rto, android } from "@/app/utils/constants";
+import { getDataFromLocalStorage } from "@/app/utils/auth";
 
 type Order = {
   uuid: string;
@@ -37,7 +38,9 @@ const OrderView: React.FC<OrderViewProps> = ({ orderId }) => {
   const fetchOrderDetails = async () => {
     try {
       setIsLoading(true);
-      const orderResponse = await UNIQUEORDER_API(orderId);
+      const token = getDataFromLocalStorage("defender_userToken");
+
+      const orderResponse = await UNIQUEORDER_API(orderId,token);
 
       if (orderResponse.status === 200) {
         const orderData = orderResponse.data.body;

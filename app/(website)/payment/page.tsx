@@ -15,7 +15,7 @@ import { getDataFromLocalStorage } from "../../utils/auth";
 import { ORDER_API } from "@/app/(api)/order";
 import Spinner from "../(components)/spinner";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 interface CartItem {
   id: string;
@@ -115,13 +115,14 @@ export default function PaymentPage() {
         price: item.price,
       })),
     };
-  
+
     try {
       setLoading(true);
       setIsSuccess(false);
-  
-      const response = await ORDER_API(orderData);
-  
+      const token = getDataFromLocalStorage("defender_userToken");
+
+      const response = await ORDER_API(orderData,token);
+
       if (response.status === 200) {
         console.log("Order placed successfully!");
         setIsSuccess(true);
@@ -131,16 +132,17 @@ export default function PaymentPage() {
         setIsSuccess(false);
         toast.error("Failed to place order. Please try again.");
       }
-  
     } catch (error) {
       console.error("Error placing order:", error);
-      setIsSuccess(false); 
-      toast.error("Error occurred while placing the order. Please try again later.");
+      setIsSuccess(false);
+      toast.error(
+        "Error occurred while placing the order. Please try again later.",
+      );
     } finally {
       setLoading(false);
     }
   };
-  
+
   useEffect(() => {
     fetchUserDetails();
   }, []);
@@ -468,7 +470,7 @@ export default function PaymentPage() {
           <div className="space-y-3 rounded-lg p-5 shadow-lg shadow-[#E0E0E0]">
             {cart.map((product) => (
               <div className="flex space-x-4" key={product.id}>
-                <div className="relative w-1/3 inline-block">
+                <div className="relative inline-block w-1/3">
                   <Image
                     src={product.image}
                     height={2000}
@@ -484,9 +486,11 @@ export default function PaymentPage() {
                 </div>
                 <div className="items-center">
                   <h4 className="mt-2 text-sm font-semibold text-black">
-                  {product.name}
+                    {product.name}
                   </h4>
-                  <p className="py-2 text-sm text-mutedText">Tsh {product.price}</p>
+                  <p className="py-2 text-sm text-mutedText">
+                    Tsh {product.price}
+                  </p>
                 </div>
               </div>
             ))}

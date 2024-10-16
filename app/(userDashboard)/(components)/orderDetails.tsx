@@ -48,10 +48,10 @@ const OrderDetails: React.FC<{ onOrderClick: (orderId: string) => void }> = ({
       setIsLoading(true);
       const token = getDataFromLocalStorage("defender_userToken");
 
-      const orderResponse = await ORDERBYUSER_API(user!.uuid);
-      const pendingorderResponse = await PENDING_ORDERBYUSER_API(user!.uuid);
+      const orderResponse = await ORDERBYUSER_API(user!.uuid,token);
+      const pendingorderResponse = await PENDING_ORDERBYUSER_API(user!.uuid,token);
       const deliveredorderResponse = await DELIVERED_ORDERBYUSER_API(
-        user!.uuid,
+        user!.uuid,token
       );
       const statsResponse = await ORDERSTATS_PERUSER_API(user!.uuid, token);
 
