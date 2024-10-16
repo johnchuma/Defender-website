@@ -45,7 +45,7 @@ export default function Home() {
   return (
     <main className="-mt-32">
       {/* ======================== HERO SECTION ======================== */}
-      <section className="bg-blushPinkColor pb-10 pt-28 2xl:pb-0 2xl:pt-0">
+      <section className="bg-blushPinkColor pb-10 pt-40 2xl:pb-0 2xl:pt-20">
         <div className="container mx-auto flex min-h-[100dvh] flex-col items-center justify-center gap-y-6 px-4 text-center md:px-0">
           {/* Background Images */}
           <Image
