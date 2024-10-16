@@ -149,8 +149,12 @@ export const FloatingNav = ({
           transition={{
             duration: 0.2,
           }}
+          exit={{
+            y: -100,
+            opacity: 0,
+          }}
           className={cn(
-            "max-w-screen sticky inset-x-0 top-6 z-[5000] mx-4 grid grid-cols-2 items-center justify-center rounded-2xl bg-white px-8 py-3 md:container md:inset-x-0 md:mx-auto lg:grid-cols-3 2xl:top-6",
+            "max-w-screen sticky inset-x-0 top-6 z-[5000] mx-4 grid grid-cols-2 items-center justify-center rounded-2xl bg-white px-8 py-3 md:container md:inset-x-0 md:mx-auto lg:grid-cols-3",
             atTop
               ? ""
               : "border border-transparent shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]",
