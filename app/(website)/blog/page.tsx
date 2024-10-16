@@ -1,147 +1,140 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { fetchAllBlogs, fetchFeaturedBlogs } from "@/app/(api)/blog";
 import BlogCard from "./_components/blog-card";
 import Title from "../../_components/title";
 import BlogPostCard from "./_components/blog-post-card";
 import ScrollCarousel from "../_components/scroll-carousel";
+import { formatDateTime } from "../lib/utils";
 
-const Blog = () => {
+interface Blog {
+  uuid: string;
+  image: string;
+  createdAt: string;
+  title: string;
+  description: string;
+  isFeatured: boolean;
+}
+
+const BlogPage = () => {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [featuredBlogs, setFeaturedBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getBlogs = async () => {
+      try {
+        const response = await fetchAllBlogs();
+        setBlogs(response.data?.body?.blogs ?? []);
+        console.log(response);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getBlogs();
+  }, []);
+
+  useEffect(() => {
+    const getFeaturedBlogs = async () => {
+      try {
+        const response = await fetchFeaturedBlogs();
+        setFeaturedBlogs(response.data?.body?.blogs ?? []);
+      } catch (error) {
+        console.error("Error fetching featured blogs: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getFeaturedBlogs();
+  }, []);
+
+  if (loading)
+    return (
+      <p className="flex min-h-[70vh] items-center justify-center">
+        Loading...
+      </p>
+    );
+
   return (
     <main className="flex flex-col space-y-8 bg-white">
-      <div className="container mx-auto space-y-6">
-        <Title className="text-start">Featured news</Title>
-        {/* sm to md: Featured news */}
-        <section className="md:hidden">
-          <ScrollCarousel
-            items={[
-              <BlogCard
-                key="1"
-                title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
-                description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-                link="/blog"
-                backgroundImage="/images/children-walking.png"
-                truncateTitleLength={7}
-                truncateDescriptionLength={5}
-              />,
-              <BlogCard
-                key="2"
-                title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
-                description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-                link="/blog"
-                backgroundImage="/images/children-walking.png"
-                truncateTitleLength={7}
-                truncateDescriptionLength={5}
-              />,
-            ]}
-          />
-        </section>
-        {/* md and up: Featured news */}
-        <section className="hidden grid-cols-3 items-center justify-center gap-x-6 md:grid">
-          <BlogCard
-            title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
-            description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-            link="/blog"
-            backgroundImage="/images/children-walking.png"
-            large
-          />
-          <div className="col-span-1 flex min-h-full flex-col gap-y-6">
+      {/* Featured news */}
+      {featuredBlogs.length > 0 && (
+        <section className="container mx-auto space-y-6">
+          <Title className="text-start">Featured news</Title>
+          {/* sm to md: Featured news */}
+          <section className="md:hidden">
+            <ScrollCarousel
+              items={[
+                <BlogCard
+                  key="1"
+                  title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
+                  description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
+                  link="/blog"
+                  backgroundImage="/images/children-walking.png"
+                  truncateTitleLength={7}
+                  truncateDescriptionLength={5}
+                />,
+                <BlogCard
+                  key="2"
+                  title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
+                  description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
+                  link="/blog"
+                  backgroundImage="/images/children-walking.png"
+                  truncateTitleLength={7}
+                  truncateDescriptionLength={5}
+                />,
+              ]}
+            />
+          </section>
+          {/* md and up: Featured news */}
+          <section className="hidden grid-cols-3 items-center justify-center gap-x-6 md:grid">
             <BlogCard
               title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
               description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
               link="/blog"
               backgroundImage="/images/children-walking.png"
-              truncateTitleLength={7}
-              truncateDescriptionLength={10}
+              large
             />
-            <BlogCard
-              title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
-              description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-              link="/blog"
-              backgroundImage="/images/children-walking.png"
-              truncateTitleLength={7}
-              truncateDescriptionLength={10}
-            />
-          </div>
+            <div className="col-span-1 flex min-h-full flex-col gap-y-6">
+              <BlogCard
+                title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
+                description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
+                link="/blog"
+                backgroundImage="/images/children-walking.png"
+              />
+              <BlogCard
+                title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
+                description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
+                link="/blog"
+                backgroundImage="/images/children-walking.png"
+              />
+            </div>
+          </section>
         </section>
-      </div>
+      )}
       <section className="container mx-auto flex flex-col gap-y-6">
         <Title className="text-start">Latest news</Title>
         <div className="grid gap-8 md:grid-cols-3 2xl:grid-cols-4">
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="August 12, 2024"
-            title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
-            description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="August 10, 2024"
-            title="The Importance of Smartwatches in Keeping Children Safe"
-            description="Discover how smartwatches can play a crucial role in ensuring the safety of your children while giving them the freedom to explore."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="August 8, 2024"
-            title="How Technology is Changing Parenting in the Modern World"
-            description="Explore the impact of modern technology, including smartwatches, on parenting and child safety."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="August 6, 2024"
-            title="Top 5 Smartwatches for Children in 2024"
-            description="A comprehensive review of the top 5 smartwatches designed specifically for children's safety and connectivity."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="August 4, 2024"
-            title="Why Every Parent Needs a Smartwatch for Their Child"
-            description="Understand the critical reasons why smartwatches are becoming a necessity for modern-day parenting."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="August 2, 2024"
-            title="Child Safety: How Smartwatches are Helping Parents Keep Track"
-            description="Smartwatches are more than just gadgets; they are becoming essential tools for keeping children safe."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="July 30, 2024"
-            title="The Evolution of Child Safety with Wearable Technology"
-            description="Discover how wearable technology has evolved to enhance child safety over the years."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="July 28, 2024"
-            title="Choosing the Right Smartwatch for Your Child: A Parent's Guide"
-            description="Learn what features to look for when selecting the best smartwatch for your child."
-            titleLength={7}
-            descriptionLength={12}
-          />
-          <BlogPostCard
-            imageUrl="/images/children-walking.png"
-            date="July 26, 2024"
-            title="Smartwatches: The Future of Child Safety"
-            description="A deep dive into how smartwatches are paving the way for the future of child safety and parental peace of mind."
-            titleLength={7}
-            descriptionLength={12}
-          />
+          {blogs
+            .filter((blog) => !blog.isFeatured) // Filter blogs where isFeatured is false
+            .map((blog, idx) => (
+              <BlogPostCard
+                key={idx}
+                uuid={blog.uuid}
+                imageUrl={blog.image}
+                date={formatDateTime(blog.createdAt)}
+                title={blog.title}
+                description={blog.description}
+              />
+            ))}
         </div>
       </section>
     </main>
   );
 };
 
-export default Blog;
+export default BlogPage;
