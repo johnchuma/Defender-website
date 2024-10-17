@@ -17,7 +17,7 @@ export default function BlogLayout({
     // px for mobile devices throughout the blog sections
     // DEMO: Remove the px to observe changes in the layout
     //
-    <div className="-mt-2 mb-20 min-h-screen space-y-4 bg-white px-4 md:px-0">
+    <div className="mb-20 mt-4 min-h-screen space-y-4 bg-white px-4 md:px-0">
       <HeaderTabs tabs={blogTabs} />
       {children}
     </div>

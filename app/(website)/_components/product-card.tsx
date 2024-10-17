@@ -20,7 +20,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <div className="flex flex-col gap-y-4">
-      <div className="rounded-2xl bg-[#F2F2F2]/90 px-8 py-6">
+      <div className="rounded-2xl bg-[#F2F2F2]/90 px-16 py-6">
         <div className="relative md:max-h-80 md:min-h-72 md:min-w-72 md:max-w-80">
           <Image src={image} alt={altText} />
         </div>

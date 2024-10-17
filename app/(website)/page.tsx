@@ -55,7 +55,7 @@ export default function Home() {
           />
           <Image
             src={RocketImage}
-            className="absolute left-0 top-1/2 w-16 translate-x-1/4 md:left-16 md:w-24 xl:left-32 xl:top-3/4"
+            className="absolute left-0 top-2/3 w-16 translate-x-1/4 md:left-16 md:w-24 xl:left-32 xl:top-3/4"
             alt="Rocket Image"
           />
 
@@ -89,8 +89,8 @@ export default function Home() {
       </section>
 
       {/* ======================== CLIENT SECTION ======================== */}
-      <div className="bg-slate-100 py-6">
-        <section className="container mx-auto grid grid-cols-2 place-content-center place-items-center gap-8 md:grid-cols-4">
+      <div className="h-[180px] place-content-center bg-[#E5EDFF] py-6">
+        <section className="container mx-auto grid grid-cols-2 place-items-center justify-self-center md:grid-cols-4">
           <Image
             src={FlutterwaveLogo}
             alt="Flutterwave Image"
