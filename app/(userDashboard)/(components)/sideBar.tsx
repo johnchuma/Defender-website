@@ -6,7 +6,6 @@ import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
-  clearLocalStorage,
   deleteDataFromLocalStorage,
 } from "@/app/utils/auth";
 

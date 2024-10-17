@@ -43,7 +43,6 @@ export default function PaymentPage() {
   const [isChecked, setIsChecked] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [selectedRegion, setSelectedRegion] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [selectedRegionData, setSelectedRegionData] = useState<{
     name: string;
     districts: string[];

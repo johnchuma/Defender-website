@@ -3,7 +3,7 @@ import { LuPencilLine } from "react-icons/lu";
 import { FaCircleUser } from "react-icons/fa6";
 import { useRef, useState, useContext } from "react";
 import SettingCategory from "../(components)/settingdNav";
-import { UserContext } from "../layout";
+import { UserContext } from "../(components)/useContext";
 
 
 const SettingsPage = () => {
