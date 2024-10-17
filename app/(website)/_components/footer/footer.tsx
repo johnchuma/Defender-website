@@ -8,46 +8,13 @@ import Title from "@/app/_components/title";
 import FooterLinks from "./footer-links";
 import SocialLinks from "../social-link";
 import CustomButton from "@/app/_components/customButton";
+import { footerTitleLinks } from "@/app/utils/constants";
 
 // images
 import GoogleBadge from "@/public/images/google-play.png";
 import AppleBadge from "@/public/images/apple-store.png";
 
 function Footer() {
-  const homeLinks = [
-    { label: "Overview", href: "/overview" },
-    { label: "Products", href: "/products" },
-    { label: "Testimonials", href: "/testimonials" },
-    { label: "Features", href: "/features" },
-  ];
-
-  const productsLinks = [
-    { label: "User Guides", href: "/" },
-    { label: "SmartWatch", href: "/" },
-    { label: "Comparison Tool", href: "/" },
-    { label: "Features", href: "/" },
-    { label: "Specification", href: "/" },
-  ];
-
-  const ecommerceLinks = [
-    { label: "Wishlist", href: "/" },
-    { label: "User Account", href: "/" },
-    { label: "Order Tracking", href: "/" },
-    { label: "Payment Options", href: "/" },
-  ];
-
-  const supportLinks = [
-    { label: "FAQs", href: "/" },
-    { label: "Contact Form", href: "/" },
-    { label: "Live Chat", href: "/" },
-  ];
-
-  const careerLinks = [
-    { label: "Current Job", href: "/" },
-    { label: "Why Join Us", href: "/" },
-    { label: "Internships Programs", href: "/" },
-  ];
-
   return (
     <main className="bg-[#292929] py-20 text-white">
       <div className="container mx-auto flex flex-col gap-y-10">
@@ -65,11 +32,9 @@ function Footer() {
         <div className="grid grid-cols-5 items-center justify-between gap-12">
           <div className="col-span-5 px-4 lg:col-span-3">
             <div className="grid w-full grid-cols-3 gap-y-12 md:grid-cols-5">
-              <FooterLinks title="Home" links={homeLinks} />
-              <FooterLinks title="Products" links={productsLinks} />
-              <FooterLinks title="E-commerce" links={ecommerceLinks} />
-              <FooterLinks title="Support" links={supportLinks} />
-              <FooterLinks title="Career" links={careerLinks} />
+              {Object.entries(footerTitleLinks).map(([title, links]) => (
+                <FooterLinks key={title} title={title} links={links} />
+              ))}
             </div>
           </div>
 
@@ -84,8 +49,8 @@ function Footer() {
                   Subscribe to our newsletter to receive updates and promotions
                 </div>
               </div>
-              <div className="inline-flex gap-x-4 text-sm">
-                <div className="inline-flex w-3/4 items-center gap-x-1 rounded-lg bg-white px-4 shadow-md md:gap-x-3">
+              <div className="inline-flex gap-x-2 text-sm md:gap-x-4">
+                <div className="inline-flex w-3/4 items-center gap-x-1 rounded-lg bg-white px-3 shadow-md md:gap-x-3 md:px-4">
                   {/* Search icon */}
                   <svg
                     width="18"
@@ -113,7 +78,7 @@ function Footer() {
                 <CustomButton
                   btntext="Sign Up"
                   onClick={() => console.log("Footer sign up form submitted")}
-                  className="w-fit rounded-xl px-4 py-2 text-base font-medium capitalize"
+                  className="w-fit rounded-xl px-2 py-2 text-sm font-medium capitalize md:px-4 md:text-base"
                 />
               </div>
             </div>
@@ -122,7 +87,7 @@ function Footer() {
 
         {/* ############## Store and Social Icons ############## */}
         <div className="grid grid-cols-5 place-content-between place-items-center gap-12 px-4 md:px-0 lg:place-items-start">
-          <div className="col-span-5 md:col-span-2 md:px-4 lg:col-span-3">
+          <div className="col-span-5 self-end md:col-span-2 md:px-4 lg:col-span-3">
             <div className="inline-flex gap-x-4">
               <Image
                 src={GoogleBadge}
@@ -148,7 +113,7 @@ function Footer() {
         <hr className="mx-4 md:mx-0" />
 
         {/* ############## Extras ############## */}
-        <div className="grid grid-cols-3 place-content-center gap-x-4 gap-y-4 px-4 text-xs md:px-0 lg:flex lg:flex-row lg:place-content-start lg:divide-x">
+        <div className="grid grid-cols-3 place-content-center gap-x-4 gap-y-4 px-4 text-base md:px-0 lg:flex lg:flex-row lg:place-content-start lg:divide-x">
           <Link href="/" className="underline-offset-4 hover:underline">
             Sitemap
           </Link>

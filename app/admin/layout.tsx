@@ -21,7 +21,7 @@ export default function AdminDashboardLayout({
     <main className="space-y-2 bg-gray-50">
       <TopNav className="sticky top-0 z-[5000] h-fit pr-4" />
       <section className="flex px-2">
-        <SideBar className="sticky top-20 h-min max-h-full w-1/5 grow-0" />{" "}
+        <SideBar className="sticky top-20 h-[85vh] w-1/5 grow-0" />{" "}
         <div className="min-h-screen w-full px-8 py-4">{children}</div>
       </section>
     </main>

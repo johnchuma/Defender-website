@@ -796,3 +796,35 @@ export const paymentAdminTabs = [
   { label: "Pending", href: "/admin/payments/pending" },
   { label: "Failed", href: "/admin/payments/failed" },
 ];
+
+export const footerTitleLinks = {
+  Home: [
+    { label: "Overview", href: "/overview" },
+    { label: "Products", href: "/products" },
+    { label: "Testimonials", href: "/testimonials" },
+    { label: "Features", href: "/features" },
+  ],
+  Products: [
+    { label: "User Guides", href: "/" },
+    { label: "SmartWatch", href: "/" },
+    { label: "Comparison Tool", href: "/" },
+    { label: "Features", href: "/" },
+    { label: "Specification", href: "/" },
+  ],
+  "E-commerce": [
+    { label: "Wishlist", href: "/" },
+    { label: "User Account", href: "/" },
+    { label: "Order Tracking", href: "/" },
+    { label: "Payment Options", href: "/" },
+  ],
+  Support: [
+    { label: "FAQs", href: "/" },
+    { label: "Contact Form", href: "/" },
+    { label: "Live Chat", href: "/" },
+  ],
+  Career: [
+    { label: "Current Job", href: "/" },
+    { label: "Why Join Us", href: "/" },
+    { label: "Internships Programs", href: "/" },
+  ],
+};

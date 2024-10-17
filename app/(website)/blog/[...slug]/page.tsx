@@ -4,10 +4,10 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { fetchBlogById } from "@/app/(api)/blog";
 import Title from "@/app/_components/title";
-import ArticleAuthor from "@/app/blog/_components/article-author";
-import BlogPostCard from "@/app/blog/_components/blog-post-card";
-import PostCarousel from "@/app/_components/scroll-carousel";
-import { formatDateTime } from "@/app/lib/utils";
+import ArticleAuthor from "../_components/article-author";
+import BlogPostCard from "../_components/blog-post-card";
+import PostCarousel from "../../_components/scroll-carousel";
+import { formatDateTime } from "@/app/utils/date-utils";
 
 interface BlogData {
   id: string;
