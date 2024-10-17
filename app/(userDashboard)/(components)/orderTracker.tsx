@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { MdCancel } from "react-icons/md";
 import { formatDateAndTime } from "./dateFormatter";
 import { FaRegCheckCircle } from "react-icons/fa";

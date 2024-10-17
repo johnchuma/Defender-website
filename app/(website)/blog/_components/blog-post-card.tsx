@@ -51,7 +51,7 @@ export default function BlogPostCard({
       {/* Content */}
       <div className="pt-4">
         {/* Date */}
-        <p className="text-sm lowercase tracking-wide text-gray-500">{date}</p>
+        <p className="text-sm capitalize tracking-wide text-gray-500">{date}</p>
 
         {/* Title */}
         <h3 className="mt-2 text-lg font-semibold text-gray-900 underline-offset-8 group-hover:cursor-pointer group-hover:underline">

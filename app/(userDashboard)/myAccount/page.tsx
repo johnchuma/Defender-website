@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import Spinner from "@/app/(website)/(components)/spinner";
 import { TbBuildingStore } from "react-icons/tb";
 import { FaInstagram } from "react-icons/fa6";
-import { UserContext } from "../layout";
+import { UserContext } from "../(components)/useContext";
 import { getDataFromLocalStorage } from "@/app/utils/auth";
 
 type Order = {
@@ -31,7 +31,6 @@ const MyAccount: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [allOrders, setAllOrders] = useState<Order[]>([]);
   const [summaryTiles, setSummaryTiles] = useState<Summary | null>(null);
-  const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
   const user = useContext(UserContext);
 
   const fetchOrderDetails = async () => {
@@ -61,8 +60,8 @@ const MyAccount: React.FC = () => {
     fetchOrderDetails();
   }, []);
 
-  const handleOrderClick = (orderId: string) => {
-    setSelectedOrder(orderId);
+  const handleOrderClick = () => {
+    console.log("handleOrderClick:");
   };
   
   const myAccountTiles = [

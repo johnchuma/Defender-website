@@ -17,7 +17,7 @@ const FooterLinks: React.FC<FooterLinksProps> = ({ title, links }) => {
           <Link
             key={index}
             href={link.href}
-            className="text-sm underline-offset-4 hover:underline"
+            className="text-base leading-[145%] text-white/85 underline-offset-4 hover:underline"
           >
             {link.label}
           </Link>

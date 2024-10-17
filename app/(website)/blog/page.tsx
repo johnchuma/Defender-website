@@ -5,7 +5,7 @@ import BlogCard from "./_components/blog-card";
 import Title from "../../_components/title";
 import BlogPostCard from "./_components/blog-post-card";
 import ScrollCarousel from "../_components/scroll-carousel";
-import { formatDateTime } from "../lib/utils";
+import { formatDateTime } from "@/app/utils/date-utils";
 
 interface Blog {
   uuid: string;
