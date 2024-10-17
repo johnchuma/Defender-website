@@ -94,11 +94,15 @@ export default function Home() {
           <Image
             src={FlutterwaveLogo}
             alt="Flutterwave Image"
-            className="w-32"
+            className="h-6 w-40"
           />
-          <Image src={SelcomLogo} alt="Selcom Image" className="w-16" />
-          <Image src={VodacomLogo} alt="Vodacom Image" className="w-24" />
-          <Image src={ShuleYetuLogo} alt="Shule Yetu Image" className="w-24" />
+          <Image src={SelcomLogo} alt="Selcom Image" className="h-20 w-20" />
+          <Image src={VodacomLogo} alt="Vodacom Image" className="h-9 w-40" />
+          <Image
+            src={ShuleYetuLogo}
+            alt="Shule Yetu Image"
+            className="h-16 w-36"
+          />
         </section>
       </div>
 
@@ -106,7 +110,7 @@ export default function Home() {
       <section className="bg-white pb-10 pt-20">
         <div className="container mx-auto flex flex-col gap-y-12">
           <Title>Our Popular Products</Title>
-          <div className="grid grid-flow-row items-center justify-center gap-16 px-4 md:grid-flow-col md:px-0">
+          <div className="grid grid-flow-row items-center justify-center gap-8 px-4 md:grid-flow-col md:px-4 xl:gap-16">
             <ProductCard
               image={SmartWatch}
               altText="Smart Watch"
@@ -127,7 +131,7 @@ export default function Home() {
 
       {/* ======================== TOP VALUES FOR YOU SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 px-4 md:px-0">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 px-4 md:px-[112px]">
           <Title>Top values for you</Title>
           {/* xs to md: Top values for you */}
           <div className="grid justify-around gap-x-8 gap-y-10 lg:hidden">
@@ -247,7 +251,7 @@ export default function Home() {
 
       {/* ======================== VIDEO SECTION ======================== */}
       <section className="min-h-fit bg-white pb-10 pt-20">
-        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-0 lg:grid lg:grid-cols-2 lg:gap-y-0">
+        <div className="container mx-auto flex flex-col items-center justify-center gap-y-12 bg-white px-4 md:px-[112px] lg:grid lg:grid-cols-2 lg:gap-y-0">
           <div className="text-center text-3xl font-semibold md:text-center lg:col-span-1">
             The future of your kid lies
             <br /> within{" "}
@@ -268,7 +272,7 @@ export default function Home() {
 
       {/* ======================== WHY SECTION ======================== */}
       <section className="bg-white pb-10 pt-20">
-        <div className="container mx-auto grid grid-cols-1 items-center justify-center gap-x-16 gap-y-12 px-4 md:grid-cols-2 md:px-0">
+        <div className="container mx-auto grid grid-cols-1 items-center justify-center gap-x-16 gap-y-12 px-4 md:grid-cols-2 md:px-[112px]">
           <div className="order-last md:order-first">
             <Image src={ChildrenPlaying} alt="Children Playing Image" />
           </div>
@@ -319,8 +323,8 @@ export default function Home() {
       </section>
 
       {/* ======================== CONTACT US SECTION ======================== */}
-      <section className="bg-white px-4 pb-20 pt-10 md:px-0">
-        <div className="container relative mx-auto hidden flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:flex md:px-12">
+      <section className="container mx-auto bg-white px-4 pb-20 pt-10 md:px-[112px]">
+        <div className="relative hidden flex-col items-center justify-center gap-y-8 rounded-xl bg-primaryScarletColor px-0 py-20 text-white md:flex md:px-12">
           <Title>Looking forward</Title>
 
           {/* Description */}

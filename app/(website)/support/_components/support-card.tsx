@@ -17,7 +17,7 @@ const SupportCard: React.FC<SupportCardProps> = ({
   imageUrl,
 }) => {
   return (
-    <div className="rounded-xl bg-white pb-4 shadow-xl">
+    <div className="rounded-xl bg-white shadow-xl">
       {/* Image */}
       <div
         className="relative min-h-56 w-full overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat"
@@ -36,7 +36,7 @@ const SupportCard: React.FC<SupportCardProps> = ({
           onClick={() => {
             console.log("Download user manual clicked");
           }}
-          className="px-auto mt-4 w-full"
+          className="no-wrap mt-4 w-full px-2"
         />
       </div>
     </div>
