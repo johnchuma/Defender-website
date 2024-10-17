@@ -1,118 +1,14 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation"; 
-import { UNIQUE_ORDER_API } from "@/app/(api)/order";
-import OrderTable from "../(components)/orderTable";
-import Tiles from "../(components)/tiles";
-import Spinner from "@/app/(website)/(components)/spinner";
-import OrderCategory from "../(components)/orderNav";
+import React, { useState } from "react";
+import OrderDetails from "../(components)/orderDetails";
+import OrderView from "../(components)/orderView";
 
-import { TbBuildingStore } from "react-icons/tb";
-import { FaInstagram } from "react-icons/fa6";
+export default function OrdersPage() {
+  const [selectedOrder, setSelectedOrder] = useState<string | null>(null);
 
-type Order = {
-  order: string;
-  date: string;
-  total: string;
-  paymentStatus: string;
-  items: number;
-  isDelivered: boolean;
-};
-
-const generateDummyData = (num: number) => {
-  const statuses = ["Paid", "Pending", "Failed"];
-  const itemsCount = [1, 2, 3, 4, 5];
-  
-  return Array.from({ length: num }, (_, index) => ({
-    order: `ORD-${index + 1}`,
-    date: `2024-10-${(index % 30) + 1}`,
-    total: `$${(Math.random() * 100 + 20).toFixed(2)}`,
-    paymentStatus: statuses[Math.floor(Math.random() * statuses.length)],
-    items: itemsCount[Math.floor(Math.random() * itemsCount.length)],
-    isDelivered: Math.random() > 0.5, 
-  }));
-};
-
-const myOrdersTiles = [
-  {
-    title: "Total Orders",
-    icon: (
-      <div className="items-center rounded-sm bg-amber-500 p-1">
-        <TbBuildingStore className="text-white"/>
-      </div>
-    ),
-    price: "1,600",
-  },
-  {
-    title: "Total Payments",
-    icon: (
-      <div className="items-center rounded-sm bg-green-500 p-1">
-        <FaInstagram className="text-white"/>
-      </div>
-    ),
-    price: "756,000",
-  },
-  {
-    title: "Total Orders",
-    icon: (
-      <div className="items-center rounded-sm bg-amber-500 p-1">
-        <TbBuildingStore className="text-white" />
-      </div>
-    ),
-    price: "1,600",
-  },
-];
-
-const OrdersPage = () => {
-  const searchParams = useSearchParams();
-  const user_uuid = searchParams.get("user_uuid");
-  const [isLoading, setIsLoading] = useState(false);
-  const [allOrders, setAllOrders] = useState<Order[]>([]);
-  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
-  const [activeTab, setActiveTab] = useState(0); 
-
-  const fetchOrderDetails = async () => {
-    try {
-      setIsLoading(true);
-      if (user_uuid) {
-        const response = await UNIQUE_ORDER_API(user_uuid);
-        if (response.status === 200) {
-          const orderData = response.data.body;
-          console.log("🚀 ~ fetchOrderDetails ~ orderData:", orderData);
-          setAllOrders(orderData);
-          filterOrders(orderData, activeTab); 
-        } else {
-          console.error("Failed to fetch order data", response.data);
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching order details:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const filterOrders = (orders: Order[], tab: number) => {
-    const statusMap = ["All", "Pending", "Delivered"];
-    const filtered = orders.filter((order) => {
-      if (statusMap[tab] === "All") return true;
-      if (statusMap[tab] === "Pending") return !order.isDelivered;
-      if (statusMap[tab] === "Delivered") return order.isDelivered;
-    });
-    setFilteredOrders(filtered);
-  };
-
-  useEffect(() => {
-    fetchOrderDetails();
-  }); // Fetch orders when user_uuid changes
-
-  useEffect(() => {
-    filterOrders(allOrders, activeTab); 
-  }, [activeTab, allOrders]); // Re-filter when activeTab or allOrders changes
-
-  const mapDeliveryStatus = (isDelivered: boolean) => {
-    return isDelivered ? "Delivered" : "Pending";
+  const handleOrderClick = (orderId: string) => {
+    setSelectedOrder(orderId);
   };
 
   return (
@@ -121,30 +17,12 @@ const OrdersPage = () => {
         <h1 className="text-xl font-semibold">Your Orders</h1>
         <p className="text-mutedText">Let`s get your orders right</p>
       </div>
-      <Tiles tilesItems={myOrdersTiles} />
-      <OrderCategory 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab}
-      />
-      {isLoading ? (
-        <Spinner />
+
+      {selectedOrder ? (
+        <OrderView orderId={selectedOrder} />
       ) : (
-        <div>
-          <OrderTable 
-            tableData={filteredOrders.length ? filteredOrders : generateDummyData(10)} 
-            mapDeliveryStatus={mapDeliveryStatus} 
-          />
-        </div>
+        <OrderDetails onOrderClick={handleOrderClick} />
       )}
     </div>
   );
-};
-
-// Wrap the OrdersPage component with Suspense for proper handling
-const OrdersPageWrapper = () => (
-  <Suspense fallback={<Spinner />}>
-    <OrdersPage />
-  </Suspense>
-);
-
-export default OrdersPageWrapper;
+}

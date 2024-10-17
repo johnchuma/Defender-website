@@ -10,10 +10,10 @@ interface TilesProps {
 
 const Tiles: React.FC<TilesProps> = ({ tilesItems }) => {
   return (
-    <div className="flex space-x-5">
+    <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-5">
       {tilesItems.map((tile, index) => (
         <div
-          className="space-y-4 w-1/5 rounded-lg bg-white p-4 items-start"
+          className="space-y-4 w-full md:w-1/5 rounded-lg bg-white p-4 items-start"
           key={index}
         >
           <div className="flex justify-between space-x-3">

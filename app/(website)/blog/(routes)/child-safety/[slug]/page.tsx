@@ -33,7 +33,7 @@ const ChildSafetyArticle = () => {
         {/* sm to md devices: Article Author */}
         <div className="block md:hidden">
           <ArticleAuthor
-            authorName="Rose"
+            authorName="Defender Technologies"
             date="August 12, 2024"
             readTime="7 minutes"
             authorImageUrl="/images/author.jpg"
@@ -63,7 +63,7 @@ const ChildSafetyArticle = () => {
               {/* md and up devices: Article Author */}
               <div className="hidden md:block">
                 <ArticleAuthor
-                  authorName="Rose"
+                  authorName="Defender Technologies"
                   date="August 12, 2024"
                   readTime="7 minutes"
                   authorImageUrl="/images/author.jpg"
@@ -155,31 +155,28 @@ const ChildSafetyArticle = () => {
           <PostCarousel
             items={[
               <BlogPostCard
+                uuid="5f73c0e1-8920-4f78-b6ea-712abbc011a2"
                 key="blogpost-1"
                 imageUrl="/images/children-walking.png"
                 date="August 12, 2024"
                 title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
                 description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-                titleLength={7}
-                descriptionLength={12}
               />,
               <BlogPostCard
+                uuid="5f73c0e1-8920-4f78-b6ea-712abbc011a2"
                 key="blogpost-2"
                 imageUrl="/images/children-walking.png"
                 date="August 10, 2024"
                 title="The Importance of Smartwatches in Keeping Children Safe"
                 description="Discover how smartwatches can play a crucial role in ensuring the safety of your children while giving them the freedom to explore."
-                titleLength={7}
-                descriptionLength={12}
               />,
               <BlogPostCard
+                uuid="5f73c0e1-8920-4f78-b6ea-712abbc011a2"
                 key="blogpost-3"
                 imageUrl="/images/children-walking.png"
                 date="August 8, 2024"
                 title="How Technology is Changing Parenting in the Modern World"
                 description="Explore the impact of modern technology, including smartwatches, on parenting and child safety."
-                titleLength={7}
-                descriptionLength={12}
               />,
             ]}
           />
@@ -188,28 +185,25 @@ const ChildSafetyArticle = () => {
         {/* md and up devices: Other Articles */}
         <div className="hidden gap-8 md:grid md:grid-cols-3 2xl:grid-cols-4">
           <BlogPostCard
+            uuid="5f73c0e1-8920-4f78-b6ea-712abbc011a2"
             imageUrl="/images/children-walking.png"
             date="August 12, 2024"
             title="Enhancing Child Safety with Smartwatches: A Modern Solution for Parents"
             description="These smart devices are no longer just trendy accessories but essential tools that help parents monitor and ensure their children's safety."
-            titleLength={7}
-            descriptionLength={12}
           />
           <BlogPostCard
+            uuid="5f73c0e1-8920-4f78-b6ea-712abbc011a2"
             imageUrl="/images/children-walking.png"
             date="August 10, 2024"
             title="The Importance of Smartwatches in Keeping Children Safe"
             description="Discover how smartwatches can play a crucial role in ensuring the safety of your children while giving them the freedom to explore."
-            titleLength={7}
-            descriptionLength={12}
           />
           <BlogPostCard
+            uuid="5f73c0e1-8920-4f78-b6ea-712abbc011a2"
             imageUrl="/images/children-walking.png"
             date="August 8, 2024"
             title="How Technology is Changing Parenting in the Modern World"
             description="Explore the impact of modern technology, including smartwatches, on parenting and child safety."
-            titleLength={7}
-            descriptionLength={12}
           />
         </div>
       </section>

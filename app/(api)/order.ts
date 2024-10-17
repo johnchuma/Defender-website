@@ -18,7 +18,6 @@ const api = axios.create({
   }
   
   interface InquiryData {
-    user_uuid: string;
     withDelivery: boolean;
     country: string;
     region: string;
@@ -27,33 +26,95 @@ const api = axios.create({
     products: Product[];
   }  
 
-export const ORDER_API = (data:InquiryData) => {
+export const ORDER_API = (data:InquiryData,accessToken:string) => {
     return api({
         url: `/orders`,
         data: data,
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+      },
       });
 };
 
-export const PREVIOUS_ORDER_API = (data:InquiryData) => {
+export const PREVIOUS_ORDER_API = (data:InquiryData,accessToken:string) => {
     return api({
         url: `/orders/previous`,
         data: data,
-        method: "POST",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+      },
       });
 };
 
-export const ACTIVE_ORDER_API = (data:InquiryData) => {
+export const ACTIVE_ORDER_API = (data:InquiryData,accessToken:string) => {
     return api({
-        url: `/orders/active`,
+        url: `/orders`,
         data: data,
-        method: "POST",
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+      },
       });
 };
 
-export const UNIQUE_ORDER_API = (user_uuid: string) => {
+export const ORDERBYUSER_API = (user_uuid: string,accessToken:string) => {
     return api({
         url: `/orders/user/${user_uuid}`,
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+      },
       });
+};
+
+export const PENDING_ORDERBYUSER_API = (user_uuid: string,accessToken:string) => {
+  return api({
+      url: `/orders/pending/user/${user_uuid}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+    });
+};
+
+export const DELIVERED_ORDERBYUSER_API = (user_uuid: string,accessToken:string) => {
+  return api({
+      url: `/orders/delivered/user/${user_uuid}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+    });
+};
+
+export const ORDERSTATS_PERUSER_API = (user_uuid: string, accessToken:string) => {
+  return api({
+      url: `/stats/user/${user_uuid}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+    });
+};
+
+export const UNIQUEORDER_API = (order_uuid: string,accessToken:string) => {
+  return api({
+      url: `/orders/${order_uuid}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+    });
+};
+
+export const ORDERTRACKING_API = (order_uuid: string,accessToken:string) => {
+  return api({
+      url: `/order-tracking/order/${order_uuid}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+    },
+    });
 };

@@ -26,8 +26,8 @@ export default function SettingCategory({
   };
 
   return (
-    <div className="">
-      <div className="flex justify-start space-x-14 uppercase px-3">
+    <div className="px-3">
+      <div className="flex flex-wrap justify-start space-y-4 md:space-y-0 space-x-4 md:space-x-14 uppercase">
         {[
           { category: "All", ref: allRef },
           { category: "Personal Information", ref: infoRef },
@@ -37,7 +37,7 @@ export default function SettingCategory({
           <div
             onClick={() => handleTabClick(index, item.ref)}
             key={index}
-            className={`flex cursor-pointer items-center space-x-2 border-b-2 pb-3 hover:text-primaryColor ${
+            className={`flex cursor-pointer items-center space-x-2 border-b-2 pb-3 hover:text-primaryColor text-sm md:text-base ${
               activeTab === index
                 ? "border-primaryColor text-primaryColor"
                 : "border-transparent"

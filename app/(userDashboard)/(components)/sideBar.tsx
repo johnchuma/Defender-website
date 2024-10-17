@@ -2,11 +2,22 @@
 import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { TbBuildingStore } from "react-icons/tb";
+import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  clearLocalStorage,
+  deleteDataFromLocalStorage,
+} from "@/app/utils/auth";
 
 const Sidebar = () => {
-  const pathname = usePathname(); 
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    deleteDataFromLocalStorage("defender_userToken");
+    router.push("/");
+  };
 
   const links = [
     {
@@ -28,9 +39,19 @@ const Sidebar = () => {
       route: "/settings",
     },
   ];
+  const bottomLinks = [
+    {
+      id: "logout",
+      label: "Log out",
+      icon: <FiLogOut className="text-red-600" />,
+      onClick: handleLogout,
+      route: "/",
+    },
+  ];
 
   return (
-    <div>
+    <div className="h-full flex flex-col justify-between">
+      <div>
       <ul className="space-y-4 pt-9">
         {links.map((link) => (
           <li key={link.id}>
@@ -45,6 +66,20 @@ const Sidebar = () => {
               <span className="text-xl">{link.icon}</span>
               <span className="font-medium">{link.label}</span>
             </Link>
+          </li>
+        ))}
+      </ul>
+      </div>
+      <ul className="space-y-2 pb-10">
+        {bottomLinks.map((link) => (
+          <li key={link.id}>
+            <button
+              onClick={link.onClick}
+              className={`flex cursor-pointer items-center space-x-3 rounded-lg p-3 text-red-600 transition-colors`}
+            >
+              <span className="text-xl">{link.icon}</span>
+              <span className="font-medium">{link.label}</span>
+            </button>
           </li>
         ))}
       </ul>
