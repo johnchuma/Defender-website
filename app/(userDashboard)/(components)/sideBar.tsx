@@ -56,9 +56,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex h-full flex-col justify-between">
+    <div className="flex h-full flex-col justify-between py-8">
       <div>
-        <ul className="space-y-4 pt-9">
+        <ul className="space-y-4">
           {links.map((link) => (
             <li key={link.id}>
               <Link
@@ -77,7 +77,7 @@ const Sidebar = () => {
           ))}
         </ul>
       </div>
-      <ul className="space-y-2 pb-10">
+      <ul className="space-y-2">
         {bottomLinks.map((link) => (
           <li key={link.id}>
             <button
