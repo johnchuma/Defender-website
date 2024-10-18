@@ -9,12 +9,14 @@ import BackgroundBanner from "../_components/background-banner";
 
 function SupportPage() {
   return (
-    <main className="space-y-6">
+    <main className="pt-6 2xl:pt-12">
       {/* <Title>Support Page</Title> */}
-      <div className="container mx-auto px-4 md:px-0">
+      <div className="container mx-auto px-4 md:px-0 xl:px-[104px]">
+        <Title className="pb-6">Support Page</Title>
         {/* ======================== image hero SECTION ======================== */}
         <BackgroundBanner
           backgroundImage="/images/care.jpg"
+          className="min-h-[70dvh]"
           title={
             <Title className="capitalize">
               Customer care, Anytime, Anywhere

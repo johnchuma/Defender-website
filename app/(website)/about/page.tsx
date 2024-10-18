@@ -18,10 +18,10 @@ import SafetyImage from "@/public/images/safety.png";
 function AboutPage() {
   return (
     <main className="space-y-6">
-      <div className="container mx-auto px-4 md:px-0">
+      <div className="container mx-auto px-4 pt-4 md:px-0 xl:px-[104px] 2xl:pt-12">
         {/* ======================== GET TO KNOW US SECTION ======================== */}
         <div className="mb-20 space-y-6">
-          <header className="space-y-2">
+          <header className="space-y-6">
             <Title className="capitalize">Get to know us</Title>
             <div className="text-start md:text-center">
               At Defender, we are dedicated to helping parents create a safer,
