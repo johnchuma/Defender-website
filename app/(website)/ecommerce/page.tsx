@@ -181,7 +181,7 @@ function EcommerceContent() {
               <div className="flex items-center space-x-5">
                 <div
                   className={`cursor-pointer rounded-lg border-2 p-2 ${
-                    productCount === 1 ? "cursor-not-allowed opacity-50" : ""
+                    productCount === 1 ? "cursor-not-allowed opacity-50" : "cursor-pointer rounded-lg border-none bg-gray-200"
                   }`}
                   onClick={() =>
                     productCount > 1 && setProductCount(productCount - 1)
@@ -222,7 +222,7 @@ function EcommerceContent() {
         <Category featuresRef={featuresRef} faqsRef={faqsRef} />
         <div ref={featuresRef} className="space-y-16">
           <div className="grid grid-cols-12 gap-10">
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-10 md:col-span-6">
               <h4 className="text-xl font-semibold text-black">
                 Two-Way Communication
               </h4>
@@ -234,7 +234,7 @@ function EcommerceContent() {
                 fostering a sense of security and connection throughout the day.
               </p>
             </div>
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-10 md:col-span-6">
               <Image
                 src="/watch5.svg"
                 height={2000}
@@ -245,7 +245,7 @@ function EcommerceContent() {
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10">
-            <div className="order-last col-span-12 items-center md:order-first md:col-span-6">
+            <div className="order-last col-span-10 items-center md:order-first md:col-span-6">
               <Image
                 src="/pink-redblur.svg"
                 height={2000}
@@ -254,7 +254,7 @@ function EcommerceContent() {
                 alt="Watch"
               />
             </div>
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-10 md:col-span-6">
               <h4 className="text-xl font-semibold text-black">
                 Real-Time GPS Tracking
               </h4>
@@ -268,7 +268,7 @@ function EcommerceContent() {
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10">
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-10 md:col-span-6">
               <h4 className="text-xl font-semibold text-black">
                 Emergency SOS Alerts
               </h4>
@@ -280,7 +280,7 @@ function EcommerceContent() {
                 during critical situations.
               </p>
             </div>
-            <div className="col-span-12 items-center md:col-span-6">
+            <div className="col-span-10 items-center md:col-span-6">
               <Image
                 src="/grey-redblur.svg"
                 height={2000}
@@ -291,7 +291,7 @@ function EcommerceContent() {
             </div>
           </div>
           <div className="grid grid-cols-12 gap-10">
-            <div className="order-last col-span-12 items-center md:order-first md:col-span-6">
+            <div className="order-last col-span-10 items-center md:order-first md:col-span-6">
               <Image
                 src="/purple-redblur.svg"
                 height={2000}
@@ -300,7 +300,7 @@ function EcommerceContent() {
                 alt="Watch"
               />
             </div>
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-10 md:col-span-6">
               <h4 className="text-xl font-semibold text-black">
                 Geofencing Alerts
               </h4>
@@ -320,12 +320,12 @@ function EcommerceContent() {
           Frequently Asked Questions
         </h4>
         <div className="grid grid-cols-12 gap-10">
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-10 md:col-span-6">
             {faqsItems.map((item) => (
               <Faqs key={item.title} item={item} />
             ))}
           </div>
-          <div className="col-span-12 md:col-span-6">
+          <div className="col-span-10 md:col-span-6">
             <ContactUs />
           </div>
         </div>

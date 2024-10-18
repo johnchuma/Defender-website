@@ -4,6 +4,7 @@ import { createContext, useState, useEffect } from "react";
 import { USERDETAILS_API } from "../../(api)/user";
 import { deleteDataFromLocalStorage, getDataFromLocalStorage } from "../../utils/auth";
 import { useRouter } from "next/navigation";
+import Spinner from "@/app/(website)/(components)/spinner";
 
 export type User = {
   id: number;
@@ -48,7 +49,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <UserContext.Provider value={user}>
-      {isLoading ? <div>Loading...</div> : children}
+      {isLoading ? <div className="flex items-center justify-center"><Spinner/></div> : children}
     </UserContext.Provider>
   );
 };

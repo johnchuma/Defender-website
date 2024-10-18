@@ -4,7 +4,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { useRef, useState, useContext } from "react";
 import SettingCategory from "../(components)/settingdNav";
 import { UserContext } from "../(components)/useContext";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const SettingsPage = () => {
   const [emailNotifications, setEmailNotifications] = useState(false);
@@ -23,8 +23,19 @@ const SettingsPage = () => {
   const firstName = nameParts[0];
   const lastName = nameParts.slice(1).join(" ") || "-";
 
+  const toggleSidebar = () => {
+    const sidebar = document.getElementById("mobile-sidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("hidden");
+    }
+  };
   return (
     <div className="space-y-5 p-5">
+     <div className="block md:hidden" onClick={toggleSidebar}>
+        <span className="mx-2 text-mutedText">
+            <FaArrowLeftLong />
+        </span>
+      </div>
       <div>
         <h1 className="text-xl font-semibold">Settings Page</h1>
         <p className="text-mutedText">Customize for a Seamless Experience</p>

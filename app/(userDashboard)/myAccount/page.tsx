@@ -9,6 +9,7 @@ import { TbBuildingStore } from "react-icons/tb";
 import { FaInstagram } from "react-icons/fa6";
 import { UserContext } from "../(components)/useContext";
 import { getDataFromLocalStorage } from "@/app/utils/auth";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 type Order = {
   uuid: string;
@@ -84,9 +85,20 @@ const MyAccount: React.FC = () => {
       price: summaryTiles?.totalPayments || "0",
     },
   ];
+  const toggleSidebar = () => {
+    const sidebar = document.getElementById("mobile-sidebar");
+    if (sidebar) {
+      sidebar.classList.toggle("hidden");
+    }
+  };
 
   return (
     <div className="space-y-5 p-5">
+      <div className="block md:hidden" onClick={toggleSidebar}>
+        <span className="mx-2 text-mutedText">
+            <FaArrowLeftLong />
+        </span>
+      </div>
       <div>
         <h1 className="text-xl font-semibold">Welcome back, {user?.name}!</h1>
         <p className="text-mutedText">Let`s get right into it</p>

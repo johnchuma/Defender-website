@@ -261,25 +261,25 @@ import { GrUserExpert } from "react-icons/gr";
 import { PiVideoCameraSlashLight } from "react-icons/pi";
 
 export const safetyFeatures = [
-  { icon: <PiGpsFixLight className="text-cyan-600" />, title: "GPS Tracking" },
+  { icon: <PiGpsFixLight className="text-cyan-600 text-xl" />, title: "GPS Tracking" },
   {
-    icon: <HiOutlineLocationMarker className="text-purple-600" />,
+    icon: <HiOutlineLocationMarker className="text-purple-600 text-xl" />,
     title: "Customizable Safe Zones",
   },
   {
-    icon: <PiVideoCameraSlashLight className="text-red-600" />,
+    icon: <PiVideoCameraSlashLight className="text-red-600 text-xl" />,
     title: "No Unsafe Apps",
   },
   {
-    icon: <FiPhone className="text-orange-600" />,
+    icon: <FiPhone className="text-orange-600 text-xl" />,
     title: "SOS/Emergency Contact",
   },
   {
-    icon: <GrUserExpert className="text-cyan-600" />,
+    icon: <GrUserExpert className="text-cyan-600 text-xl" />,
     title: "Parent-managed Contacts",
   },
   {
-    icon: <CiVolumeMute className="text-blue-600" />,
+    icon: <CiVolumeMute className="text-blue-600 text-xl" />,
     title: "Focus & Silent Mode Scheduling",
   },
 ];
