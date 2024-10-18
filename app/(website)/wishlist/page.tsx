@@ -166,7 +166,7 @@ export default function WishListPage() {
                         className={`inline-flex items-center justify-center rounded-lg border-2 border-[#E0E0E0] p-1 ${
                           product.count === 1
                             ? "cursor-not-allowed opacity-50"
-                            : "cursor-pointer"
+                            : "cursor-pointer rounded-lg border-none bg-gray-200"
                         }`}
                         onClick={() => handleCountChange(product.id, false)}
                       >

@@ -45,7 +45,7 @@ export default function ProductPage() {
         />
       </div>
       <div className="space-y-5">
-        <h1 className="text-center text-lg font-bold text-textColor">
+        <h1 className="text-center text-2xl font-semibold text-textColor">
           Safety Features
         </h1>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-9">
@@ -84,7 +84,7 @@ export default function ProductPage() {
         </div>
       </div>
       <div className="space-y-5">
-        <h1 className="text-center text-lg font-bold text-textColor">
+        <h1 className="text-center text-2xl font-semibold text-textColor">
           Technical Specifications
         </h1>
         <div>
@@ -106,7 +106,7 @@ export default function ProductPage() {
       <div className="md:px-24">
         <div className="grid grid-cols-12 items-center gap-5">
           <div className="col-span-12 space-y-5 md:col-span-6">
-            <h1 className="text-lg font-bold text-textColor">
+            <h1 className="text-xl font-semibold text-textColor">
               More Specification you need <br className="hidden md:block" />
               to know
             </h1>

@@ -300,7 +300,7 @@ export const FloatingNav = ({
               {(pathname.includes("/myAccount") ||
                 pathname.includes("/orders") ||
                 pathname.includes("/settings")) && (
-                <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+                <span className="absolute bottom-0 left-0 right-0 mx-auto h-px w-full bg-primaryColor hover:bg-primaryCrimsonColor"></span>
               )}
             </span>
           </div>

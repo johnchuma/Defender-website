@@ -16,6 +16,15 @@ const Sidebar = () => {
     router.push("/");
   };
 
+  const hideSidebar = () => {
+    if (window.innerWidth < 768) {
+      const sidebar = document.getElementById("mobile-sidebar");
+      if (sidebar) {
+        sidebar.classList.add("hidden");
+      }
+    }
+  };
+
   const links = [
     {
       id: "myAccount",
@@ -59,6 +68,7 @@ const Sidebar = () => {
                     ? "bg-primaryColor text-white"
                     : "text-mutedText hover:text-primaryColor"
                 }`}
+                onClick={hideSidebar}
               >
                 <span className="text-xl">{link.icon}</span>
                 <span className="font-medium">{link.label}</span>

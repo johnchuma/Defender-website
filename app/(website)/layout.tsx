@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <div>
       <FloatingNav navItems={siteConfig.navItems} />
-      <div className="pt-6">{children}</div>
+      <div className="md:pt-6">{children}</div>
       <Footer />
     </div>
   );
