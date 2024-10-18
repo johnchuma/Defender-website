@@ -5,9 +5,7 @@ import { TbBuildingStore } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  deleteDataFromLocalStorage,
-} from "@/app/utils/auth";
+import { deleteDataFromLocalStorage } from "@/app/utils/auth";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -49,27 +47,27 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="h-full flex flex-col justify-between">
+    <div className="flex h-full flex-col justify-between py-8">
       <div>
-      <ul className="space-y-4 pt-9">
-        {links.map((link) => (
-          <li key={link.id}>
-            <Link
-              href={link.route}
-              className={`flex cursor-pointer items-center space-x-3 rounded-lg p-3 transition-colors ${
-                pathname === link.route
-                  ? "bg-primaryColor text-white"
-                  : "text-mutedText hover:text-primaryColor"
-              }`}
-            >
-              <span className="text-xl">{link.icon}</span>
-              <span className="font-medium">{link.label}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <ul className="space-y-4">
+          {links.map((link) => (
+            <li key={link.id}>
+              <Link
+                href={link.route}
+                className={`flex cursor-pointer items-center space-x-3 rounded-lg p-3 transition-colors ${
+                  pathname === link.route
+                    ? "bg-primaryColor text-white"
+                    : "text-mutedText hover:text-primaryColor"
+                }`}
+              >
+                <span className="text-xl">{link.icon}</span>
+                <span className="font-medium">{link.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="space-y-2 pb-10">
+      <ul className="space-y-2">
         {bottomLinks.map((link) => (
           <li key={link.id}>
             <button
