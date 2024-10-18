@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 // component
 import FeatureCard from "./_components/feature-cards";
@@ -14,10 +15,6 @@ import VideoThumbnail from "./_components/video-thumbnail";
 // images and illustrations
 import CompassImage from "@/public/images/compass.png";
 import RocketImage from "@/public/images/rocket.png";
-import SelcomLogo from "@/public/images/clients/selcom.png";
-import VodacomLogo from "@/public/images/clients/vodacom.png";
-import FlutterwaveLogo from "@/public/images/clients/flutterwave.png";
-import ShuleYetuLogo from "@/public/images/clients/shule-yetu.png";
 import SmartWatch from "@/public/blackwatch.svg";
 import SmartWatch2 from "@/public/v2blackwatch.svg";
 import DotOrnament from "@/public/images/ornaments/dot-ornaments.png";
@@ -31,13 +28,18 @@ import WaveOrnamentRed from "@/public/images/ornaments/wave-ornament-red.png";
 import TriangleOrnament from "@/public/images/ornaments/triangle-ornament.png";
 import TriangleOrnamentRed from "@/public/images/ornaments/triangle-ornament-red.png";
 import ChildrenPlaying from "@/public/images/children.png";
+import { logos } from "../utils/constants";
 
 // icons
 import GpsIcon from "@/public/images/icons/gps-icon.png";
 import SecurityIcon from "@/public/images/icons/shield-security.png";
 import CallIcon from "@/public/images/icons/call-calling.png";
 import AlarmIcon from "@/public/images/icons/alarm.png";
-import Link from "next/link";
+
+// splide
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
+import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 export default function Home() {
   const router = useRouter();
@@ -90,20 +92,26 @@ export default function Home() {
 
       {/* ======================== CLIENT SECTION ======================== */}
       <div className="h-[180px] place-content-center bg-[#E5EDFF] py-6">
-        <section className="container mx-auto grid grid-cols-2 place-items-center justify-self-center md:grid-cols-4">
-          <Image
-            src={FlutterwaveLogo}
-            alt="Flutterwave Image"
-            className="h-6 w-40"
-          />
-          <Image src={SelcomLogo} alt="Selcom Image" className="h-20 w-20" />
-          <Image src={VodacomLogo} alt="Vodacom Image" className="h-9 w-40" />
-          <Image
-            src={ShuleYetuLogo}
-            alt="Shule Yetu Image"
-            className="h-16 w-36"
-          />
-        </section>
+        <Splide
+          options={{
+            type: "loop",
+            drag: "free",
+            focus: "center",
+            pagination: false,
+            arrows: false,
+            perPage: 3,
+            autoScroll: {
+              speed: 1,
+            },
+          }}
+          extensions={{ AutoScroll }}
+        >
+          {logos.map((logo, index) => (
+            <SplideSlide key={index} className="self-center">
+              <Image src={logo.src} alt={logo.alt} className={logo.className} />
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
 
       {/* ======================== POPULAR PRODUCTS SECTION ======================== */}

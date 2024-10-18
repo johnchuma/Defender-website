@@ -1,6 +1,10 @@
 import { TbScissors } from "react-icons/tb";
 import { LuBadgeCheck, LuBookOpen } from "react-icons/lu";
 import { CiDeliveryTruck } from "react-icons/ci";
+import SelcomLogo from "@/public/images/clients/selcom.png";
+import VodacomLogo from "@/public/images/clients/vodacom.png";
+import FlutterwaveLogo from "@/public/images/clients/flutterwave.png";
+import ShuleYetuLogo from "@/public/images/clients/shule-yetu.png";
 
 export const productDetails = [
   {
@@ -828,3 +832,10 @@ export const footerTitleLinks = {
     { label: "Internships Programs", href: "/" },
   ],
 };
+
+export const logos = [
+  { src: FlutterwaveLogo, alt: "Flutterwave Image", className: "h-6 w-40" },
+  { src: SelcomLogo, alt: "Selcom Image", className: "h-20 w-20" },
+  { src: VodacomLogo, alt: "Vodacom Image", className: "h-9 w-40" },
+  { src: ShuleYetuLogo, alt: "Shule Yetu Image", className: "h-16 w-36" },
+];
