@@ -809,27 +809,29 @@ export const footerTitleLinks = {
     { label: "Features", href: "/features" },
   ],
   Products: [
-    { label: "User Guides", href: "/" },
-    { label: "SmartWatch", href: "/" },
-    { label: "Comparison Tool", href: "/" },
-    { label: "Features", href: "/" },
-    { label: "Specification", href: "/" },
+    { label: "Android SmartWatch", href: "/product/android" },
+    { label: "RTO SmartWatch", href: "/product/rto" },
+    { label: "Comparison Tool", href: "/shop" },
+    { label: "Android Specification", href: "/ecommerce?type=android" },
+    { label: "RTO Specification", href: "/ecommerce?type=rto" },
   ],
   "E-commerce": [
-    { label: "Wishlist", href: "/" },
-    { label: "User Account", href: "/" },
-    { label: "Order Tracking", href: "/" },
-    { label: "Payment Options", href: "/" },
+    { label: "Wishlist", href: "/wishlist" },
+    { label: "User Account", href: "/myAccount" },
+    { label: "Order Tracking", href: "/myAccount" },
+    { label: "Payment Options", href: "/payment" },
   ],
   Support: [
-    { label: "FAQs", href: "/" },
-    { label: "Contact Form", href: "/" },
+    { label: "FAQs", href: "/shop" },
+    { label: "Contact Form", href: "/contact" },
     { label: "Live Chat", href: "/" },
+    { label: "User Guides", href: "/" },
+
   ],
   Career: [
-    { label: "Current Job", href: "/" },
-    { label: "Why Join Us", href: "/" },
-    { label: "Internships Programs", href: "/" },
+    { label: "Current Job", href: "/career" },
+    { label: "Why Join Us", href: "/career" },
+    { label: "Internships Programs", href: "/career" },
   ],
 };
 
