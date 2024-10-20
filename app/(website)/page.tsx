@@ -15,8 +15,8 @@ import VideoThumbnail from "./_components/video-thumbnail";
 // images and illustrations
 import CompassImage from "@/public/images/compass.png";
 import RocketImage from "@/public/images/rocket.png";
-import SmartWatch from "@/public/blackwatch.svg";
-import SmartWatch2 from "@/public/v2blackwatch.svg";
+import SmartWatch from "@/public/blackwatch.png";
+import SmartWatch2 from "@/public/v2blackwatch.png";
 import DotOrnament from "@/public/images/ornaments/dot-ornaments.png";
 import CircleOrnament from "@/public/images/ornaments/circle-ornament.png";
 import CircleOrnamentGreen from "@/public/images/ornaments/circle-ornament-green.png";
@@ -43,7 +43,7 @@ import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 export default function Home() {
   const router = useRouter();
-  const images = ["/blackwatch.svg", "/v2blackwatch.svg"];
+  const images = ["/blackwatch.png", "/v2blackwatch.png"];
   return (
     <main className="-mt-32">
       {/* ======================== HERO SECTION ======================== */}

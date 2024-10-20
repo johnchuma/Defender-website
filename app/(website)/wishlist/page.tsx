@@ -80,7 +80,7 @@ export default function WishListPage() {
 
   const handleBuyNow = async () => {
     if (cart.length === 0) {
-      toast.warning(
+      toast.error(
         "Your cart is empty. Please add items to your cart before proceeding.",
       );
       return;
@@ -158,7 +158,7 @@ export default function WishListPage() {
                       </p>
                       <p className="py-2 text-xs text-mutedText md:text-sm">{`AT&T's Network`}</p>
                       <p className="mt-1 text-xs text-black md:text-lg">
-                        Tsh {product.price}
+                        {product.price} TZS
                       </p>
                     </div>
                     <div className="flex w-1/4 items-center space-x-3">
@@ -182,10 +182,10 @@ export default function WishListPage() {
                     </div>
                     <div className="w-1/4">
                       <p className="mt-1 text-xs font-semibold text-black md:text-lg">
-                        Tsh {product.price}
+                        {product.price} TZS
                       </p>
                       <div onClick={() => handleRemoveFromCart(product.id)}>
-                        <p className="md:text-md my-1 cursor-pointer text-xs uppercase text-mutedText">
+                        <p className="md:text-md my-1 cursor-pointer text-xs uppercase text-mutedText hover:text-primaryColor">
                           REMOVE
                         </p>
                       </div>
@@ -208,7 +208,7 @@ export default function WishListPage() {
               <div className="flex items-center justify-between">
                 <p className="font-medium text-mutedText">Subtotal</p>
                 <p className="text-sm text-mutedText">
-                  Tsh {totalPrice.toLocaleString()}
+                  {totalPrice.toLocaleString()} TZS
                 </p>
               </div>
               <p className="text-sm text-mutedText">

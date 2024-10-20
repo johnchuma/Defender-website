@@ -11,9 +11,10 @@ import Category from "../(components)/midNavBar";
 import CustomOutlineButton from "../(components)/customOutlineButton";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { useWishlist } from "../(components)/WishlistContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Spinner from "../(components)/spinner";
+import { getDataFromLocalStorage } from "@/app/utils/auth";
 interface CartItem {
   id: number;
   name: string;
@@ -45,7 +46,9 @@ function EcommerceContent() {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const [productVariations, setProductVariations] = useState<ProductVariation[]>([]);
+  const [productVariations, setProductVariations] = useState<
+    ProductVariation[]
+  >([]);
   const [selectedProduct, setSelectedProduct] = useState<CartItem | null>(null);
   const [productCount, setProductCount] = useState<number>(1);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -68,12 +71,16 @@ function EcommerceContent() {
   };
 
   useEffect(() => {
-    const savedCart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    const savedCart = JSON.parse(
+      localStorage.getItem("defenderCart") || "[]",
+    ) as CartItem[];
     setCart(savedCart);
   }, []);
 
   const handleAddToCart = (product: CartItem) => {
-    const cart = JSON.parse(localStorage.getItem("defenderCart") || "[]") as CartItem[];
+    const cart = JSON.parse(
+      localStorage.getItem("defenderCart") || "[]",
+    ) as CartItem[];
     const productIndex = cart.findIndex((p) => p.id === product.id);
 
     if (productIndex !== -1) {
@@ -94,7 +101,19 @@ function EcommerceContent() {
     if (selectedProduct) {
       const productToAdd = { ...selectedProduct, count: productCount };
       handleAddToCart(productToAdd);
-      router.push("/payment");
+      const accessToken = getDataFromLocalStorage("defender_userToken");
+
+      if (!accessToken) {
+        router.push("/register");
+        return;
+      }
+
+      try {
+        router.push("/payment");
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+        toast.error("Error fetching user details. Please try again.");
+      }
     }
   };
 
@@ -102,7 +121,7 @@ function EcommerceContent() {
     if (selectedProduct) {
       const productToAdd = { ...selectedProduct, count: productCount };
       handleAddToCart(productToAdd);
-  
+
       if (cart.length > 0) {
         router.push("/wishlist");
       } else {
@@ -110,11 +129,10 @@ function EcommerceContent() {
       }
     }
   };
-  
 
   return (
     <div className="mx-auto my-20 w-11/12 space-y-20 md:w-9/12">
-       <ToastContainer />
+      <ToastContainer />
       <div className="grid grid-cols-12 items-start md:gap-10 lg:gap-20">
         <div className="col-span-12 space-y-5 pb-5 md:col-span-6">
           <Image
@@ -152,7 +170,7 @@ function EcommerceContent() {
           </h4>
           <p className="text-mutedText">{selectedProduct?.description}</p>
           <p className="text-xl font-semibold text-black">
-            Tzs {selectedProduct?.price}
+            {selectedProduct?.price} TZS
           </p>
           <div className="w-3/4 space-y-4">
             <p className="my-2 text-black">Colors</p>
@@ -181,7 +199,9 @@ function EcommerceContent() {
               <div className="flex items-center space-x-5">
                 <div
                   className={`cursor-pointer rounded-lg border-2 p-2 ${
-                    productCount === 1 ? "cursor-not-allowed opacity-50" : "cursor-pointer rounded-lg border-none bg-gray-200"
+                    productCount === 1
+                      ? "cursor-not-allowed opacity-50"
+                      : "cursor-pointer rounded-lg border-none bg-gray-200"
                   }`}
                   onClick={() =>
                     productCount > 1 && setProductCount(productCount - 1)

@@ -36,7 +36,7 @@ export default function ProductPage() {
         <h4 className="mt-4 text-lg font-semibold text-black">
           Android Elite Version
         </h4>
-        <p className="mt-2 text-black">Tzs 135,000</p>
+        <p className="mt-2 text-black">135,000 TZS</p>
         <CustomButton
           btntext="Buy Now"
           className="px-12"
@@ -69,10 +69,7 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 gap-9 md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h2 className="text-lg font-semibold text-textColor md:text-4xl">
-              Get to know the Key <br className="hidden md:block" /> differences{" "}
-              <br className="block md:hidden" /> between{" "}
-              <br className="hidden md:block" />
-              Android Elite & RTO version.
+              Get to know about the <br /> Android Version Elite Watch
             </h2>
           </div>
           <div className="flex w-full flex-col items-center rounded-lg bg-white">
@@ -122,7 +119,7 @@ export default function ProductPage() {
           <div className="col-span-12 flex flex-col items-center space-y-5 md:col-span-6">
             {" "}
             <Image
-              src={"/blackwatch.svg"}
+              src={"/blackwatch.png"}
               height={2000}
               width={2000}
               className="h-60 w-full rounded-lg bg-transparent object-contain"
