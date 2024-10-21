@@ -61,7 +61,7 @@ export default function Career() {
       <div className="mx-auto w-11/12 space-y-16 pt-10 md:w-9/12">
         <section>
           <div className="space-y-5">
-            <h1 className="text-center text-lg font-bold text-textColor">
+          <h1 className="text-center text-2xl font-semibold text-textColor">
               Why Join Us
             </h1>
             <p className="text-center text-mutedText">
@@ -95,7 +95,7 @@ export default function Career() {
                   return (
                     <SwiperSlide key={index}>
                       <div className="flex flex-col items-start space-y-6 rounded-lg p-10 shadow-md">
-                        <div className="inline-flex items-start justify-center rounded-lg border-2 border-[#E0E0E0] p-3">
+                        <div className="inline-flex items-start justify-center rounded-lg border-2 border-[#E0E0E0] p-2">
                           <div className="">{item.icon}</div>
                         </div>
                         <div className="text-start font-semibold text-textColor">
@@ -115,8 +115,8 @@ export default function Career() {
 
         <section>
           <div className="space-y-5">
-            <h1 className="text-center text-lg font-bold text-textColor">
-              Employee Testimonials
+          <h1 className="text-center text-2xl font-semibold text-textColor">
+              Meet the Team
             </h1>
             <div className="space-x-5">
               <div className="hidden grid-cols-12 gap-10 md:grid">
@@ -276,8 +276,8 @@ export default function Career() {
         </section>
         <section>
           <div className="space-y-5">
-            <h1 className="text-center text-lg font-bold text-textColor">
-              Application Process
+          <h1 className="text-center text-2xl font-semibold text-textColor">
+          Application Process
             </h1>
             <div className="space-y-16">
               <div className="grid grid-cols-1 items-end md:grid-cols-12 md:gap-20">
@@ -301,7 +301,7 @@ export default function Career() {
                 <div className="items-top col-span-12 flex md:col-span-6 md:-translate-x-20">
                   <div>
                     <Image
-                      src="/arrow_pink.svg"
+                      src="/Arrow_red.png"
                       height={2000}
                       width={150}
                       className="h-40"
@@ -320,7 +320,7 @@ export default function Career() {
                   </div>
                   <div>
                     <Image
-                      src="/arrow_blue.svg"
+                      src="/arrow_blue.png"
                       height={2000}
                       width={150}
                       className="h-40"
@@ -364,7 +364,7 @@ export default function Career() {
                 <div className="items-top col-span-12 flex md:col-span-6 md:-translate-x-20">
                   <div>
                     <Image
-                      src="/arrow_pink.svg"
+                      src="/Arrow_red.png"
                       height={2000}
                       width={150}
                       className="h-40"
@@ -383,7 +383,7 @@ export default function Career() {
                   </div>
                   <div>
                     <Image
-                      src="/arrow_blue.svg"
+                      src="/arrow_blue.png"
                       height={2000}
                       width={150}
                       className="h-40"
@@ -427,7 +427,7 @@ export default function Career() {
                 <div className="items-top col-span-12 flex md:col-span-6 md:-translate-x-20">
                   <div>
                     <Image
-                      src="/arrow_pink.svg"
+                      src="/Arrow_red.png"
                       height={2000}
                       width={150}
                       className="h-40"
@@ -462,8 +462,8 @@ export default function Career() {
         </section>
         <section ref={jobsRef} className="py-2">
           <div className="space-y-3">
-            <h1 className="text-center text-lg font-bold text-textColor">
-              Current Job Openings
+          <h1 className="text-center text-2xl font-semibold text-textColor">
+          Current Job Openings
             </h1>
             <p className="text-center text-mutedText">Come join the team!</p>
             <div className="space-y-5">
@@ -498,7 +498,7 @@ export default function Career() {
                       </div>
                     </div>
                     <div className="hidden w-3/12 flex-col items-center justify-center space-y-5 md:flex">
-                      <CustomButton btntext="Apply here" />
+                      <CustomButton btntext="Apply here" className="text-center flex justify-center px-3 md:px-10" />
                       <p className="mutedText text-sm">Status: Ongoing</p>
                     </div>
                   </div>

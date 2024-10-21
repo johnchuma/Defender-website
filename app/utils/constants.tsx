@@ -49,7 +49,7 @@ export const productDetails = [
     description: (
       <div className="space-y-2">
         <p>
-          All our products come with a [duration] warranty, covering
+          All our products come with a 1 year warranty, covering
           manufacturing defects and issues under normal use. If you encounter
           any issues within the warranty period, please contact our customer
           support for assistance with repairs or replacements.
@@ -213,7 +213,7 @@ export const rto = [
     name: "RTO`s Modern Version",
     price: 99000,
     image: "/bluewatch.png",
-    color: "blue",
+    color: "indigo",
     description:
       "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
   },
@@ -224,7 +224,7 @@ export const android = [
     id: 201,
     name: "Android Elite Watch",
     price: 135000,
-    image: "/blackwatch.svg",
+    image: "/blackwatch.png",
     color: "black",
     description:
       "This version is the perfect smartwatch for kids—allowing them to safely connect with family and friends every step of their day.",
@@ -318,14 +318,11 @@ export const eastAfricanCountries = [
     country: "Tanzania",
     regions: [
       {
-        name: "Dar es Salaam",
-        districts: ["Ilala", "Kinondoni", "Temeke", "Kigamboni", "Ubungo"],
-      },
-      {
         name: "Arusha",
         districts: [
-          "Arusha City",
           "Meru",
+          "Arusha City",
+          "Arusha District",
           "Karatu",
           "Longido",
           "Monduli",
@@ -333,113 +330,408 @@ export const eastAfricanCountries = [
         ],
       },
       {
+        name: "Dar es Salaam",
+        districts: [
+          "Ilala",
+          "Kinondoni",
+          "Temeke",
+          "Kigamboni",
+          "Ubungo",
+        ],
+      },
+      {
         name: "Dodoma",
         districts: [
-          "Dodoma City",
           "Bahi",
           "Chamwino",
           "Chemba",
+          "Dodoma City",
           "Kondoa",
+          "Kongwa",
           "Mpwapwa",
+        ],
+      },
+      {
+        name: "Geita",
+        districts: [
+          "Bukombe",
+          "Chato",
+          "Geita",
+          "Mbogwe",
+          "Nyang’hwale",
+        ],
+      },
+      {
+        name: "Iringa",
+        districts: [
+          "Iringa",
+          "Iringa City",
+          "Kilolo",
+          "Mafinga",
+          "Mufindi",
+        ],
+      },
+      {
+        name: "Kagera",
+        districts: [
+          "Biharamulo",
+          "Bukoba",
+          "Bukoba City",
+          "Karagwe",
+          "Kyerwa",
+          "Missenyi",
+          "Muleba",
+          "Ngara",
+        ],
+      },
+      {
+        name: "Katavi",
+        districts: [
+          "Mlele",
+          "Mpanda",
+          "Mpanda Town",
+        ],
+      },
+      {
+        name: "Kigoma",
+        districts: [
+          "Buhigwe",
+          "Kakonko",
+          "Kasulu",
+          "Kasulu Town",
+          "Kibondo",
+          "Kigoma",
+          "Kigoma-Ujiji",
+          "Uvinza",
+        ],
+      },
+      {
+        name: "Kilimanjaro",
+        districts: [
+          "Hai",
+          "Moshi",
+          "Moshi City",
+          "Mwanga",
+          "Rombo",
+          "Same",
+          "Siha",
+        ],
+      },
+      {
+        name: "Lindi",
+        districts: [
+          "Kilwa",
+          "Lindi",
+          "Lindi City",
+          "Liwale",
+          "Nachingwea",
+          "Ruangwa",
+        ],
+      },
+      {
+        name: "Manyara",
+        districts: [
+          "Babati",
+          "Babati Town",
+          "Hanang",
+          "Kiteto",
+          "Mbulu",
+          "Simanjiro",
+        ],
+      },
+      {
+        name: "Mara",
+        districts: [
+          "Bunda",
+          "Butiama",
+          "Musoma",
+          "Musoma City",
+          "Rorya",
+          "Serengeti",
+          "Tarime",
+        ],
+      },
+      {
+        name: "Mbeya",
+        districts: [
+          "Busokelo",
+          "Chunya",
+          "Kyela",
+          "Mbarali",
+          "Mbeya City",
+          "Mbeya District",
+          "Rungwe",
+        ],
+      },
+      {
+        name: "Morogoro",
+        districts: [
+          "Gairo",
+          "Kilombero",
+          "Kilosa",
+          "Morogoro",
+          "Morogoro City",
+          "Mvomero",
+          "Ulanga",
+          "Malinyi",
+          "Ifakara",
+        ],
+      },
+      {
+        name: "Mtwara",
+        districts: [
+          "Masasi",
+          "Masasi Town",
+          "Mtwara",
+          "Mtwara City",
+          "Nanyumbu",
+          "Newala",
+          "Tandahimba",
         ],
       },
       {
         name: "Mwanza",
         districts: [
           "Ilemela",
+          "Kwimba",
+          "Magu",
+          "Misungwi",
           "Nyamagana",
           "Sengerema",
-          "Magu",
-          "Kwimba",
-          "Misungwi",
           "Ukerewe",
         ],
       },
       {
-        name: "Mbeya",
-        districts: ["Mbeya City", "Chunya", "Mbarali", "Rungwe"],
+        name: "Njombe",
+        districts: [
+          "Ludewa",
+          "Makambako",
+          "Makete",
+          "Njombe",
+          "Njombe Town",
+          "Wanging'ombe",
+        ],
+      },
+      {
+        name: "Pwani",
+        districts: [
+          "Bagamoyo",
+          "Kibaha",
+          "Kibaha Town",
+          "Kisarawe",
+          "Mafia",
+          "Mkuranga",
+          "Rufiji",
+        ],
+      },
+      {
+        name: "Rukwa",
+        districts: [
+          "Kalambo",
+          "Nkasi",
+          "Sumbawanga",
+          "Sumbawanga City",
+        ],
+      },
+      {
+        name: "Ruvuma",
+        districts: [
+          "Mbinga",
+          "Songea",
+          "Songea City",
+          "Tunduru",
+          "Namtumbo",
+          "Nyasa",
+        ],
+      },
+      {
+        name: "Shinyanga",
+        districts: [
+          "Kahama",
+          "Kahama Town",
+          "Kishapu",
+          "Shinyanga",
+          "Shinyanga City",
+        ],
+      },
+      {
+        name: "Simiyu",
+        districts: [
+          "Bariadi",
+          "Busega",
+          "Itilima",
+          "Maswa",
+          "Meatu",
+        ],
+      },
+      {
+        name: "Singida",
+        districts: [
+          "Ikungi",
+          "Iramba",
+          "Manyoni",
+          "Mkalama",
+          "Singida",
+          "Singida City",
+        ],
+      },
+      {
+        name: "Songwe",
+        districts: [
+          "Ileje",
+          "Mbozi",
+          "Momba",
+          "Songwe",
+        ],
+      },
+      {
+        name: "Tabora",
+        districts: [
+          "Igunga",
+          "Kaliua",
+          "Nzega",
+          "Sikonge",
+          "Tabora",
+          "Urambo",
+          "Uyui",
+        ],
+      },
+      {
+        name: "Tanga",
+        districts: [
+          "Handeni",
+          "Handeni Town",
+          "Kilindi",
+          "Korogwe",
+          "Korogwe Town",
+          "Lushoto",
+          "Muheza",
+          "Mkinga",
+          "Pangani",
+          "Tanga City",
+        ],
+      },
+      {
+        name: "Zanzibar Central/South",
+        districts: ["Kati", "Kusini"],
+      },
+      {
+        name: "Zanzibar North",
+        districts: ["Chake Chake", "Mkoani"],
+      },
+      {
+        name: "Zanzibar Urban/West",
+        districts: ["Magharibi", "Mjini"],
       },
     ],
-  },
+  }, 
   {
     country: "Kenya",
     regions: [
       {
-        name: "Nairobi",
-        districts: [
-          "Westlands",
-          "Langata",
-          "Starehe",
-          "Kibra",
-          "Kamukunji",
-          "Kasarani",
-          "Embakasi",
-        ],
-      },
-      {
-        name: "Mombasa",
-        districts: [
-          "Changamwe",
-          "Jomvu",
-          "Kisauni",
-          "Likoni",
-          "Mvita",
-          "Nyali",
-        ],
-      },
-      {
-        name: "Kiambu",
-        districts: [
-          "Kiambu Town",
-          "Githunguri",
-          "Ruiru",
-          "Juja",
-          "Gatundu North",
-          "Thika",
-          "Limuru",
-        ],
-      },
-      {
-        name: "Nakuru",
-        districts: [
-          "Nakuru Town East",
-          "Nakuru Town West",
-          "Naivasha",
-          "Gilgil",
-          "Subukia",
-        ],
-      },
-      {
-        name: "Kisumu",
-        districts: ["Kisumu East", "Kisumu West", "Nyakach", "Muhoroni"],
-      },
-    ],
-  },
-  {
-    country: "Uganda",
-    regions: [
-      {
         name: "Central",
         districts: [
-          "Kampala",
-          "Wakiso",
-          "Mukono",
-          "Mpigi",
-          "Luwero",
-          "Mityana",
-        ],
+          "Nyandarua",
+          "Nyeri",
+          "Kirinyaga",
+          "Murang'a",
+          "Kiambu"
+        ]
       },
       {
-        name: "Western",
-        districts: ["Mbarara", "Kabale", "Kasese", "Fort Portal", "Bushenyi"],
+        name: "Coast",
+        districts: [
+          "Mombasa",
+          "Kwale",
+          "Kilifi",
+          "Tana River",
+          "Lamu",
+          "Taita-Taveta"
+        ]
       },
       {
         name: "Eastern",
-        districts: ["Jinja", "Mbale", "Soroti", "Tororo", "Iganga"],
+        districts: [
+          "Marsabit",
+          "Isiolo",
+          "Meru",
+          "Tharaka-Nithi",
+          "Embu",
+          "Kitui",
+          "Machakos",
+          "Makueni"
+        ]
       },
       {
-        name: "Northern",
-        districts: ["Gulu", "Lira", "Kitgum", "Arua", "Pader"],
+        name: "Nairobi",
+        districts: [
+          "Nairobi"
+        ]
+      },
+      {
+        name: "North Eastern",
+        districts: [
+          "Garissa",
+          "Wajir",
+          "Mandera"
+        ]
+      },
+      {
+        name: "Nyanza",
+        districts: [
+          "Siaya",
+          "Kisumu",
+          "Homa Bay",
+          "Migori",
+          "Kisii",
+          "Nyamira"
+        ]
+      },
+      {
+        name: "Rift Valley",
+        districts: [
+          "Turkana",
+          "West Pokot",
+          "Samburu",
+          "Trans Nzoia",
+          "Uasin Gishu",
+          "Elgeyo-Marakwet",
+          "Nandi",
+          "Baringo",
+          "Laikipia",
+          "Nakuru",
+          "Narok",
+          "Kajiado",
+          "Kericho",
+          "Bomet"
+        ]
+      },
+      {
+        name: "Western",
+        districts: [
+          "Kakamega",
+          "Vihiga",
+          "Bungoma",
+          "Busia"
+        ]
+      }
+    ]
+  },  
+  {
+    country: "Uganda",
+    regions: [
+      { name: "Central Region", districts: ["Buikwe", "Bukomansimbi", "Butambala", "Buvuma", "Gomba", "Kalangala", "Kalungu", "Kampala", "Kasanda", "Kayunga", "Kiboga", "Kyankwanzi", "Kyotera", "Luweero", "Lwengo", "Lyantonde", "Masaka", "Mityana", "Mpigi", "Mubende", "Mukono", "Nakaseke", "Nakasongola", "Rakai", "Sembabule", "Wakiso"] },
+      {
+        name: "Eastern Region",
+        districts: ["Amuria", "Budaka", "Bududa", "Bugiri", "Bugweri", "Bukedea", "Bukwo", "Bulambuli", "Busia", "Butaleja", "Butebo", "Buyende", "Iganga", "Jinja", "Kaberamaido", "Kalaki", "Kaliro", "Kamuli", "Kapchorwa", "Kapelebyong", "Katakwi", "Kibuku", "Kumi", "Kween", "Luuka", "Manafwa", "Mayugev", "Mbale", "Namayingo", "Namisindwa", "Namutumba", "Ngora", "Pallisa", "Serere", "Sironko", "Soroti", "Tororo"],
+      },
+      {
+        name: "Northern Region",
+        districts: ["Abim", "Adjumani", "Agago", "Alebtong", "Amolatar", "Amudat", "Amuru", "Apac", "Arua", "Dokolo", "Gulu", "Kaabong", "Karenga", "Kitgum", "Koboko", "Kole", "Kotido", "Kwania", "Lamwo", "Lira", "Madi-Okollo", "Maracha", "Moroto", "Moyo", "Nabilatuk", "Nakapiripirit", "Napak", "Nebbi", "Nwoya", "Obongi", "Omoro", "Otuke", "Oyam", "Pader", "Pakwach", "Terego", "Yumbe", "Zombo"],
+      },
+      {
+        name: "Western Region",
+        districts: ["Buhweju", "Buliisa", "Bundibugyo", "Bunyangabu", "Bushenyi", "Hoima", "Ibanda", "Isingiro", "Kabale", "Kabarole", "Kagadi", "Kakumiro", "Kamwenge", "Kanungu", "Kasese", "Kazo", "Kibaale", "Kikuube", "Kiruhura", "Kiryandongo", "Kisoro", "Kitagwenda", "Kyegegwa", "Kyenjojo", "Masindi", "Mbarara", "Mitooma", "Ntoroko", "Ntungamo", "Rubanda", "Rubirizi", "Rukiga", "Rukungiri", "Rwampara", "Sheema"],
       },
     ],
   },
@@ -497,37 +789,37 @@ import { MdOutlinePhone } from "react-icons/md";
 
 export const whyJoinUs = [
   {
-    icon: <LiaHeartbeatSolid className="text-cyan-600" />,
+    icon: <LiaHeartbeatSolid className="text-cyan-600 text-xl" />,
     title: "Health insurance",
     description:
       "Our comprehensive medical insurance covers a wide variety of needs",
   },
   {
-    icon: <HiOutlineComputerDesktop className="text-purple-600" />,
+    icon: <HiOutlineComputerDesktop className="text-purple-600 text-xl" />,
     title: "New Macbook Pro",
     description:
       "All team members receive a brand new MacBook Pro work laptop on their first day",
   },
   {
-    icon: <HiOutlineUsers className="text-red-600" />,
+    icon: <HiOutlineUsers className="text-red-600 text-xl" />,
     title: "Smart, kind colleagues",
     description:
       "Learn and grow with highly accomplished colleagues who`re invested in your personal and professional development",
   },
   {
-    icon: <PiWindowsLogoLight className="text-yellow-600" />,
+    icon: <PiWindowsLogoLight className="text-yellow-600 text-xl" />,
     title: "Internet Reimbursement",
     description:
       "All team members receive a monthly budget to support their internet expenses",
   },
   {
-    icon: <AiOutlineCoffee className="text-cyan-600" />,
+    icon: <AiOutlineCoffee className="text-cyan-600 text-xl" />,
     title: "Remote Work Budget",
     description:
       "We offer a one-time budget to assist team members in making their home office as productive as possible",
   },
   {
-    icon: <HiOutlineUser className="text-blue-600" />,
+    icon: <HiOutlineUser className="text-blue-600 text-xl" />,
     title: "Professional Development",
     description:
       "We invest in our people to ensure they can achieve their short, medium, and long term professional goals",

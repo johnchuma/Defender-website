@@ -260,29 +260,30 @@ export const FloatingNav = ({
             ))}
 
             {/* Wishlist with Badge */}
-            <div
-              className={cn(
-                "relative flex w-fit items-center justify-center",
-                pathname.includes("/wishlist")
-                  ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
-                  : "text-neutral-600 hover:text-primaryColor",
-              )}
-            >
-              <Link href="/wishlist">
-                <span className="relative">
-                  Wishlist
-                  {pathname.includes("/wishlist") && (
-                    <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
-                  )}
-                </span>
-              </Link>
-              {wishlistCount > 0 && (
-                <div className="absolute -right-6 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primaryColor text-xs text-white">
-                  {wishlistCount}
-                </div>
-              )}
-            </div>
-
+            {wishlistCount > 0 && (
+              <div
+                className={cn(
+                  "relative flex w-fit items-center justify-center",
+                  pathname.includes("/wishlist")
+                    ? "font-medium text-primaryColor hover:text-primaryCrimsonColor"
+                    : "text-neutral-600 hover:text-primaryColor",
+                )}
+              >
+                <Link href="/wishlist">
+                  <span className="relative">
+                    Wishlist
+                    {pathname.includes("/wishlist") && (
+                      <span className="absolute -inset-x-2 -bottom-1.5 mx-auto h-px bg-primaryColor hover:bg-primaryCrimsonColor"></span>
+                    )}
+                  </span>
+                </Link>
+                {wishlistCount > 0 && (
+                  <div className="absolute -right-6 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primaryColor text-xs text-white">
+                    {wishlistCount}
+                  </div>
+                )}
+              </div>
+            )}
             {/* { My Account } */}
             <span
               onClick={handleAccountClick}

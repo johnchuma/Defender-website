@@ -28,7 +28,7 @@ export default function Shop() {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <div className="flex flex-col items-center rounded-lg p-4">
             <Image
-              src={"/blackwatch.svg"}
+              src={"/blackwatch.png"}
               height={2000}
               width={2000}
               className="h-80 w-full rounded-lg bg-[#F2F2F2] object-contain"
@@ -37,7 +37,7 @@ export default function Shop() {
             <h4 className="mt-4 text-lg font-semibold text-black">
               Android Elite Version
             </h4>
-            <p className="mt-2 text-black">Tzs 135,000</p>
+            <p className="mt-2 text-black">135,000 TZS</p>
             <CustomButton
               btntext="Learn More"
               onClick={() => handlelearnMore("android")}
@@ -55,7 +55,7 @@ export default function Shop() {
             <h4 className="mt-4 text-lg font-semibold text-black">
               RTO`s Modern Version
             </h4>
-            <p className="mt-2 text-black">Tzs 99,000</p>
+            <p className="mt-2 text-black">99,000 TZS</p>
             <CustomButton
               btntext="Learn More"
               onClick={() => handlelearnMore("rto")}

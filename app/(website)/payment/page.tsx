@@ -47,6 +47,7 @@ export default function PaymentPage() {
     name: string;
     districts: string[];
   } | null>(null);
+  const [modeOfTransport, setModeOfTransport] = useState<string>("");
   const setFieldValueRef = useRef<(field: string, value: string) => void>();
 
   const validationSchema = Yup.object({
@@ -120,12 +121,18 @@ export default function PaymentPage() {
       setIsSuccess(false);
       const token = getDataFromLocalStorage("defender_userToken");
 
-      const response = await ORDER_API(orderData,token);
+      const response = await ORDER_API(orderData, token);
 
       if (response.status === 200) {
         console.log("Order placed successfully!");
         setIsSuccess(true);
-        router.push(`/myAccount`);
+
+        if (response.data.role == "user") {
+          router.push(`/myAccount`);
+          return;
+        } else {
+          router.push(`/admin`);
+        }
       } else {
         console.error("Failed to place order", response.data);
         setIsSuccess(false);
@@ -170,6 +177,35 @@ export default function PaymentPage() {
       ?.regions.find((r) => r.name === region);
     setSelectedRegionData(regionData || null);
   };
+
+  useEffect(() => {
+    let updatedTotal = calculateTotalPrice(cart);
+
+    if (delivery === "yes") {
+      if (selectedCountry === "Tanzania") {
+        if (selectedRegion === "Dar es Salaam") {
+          updatedTotal += 5000;
+        } else if (selectedRegion !== "Dar es Salaam") {
+          updatedTotal += 10000;
+        }
+      } else if (selectedCountry !== "Tanzania" && modeOfTransport) {
+        switch (modeOfTransport) {
+          case "plane":
+            updatedTotal += 25000;
+            break;
+          case "ship":
+            updatedTotal += 15000;
+            break;
+          case "bus":
+            updatedTotal += 30000;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    setTotalPrice(updatedTotal);
+  }, [cart, delivery, selectedCountry, selectedRegion, modeOfTransport]);
 
   return (
     <div className="mx-auto w-11/12 space-y-8 pb-20 md:w-9/12">
@@ -364,46 +400,72 @@ export default function PaymentPage() {
                               </div>
                             </div>
                             {selectedRegion && selectedRegionData && (
-                              <div className="flex w-full flex-col md:flex-row md:space-x-4">
-                                <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
-                                  <label>District</label>
-                                  <select
-                                    className="w-full rounded-lg border-2 p-3 py-2"
-                                    name="district"
-                                    value={values.district}
-                                    onChange={handleChange}
-                                  >
-                                    <option value="">Select District</option>
-                                    {selectedRegionData.districts.map(
-                                      (district) => (
-                                        <option key={district} value={district}>
-                                          {district}
-                                        </option>
-                                      ),
+                              <div>
+                                <div className="flex w-full flex-col md:flex-row md:space-x-4">
+                                  <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                                    <label>District</label>
+                                    <select
+                                      className="w-full rounded-lg border-2 p-3 py-2"
+                                      name="district"
+                                      value={values.district}
+                                      onChange={handleChange}
+                                    >
+                                      <option value="">Select District</option>
+                                      {selectedRegionData.districts.map(
+                                        (district) => (
+                                          <option
+                                            key={district}
+                                            value={district}
+                                          >
+                                            {district}
+                                          </option>
+                                        ),
+                                      )}
+                                    </select>
+                                    {errors.district && touched.district && (
+                                      <p className="text-xs text-red-600">
+                                        {errors.district}
+                                      </p>
                                     )}
-                                  </select>
-                                  {errors.district && touched.district && (
-                                    <p className="text-xs text-red-600">
-                                      {errors.district}
-                                    </p>
-                                  )}
-                                </div>
+                                  </div>
 
-                                <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
-                                  <label>Street Address</label>
-                                  <input
-                                    className="w-full rounded-lg border-2 p-3 py-2"
-                                    name="street"
-                                    value={values.street}
-                                    onChange={handleChange}
-                                    placeholder="Street Address"
-                                  />
-                                  {errors.street && touched.street && (
-                                    <p className="text-xs text-red-600">
-                                      {errors.street}
-                                    </p>
-                                  )}
+                                  <div className="my-1 flex w-full flex-col space-y-3 md:w-6/12">
+                                    <label>Street Address</label>
+                                    <input
+                                      className="w-full rounded-lg border-2 p-3 py-2"
+                                      name="street"
+                                      value={values.street}
+                                      onChange={handleChange}
+                                      placeholder="Street Address"
+                                    />
+                                    {errors.street && touched.street && (
+                                      <p className="text-xs text-red-600">
+                                        {errors.street}
+                                      </p>
+                                    )}
+                                  </div>
                                 </div>
+                                {selectedCountry &&
+                                  selectedCountry !== "Tanzania" && (
+                                    <div className="mt-3">
+                                      <label>Select Mode of Transport</label>
+                                      <select
+                                        className="w-full rounded-lg border-2 p-3 py-2"
+                                        name="modeOfTransport"
+                                        value={modeOfTransport}
+                                        onChange={(e) =>
+                                          setModeOfTransport(e.target.value)
+                                        }
+                                      >
+                                        <option value="">
+                                          Select Transport Mode
+                                        </option>
+                                        <option value="plane">Plane</option>
+                                        <option value="ship">Ship</option>
+                                        <option value="bus">Bus</option>
+                                      </select>
+                                    </div>
+                                  )}
                               </div>
                             )}
                           </>
@@ -488,7 +550,7 @@ export default function PaymentPage() {
                     {product.name}
                   </h4>
                   <p className="py-2 text-sm text-mutedText">
-                    Tsh {product.price}
+                    {product.price} TZS
                   </p>
                 </div>
               </div>
@@ -503,23 +565,23 @@ export default function PaymentPage() {
             <div className="flex items-center justify-between space-x-2">
               <p className="font-medium text-mutedText">Subtotal</p>
               <p className="text-sm text-mutedText">
-                Tsh {totalPrice.toLocaleString()}
+                {totalPrice.toLocaleString()} TZS
               </p>
             </div>
             <div className="flex items-center justify-between space-x-2">
               <p className="font-medium text-mutedText">Estimated Tax</p>
-              <p className="text-sm text-mutedText">Tsh 135,000 </p>
+              <p className="text-sm text-mutedText">0 TZS</p>
             </div>
             <div className="flex items-center justify-between space-x-2">
               <p className="font-medium text-mutedText">
                 Delivery (Within Dar)
               </p>
-              <p className="text-sm text-mutedText">Free </p>
+              <p className="text-sm text-mutedText">5000 TZS </p>
             </div>
 
             <div className="flex items-center justify-between space-x-2">
               <p className="font-medium">Total</p>
-              <p>Tsh {totalPrice.toLocaleString()} </p>
+              <p>{totalPrice.toLocaleString()} TZS </p>
             </div>
           </div>
         </div>

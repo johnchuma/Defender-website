@@ -37,7 +37,7 @@ export default function ProductPage() {
         <h4 className="mt-4 text-lg font-semibold text-black">
           RTO`s Modern Version
         </h4>
-        <p className="mt-2 text-black">Tzs 99,000</p>
+        <p className="mt-2 text-black">99,000 TZS</p>
         <CustomButton
           btntext="Buy Now"
           className="px-12"
@@ -70,10 +70,7 @@ export default function ProductPage() {
         <div className="grid grid-cols-1 gap-9 md:grid-cols-2">
           <div className="flex flex-col justify-center">
             <h2 className="text-lg font-semibold text-textColor md:text-4xl">
-              Get to know the Key <br className="hidden md:block" /> differences{" "}
-              <br className="block md:hidden" /> between{" "}
-              <br className="hidden md:block" />
-              Android Elite & RTO version.
+              Get to know about the <br/> RTO Version Elite Watch
             </h2>
           </div>
           <div className="flex w-full flex-col items-center rounded-lg bg-white">

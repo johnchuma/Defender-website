@@ -7,6 +7,7 @@ import { REGISTER_API } from "../../(api)/auth";
 import { HiOutlineUser, HiOutlinePhone } from "react-icons/hi2";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,7 +22,9 @@ export default function Register() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSent, setFormSent] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  
   const handlePostRegistration = (accessToken: string) => {
     setDataToLocalStorage("defender_userToken", accessToken);
 
@@ -161,9 +164,21 @@ export default function Register() {
                       className="form-inputstyle py-2 pl-10 pr-3"
                       name="password"
                       value={values.password}
+                      type={showPassword ? "text" : "password"}
                       onChange={handleChange}
                       placeholder="************"
                     />
+                    {showPassword ? (
+                      <AiOutlineEyeInvisible
+                        className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer text-gray-400"
+                        onClick={() => setShowPassword(false)}
+                      />
+                    ) : (
+                      <AiOutlineEye
+                        className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer text-gray-400"
+                        onClick={() => setShowPassword(true)}
+                      />
+                    )}{" "}
                   </div>
                   {errors.password && touched.password && (
                     <p className="text-xs text-red-600">{errors.password}</p>
@@ -177,9 +192,21 @@ export default function Register() {
                       className="form-inputstyle py-2 pl-10 pr-3"
                       name="confirmpassword"
                       value={values.confirmpassword}
+                      type={showConfirmPassword ? "text" : "password"}
                       onChange={handleChange}
                       placeholder="************"
                     />
+                    {showConfirmPassword ? (
+                      <AiOutlineEyeInvisible
+                        className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer text-gray-400"
+                        onClick={() => setShowConfirmPassword(false)}
+                      />
+                    ) : (
+                      <AiOutlineEye
+                        className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer text-gray-400"
+                        onClick={() => setShowConfirmPassword(true)}
+                      />
+                    )}{" "}
                   </div>
                   {errors.confirmpassword && touched.confirmpassword && (
                     <p className="text-xs text-red-600">
